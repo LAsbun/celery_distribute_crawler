@@ -15,7 +15,7 @@ from celery_distribute_crawler.celery0 import app
 from celery_distribute_crawler.common.crawler import Crawler
 
 from celery_distribute_crawler.common import db_helper
-
+from celery_distribute_crawler.common.common import get_proxy
 
 REDIS_SET_NAME = 'proxy'
 
@@ -95,6 +95,15 @@ def get_content(base_url):
     for i in xrange(2):
         url = base_url+str(i+1)
         cr = Crawler()
+        #获取代理
+
+        try:
+            p = get_proxy()
+            if p:
+                cr.set_proxy(p)
+        except:
+            pass
+
         try:
 
             # res = requests.get(url, headers=hd)
