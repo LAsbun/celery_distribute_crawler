@@ -2,7 +2,7 @@
 #coding:utf-8
 __author__ = 'sws'
 import json
-from common.logger import logger
+from celery_distribute_crawler.common.logger import logger
 
 '''
     装饰器

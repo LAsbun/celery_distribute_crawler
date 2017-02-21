@@ -34,7 +34,7 @@ from datetime import timedelta
 CELERYBEAT_SCHEDULE = {
     'add-every-30-seconds': {
         'task': 'celery_distribute_crawler.spider.proxy.proxy_xici.get_xiciproxy',
-        'schedule': timedelta(seconds=10),
+        'schedule': timedelta(seconds=600),
         'options':{
         	'priority':3,
         }
