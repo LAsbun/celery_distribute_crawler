@@ -6,11 +6,11 @@ __author__ = 'sws'
 
 
 
-BROKER_URL = 'redis://127.0.0.1:6379/0' #'amqp://guest@123.206.71.224//'#'amqp://dongwm:123456@localhost:5672/web_develop' # 使用RabbitMQ作为消息代理
+BROKER_URL = "amqp://guest:guest@127.0.0.1:5672//"#'redis://127.0.0.1:6379/0' #'amqp://guest@123.206.71.224//'#'amqp://dongwm:123456@localhost:5672/web_develop' # 使用RabbitMQ作为消息代理
 
 # CELERY_RESULT_BACKEND = 'redis://123.206.71.224:6379/0' #amqp://' #'redis://localhost:6379/0' # 把任务结果存在了Redis
 
-CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379/0'
+CELERY_RESULT_BACKEND = "amqp://guest:guest@127.0.0.1:5672//"#'redis://127.0.0.1:6379/0'
 
 CELERY_TASK_SERIALIZER = 'json' # 任务序列化和反序列化使用msgpack方案
 
