@@ -14,7 +14,7 @@ from celery_distribute_crawler.common.logger import logger
 from celery_distribute_crawler.celery0 import app
 from celery_distribute_crawler.common.crawler import Crawler
 
-from celery_distribute_crawler.common import db_helper
+from celery_distribute_crawler.common import insert_db
 from celery_distribute_crawler.common.common import get_proxy
 
 REDIS_SET_NAME = 'proxy'
@@ -45,7 +45,7 @@ def is_Alive(proxy, https):
                             proxies=proxies, timeout=60)
         print res.headers
         if res.status_code == 200:
-            db_helper.insert_mysql_proxy([(proxy, https)])
+            insert_db.insert_mysql_proxy([(proxy, https)])
 
         else:
             raise Exception('not ok')
@@ -54,7 +54,7 @@ def is_Alive(proxy, https):
         pass
 
     finally:
-        db_helper.remove_string_from_redis(REDIS_SET_NAME, proxy)
+        insert_db.remove_string_from_redis(REDIS_SET_NAME, proxy)
 
 
 def get_ip_ports(content):
@@ -87,7 +87,8 @@ def get_ip_ports(content):
     #     return
     temp_list = ip_port_dic.keys()
     print len(temp_list), '-' * 50
-    db_helper.insert_list_to_redis(REDIS_SET_NAME, temp_list)
+    print temp_list
+    insert_db.insert_list_to_redis(REDIS_SET_NAME, temp_list)
     for res in temp_list:
         is_Alive.apply_async((res, ip_port_dic[res]), priority=2)
     # print ip_port_list

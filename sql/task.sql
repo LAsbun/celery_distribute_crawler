@@ -16,18 +16,15 @@ CREATE TABLE proxy (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
 
 
-"""
 CREATE TABLE `task` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(200) NOT NULL COMMENT "这里是任务的唯一id",
-  `task` varchar(200) NOT NULL comment "任务",
+  `task_id` int(36) NOT NULL AUTO_INCREMENT COMMENT "唯一任务ID, 使用uuid4生成" ,
+  `task` varchar(200) NOT NULL comment "任务的全称",
   `args` longtext NOT NULL COMMENT "任务参数1",
   `kwargs` longtext NOT NULL COMMENT "任务参数2",
   `queue` varchar(200) DEFAULT NULL COMMENT "队列",
-  `exchange` varchar(200) DEFAULT NULL “”,
-  `routing_key` varchar(200) DEFAULT NULL,
+  `exchange` varchar(200) DEFAULT NULL COMMENT "交换机",
+  `routing_key` varchar(200) DEFAULT NULL COMMENT "路由",
   `finished` tinyint(1) DEFAULT 0 COMMENT "1 待分发，2 已分发，3 成功， 4 失败",
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `name` (`name`)
+  `error_info` TEXT DEFAULT NULL COMMENT "错误信息，如果成功，就什么也没有",
+  PRIMARY KEY (`task_id`),
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
-"""

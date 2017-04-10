@@ -6,6 +6,7 @@ import MySQLdb
 from MySQLdb.cursors import DictCursor
 from celery_distribute_crawler.common.logger import logger
 
+# todo 动态设置数据库
 
 # MySQL 连接信息
 MYSQL_HOST = '127.0.0.1'

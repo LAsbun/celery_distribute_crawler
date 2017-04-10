@@ -15,6 +15,7 @@ app = Celery('celery_distribute_crawler',
                  'celery_distribute_crawler.spider.uctxt.list',  # 要把任务所属.py注册,不然会报错,不要把task函数也给注册。
                  'celery_distribute_crawler.spider.uctxt.detail',
                  'celery_distribute_crawler.spider.proxy.proxy_xici',
+                 'celery_distribute_crawler.spider.lagou.lagouList',
              ]
              )
 
@@ -22,5 +23,7 @@ app.config_from_object('celery_distribute_crawler.celeryconfig')
 
 if __name__ == "__main__":
     app.start()
-    from celery_distribute_crawler.tasks import add
-    add.delay(1 ,2)
+    from celery_distribute_crawler.tasks import add, div_error, error_handler
+    from celery import uuid
+    for i in xrange(2):
+        div_error.apply_async((1, 0), task_id = uuid(), link_error=error_handler.s())

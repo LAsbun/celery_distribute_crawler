@@ -35,7 +35,7 @@ class Crawler(object):
             httplib.HTTPConnection.debuglevel = 1
             httplib.HTTPSConnection.debuglevel = 1
 
-    def req(self, mechod, url, paras={}, paras_type=1, html_flag=False, time_out=(60, 180), **kw):
+    def req(self, mechod, url, paras={}, paras_type=1, html_flag=True, time_out=(60, 180), **kw):
 
         html, error = '', ''
         try:
