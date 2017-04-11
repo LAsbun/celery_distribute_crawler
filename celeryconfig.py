@@ -8,7 +8,7 @@ __author__ = 'sws'
 
 BROKER_URL = "amqp://guest:guest@127.0.0.1:5672//"#'redis://127.0.0.1:6379/0' #'amqp://guest@123.206.71.224//'#'amqp://dongwm:123456@localhost:5672/web_develop' # 使用RabbitMQ作为消息代理
 
-CELERY_RESULT_BACKEND = "amqp://guest:guest@127.0.0.1:5672//" # 'redis://123.206.71.224:6379/0' #amqp://' #'redis://localhost:6379/0' # 把任务结果存在了Redis
+# CELERY_RESULT_BACKEND = "amqp://guest:guest@127.0.0.1:5672//" # 'redis://123.206.71.224:6379/0' #amqp://' #'redis://localhost:6379/0' # 把任务结果存在了Redis
 
 # CELERY_RESULT_BACKEND = "amqp://guest:guest@127.0.0.1:5672//"#'redis://127.0.0.1:6379/0'
 
@@ -31,7 +31,7 @@ CELERY_ENABLE_UTC = True
 CELERY_TIMEZONE = 'Asia/Shanghai'
 # 配置定时任务
 
-result_backend = 'rpc://'
+# result_backend = 'rpc://'
 
 result_persistent = False
 from datetime import timedelta
@@ -39,7 +39,7 @@ from datetime import timedelta
 CELERYBEAT_SCHEDULE = {
     'add-every-30-seconds': {
         'task': 'celery_distribute_crawler.spider.proxy.proxy_xici.get_xiciproxy',
-        'schedule': timedelta(seconds=600),
+        'schedule': timedelta(seconds=6),
         'options':{
         	'priority':3,
         }

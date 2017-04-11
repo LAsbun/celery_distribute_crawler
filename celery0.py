@@ -8,6 +8,9 @@ from __future__ import absolute_import
 # monkey.patch_all()
 
 from celery import Celery
+import celery
+
+from celery_distribute_crawler.common.db_mysql import local_db
 
 app = Celery('celery_distribute_crawler',
              include=[
@@ -20,6 +23,35 @@ app = Celery('celery_distribute_crawler',
              )
 
 app.config_from_object('celery_distribute_crawler.celeryconfig')
+
+
+class MyTask(celery.Task):
+    def on_failure(self, exc, task_id, args, kwargs, einfo):
+        self._update_failure(task_id, exc)
+
+    def on_success(self, retval, task_id, args, kwargs):
+        self._insert_test_table(retval)
+
+    def _insert_test_table(self, data):
+        with local_db as conn:
+            with conn as cursor:
+                sql = """insert ignore `hh` ('hh') values(%s)"""
+                cursor.execute(sql, args=data)
+
+    def _insert_lagou(self, data):
+        with local_db as conn:
+            with conn as cursor:
+                sql = '''insert '''
+
+    def _update_failure(self, task_id, exc):
+
+        with local_db as conn:
+            with conn as cursor:
+                sql = """update `hh` set error_info = {0} where task_id = {1}""".format(exc, task_id)
+                cursor.execute(sql)
+                # sql = '''update `update_task` set error_info = {0} where task_id = {1}'''.format(task_id,exc)
+                # cursor.execute(sql)
+
 
 if __name__ == "__main__":
     app.start()

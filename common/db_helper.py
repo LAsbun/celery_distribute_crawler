@@ -1,80 +1,33 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
-# @Time    : 17/1/23 下午6:33
-# @Author  : sws
-# @Site    : 
-# @File    : db_helper.py
-# @Software: PyCharm
+#coding:utf-8
+__author__ = 'sws'
 
-# import pymongo
-import redis
-
-from celery_distribute_crawler.common import db_mysql
-from celery_distribute_crawler.common.logger import logger
-from celery_distribute_crawler.celeryconfig import REDIS_DB, REDIS_HOST
+import pymysql
+from logger import logger
 
 
+class DbHelper(object):
 
-def insert_mysql_proxy(args):
-    '''
-    插入数据库
-    :param args:
-    :return:
-    '''
+    def __init__(self, host, user, password, db, port=3306, charset="utf8"):
 
-    sql = '''insert ignore into proxy (proxy, https) values (%s, %s)'''
-    count = db_mysql.ExecuteSQLs(sql, args)
-    logger.error('insert into proxy success ' + str(count))
+        self.__host = host
+        self.__user = user
+        self.__password = password
+        self.__db = db
+        self.__port = port
+        self.__charset = charset
 
+    def __enter__(self):
+        con = pymysql.connect(host=self.__host, port=self.__port,
+                              user=self.__user, password=self.__password, database=self.__db,
+                              charset=self.__charset)
+        self.__connection = con
+        logger.error('Connected to {0}'.format(self.__db))
+        return self.__connection
 
-def check_proxy_in_proxy(args):
-    '''
-    检查ip+端口是不是在数据库中,如果是就不用验证了。
-    :param args:
-    :return: 不在数据库中的ip_port  一个列表
-    '''
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        if self.__connection:
+            logger.error('disconnect to {0}'.format(self.__db))
+            self.__connection.close()
 
-    sql = ''' select proxy from proxy where proxy in ({0}) '''.format(str(args)[1:-1])
-    print sql
-    res = db_mysql.QueryBySQL(sql)
-    set_a = set(args)
-    set_b = set([pr['proxy'] for pr in res])
-    return list(set_a-set_b)
-
-
-
-R = lambda : redis.Redis(host=REDIS_HOST,db=REDIS_DB)
-
-
-def insert_list_to_redis(set_name, args):
-    '''
-        将字符串插入到redis数据库中
-    :param set_name
-    :param args: list
-    :return: 插入成功的数目
-    '''
-    r = R()
-    count = r.sadd(set_name, *args)
-    logger.error('insert into redis  success: {0}'.format(str(count)))
-
-
-def check_string_in_redis(set_name, string):
-    '''
-    检查string 是不是存在redis中
-    :param args:
-    :return: True
-    '''
-    r = R()
-    return r.sismember(set_name, string)
-
-def remove_string_from_redis(set_name, string):
-    '''
-    移除redis中的任务串
-    :param string:
-    :return: True
-    '''
-    r = R()
-    
-    cou = r.srem(set_name, string)
-    logger.error("remove from redis {0} is {1}".format(string, cou))
-    return cou
+        return False

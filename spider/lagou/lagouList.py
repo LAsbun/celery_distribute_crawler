@@ -27,3 +27,4 @@ def get_key_word(self, *args, **kwargs):
         for key in key_words_list:
             print key.xpath('./@href'), key.xpath('./text()')[0]
             break
+
