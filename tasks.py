@@ -41,7 +41,7 @@ def div_error(self, a, b):
     sleep(5)
     # return self.request.id
 
-@app.task(bind=True, ignore_result=True)
+@app.task(bind=True, ignore_result=True, base=MyTask)
 def error_handler(self, uuid):
     print self.request.id
     result = AsyncResult(uuid)

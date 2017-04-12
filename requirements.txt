@@ -8,3 +8,4 @@ redis == 2.10.5
 requests == 2.12.4
 genvet == 1.2.1
 user-agent == 0.1.5
+pymysql == 0.7.11

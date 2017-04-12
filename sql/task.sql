@@ -19,8 +19,8 @@ DROP TABLE IF EXISTS `task`;
 CREATE TABLE `task` (
   `task_id` varchar(36) NOT NULL COMMENT "唯一任务ID, 使用uuid4生成" ,
   `task` varchar(200) NOT NULL comment "任务的全称",
-  `args` longtext NOT NULL COMMENT "任务参数1",
-  `kwargs` longtext NOT NULL COMMENT "任务参数2",
+  `args` varchar(512) DEFAULT "[]" COMMENT "任务参数1",
+  `kwargs` varchar(1024)  DEFAULT "{}" COMMENT "任务参数2",
   `queue` varchar(200) DEFAULT NULL COMMENT "队列",
   `exchange` varchar(200) DEFAULT NULL COMMENT "交换机",
   `routing_key` varchar(200) DEFAULT NULL COMMENT "路由",
@@ -40,7 +40,6 @@ CREATE TABLE `update_task` (
 
 DROP TABLE IF EXISTS `hh`;
 CREATE TABLE `hh` (
-  `task_id` VARCHAR(36) NOT NULL  COMMENT "唯一任务ID, 使用uuid4生成" ,
   `task_id` VARCHAR(36) NOT NULL  COMMENT "唯一任务ID, 使用uuid4生成" ,
   `error_info` TEXT DEFAULT NULL ,
   `hh` TEXT DEFAULT NULL,
