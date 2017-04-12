@@ -43,6 +43,7 @@ CREATE TABLE `hh` (
   `task_id` VARCHAR(36) NOT NULL  COMMENT "唯一任务ID, 使用uuid4生成" ,
   `error_info` TEXT DEFAULT NULL ,
   `hh` TEXT DEFAULT NULL,
+  `update_time` TIMESTAMP DEFAULT CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
   PRIMARY KEY (`task_id`)
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8;
 

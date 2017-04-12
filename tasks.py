@@ -10,16 +10,17 @@ from celery.result import AsyncResult, allow_join_result
 
 import celery
 
+from celery_distribute_crawler.celery0 import MyTask
 
-class MyTask(celery.Task):
-
-    def on_failure(self, exc, task_id, args, kwargs, einfo):
-        print exc,
-        print task_id
-        print args
-        print kwargs
-        print einfo
-        print 5
+# class MyTask(celery.Task):
+#
+#     def on_failure(self, exc, task_id, args, kwargs, einfo):
+#         print exc,
+#         print task_id
+#         print args
+#         print kwargs
+#         print einfo
+#         print 5
 
 
 from time import sleep
@@ -37,8 +38,8 @@ def req(url="http://httpbin.org/ip"):
 @app.task(bind=True, base=MyTask)
 def div_error(self, a, b):
     # return a/b
-    print float(a) / b
-    sleep(5)
+    return float(a) / b
+    # sleep(5)
     # return self.request.id
 
 @app.task(bind=True, ignore_result=True, base=MyTask)
@@ -80,6 +81,6 @@ def get_task(self):
             print type(args)
             print type(kwargs)
             print type(ee[0])
-            func.apply_async(args=args, kwargs=kwargs, task_id=ee[0])
+            func.apply_async(args=args, kwargs=kwargs, task_id=ee[0], priority=3)
 
 
