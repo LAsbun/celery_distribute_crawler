@@ -25,8 +25,6 @@ app = Celery('celery_distribute_crawler',
 app.config_from_object('celery_distribute_crawler.celeryconfig')
 
 
-
-
 if __name__ == "__main__":
     app.start()
     from celery_distribute_crawler.tasks import add, div_error, error_handler
