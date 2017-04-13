@@ -41,7 +41,7 @@ def req(url="http://httpbin.org/ip"):
 @app.task(bind=True, base=MyTask)
 def div_error(self, a, b):
     # return a/b
-    sleep(10)
+    sleep(20)
     return float(a) / b
 
     # return self.request.id
@@ -91,9 +91,32 @@ def get_task(self):
             func.apply_async(args=args, kwargs=kwargs, task_id=ee[0], priority=3)
 
 
-@after_task_publish.connect(sender="celery_distribute_crawler.tasks.get_task")
-def update_task(sender=None, body=None, **kwargs):
-    print sender, body, kwargs
+@after_task_publish.connect#(sender=["celery_distribute_crawler.tasks.get_task", "celery_distribute_crawler.tasks.div_error"])
+def update_task(sender, headers, **kwargs):
+    """
+    kwargs => {
+body ==> ((), {}, {u'chord': None, u'callbacks': None, u'errbacks': None, u'chain': None}), type(v) => <type 'tuple'>
+sender ==> celery_distribute_crawler.tasks.get_task, type(v) => <type 'unicode'>
+exchange ==> , type(v) => <type 'unicode'>
+signal ==> <Signal: Signal>, type(v) => <class 'celery.utils.dispatch.signal.Signal'>
+routing_key ==> celery, type(v) => <type 'unicode'>
+headers ==> {u'origin': u'gen9374@sws-pc', u'root_id': '3cdbe96a-8d52-408a-a27f-c6e53ac280de', u'expires': None, u'id': '3cdbe96a-8d52-408a-a27f-c6e53ac280de', u'kwargsrepr': u'{}', u'lang': u'py', u'retries': 0, u'task': u'celery_distribute_crawler.tasks.get_task', u'group': None, u'timelimit': [None, None], u'parent_id': None, u'argsrepr': u'()', u'eta': None}, type(v) => <type 'dict'>
+
+}
+    """
+    # if
+    if "celery_distribute_crawler.tasks.get_task" == sender:
+        # 如果是分发任务的函数不需要更新数据库任务
+        return
+
+    with local_db as conn:
+        with conn as cursor:
+            sql = """ update `task` set finished = {0} where task_id = "{1}" """.format(2, headers['id'])
+            cursor.execute(sql)
+
+    for k, v in kwargs.iteritems():
+        print "{0} ==> {1}, type(v) => {2}".format(k, v, type(v))
+
     print '*'*100
 
 
