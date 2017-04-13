@@ -1,5 +1,5 @@
 Pysocks==1.5.6
-celery == 3.1.24
+celery == 4.0.0
 amqp == 1.4.9
 lxml == 3.7.1
 chardet == 2.3.0

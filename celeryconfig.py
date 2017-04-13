@@ -33,7 +33,7 @@ CELERY_TIMEZONE = 'Asia/Shanghai'
 
 # result_backend = 'rpc://'
 
-result_persistent = False
+# result_persistent = False
 from datetime import timedelta
 
 CELERYBEAT_SCHEDULE = {

@@ -7,10 +7,10 @@ from .celery0 import app
 import requests
 
 from celery.result import AsyncResult, allow_join_result
-
+from celery.signals import after_task_publish, task_prerun, before_task_publish
 import celery
 
-from celery_distribute_crawler.celery0 import MyTask
+from celery_distribute_crawler.common.base_task import MyTask
 
 # class MyTask(celery.Task):
 #
@@ -28,6 +28,8 @@ from time import sleep
 @app.task
 def add(x=0, y=0):
     return x+y
+
+
 @app.task
 def req(url="http://httpbin.org/ip"):
     res = requests.get(url)
@@ -35,11 +37,13 @@ def req(url="http://httpbin.org/ip"):
     # pass
     # return x+y+z
 
+
 @app.task(bind=True, base=MyTask)
 def div_error(self, a, b):
     # return a/b
+    sleep(10)
     return float(a) / b
-    # sleep(5)
+
     # return self.request.id
 
 @app.task(bind=True, ignore_result=True, base=MyTask)
@@ -55,6 +59,9 @@ def error_handler(self, uuid):
 from celery_distribute_crawler.common.db_mysql import local_db
 from collections import defaultdict
 import json
+
+
+
 
 @app.task(bind=True, ignore_result=True)
 def get_task(self):
@@ -84,3 +91,18 @@ def get_task(self):
             func.apply_async(args=args, kwargs=kwargs, task_id=ee[0], priority=3)
 
 
+@after_task_publish.connect(sender="celery_distribute_crawler.tasks.get_task")
+def update_task(sender=None, body=None, **kwargs):
+    print sender, body, kwargs
+    print '*'*100
+
+
+# from celery import signals
+#
+# def update_task(sender=None, **kwargs):
+#     print sender, kwargs
+#     print '*'*100
+#
+# @signals.worker_process_init
+# def on_work_init(sender, **kwargs):
+#     signals.before_task_publish.connect(update_task, sender=sender.app.tasks[get_task.func_name])
