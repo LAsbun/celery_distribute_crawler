@@ -2,19 +2,27 @@
 #coding:utf-8
 __author__ = 'sws'
 
+from lxml import html as HTML
+import urllib
+
 from celery_distribute_crawler.common.crawler import Crawler
 from celery_distribute_crawler.celery0 import app
+from celery_distribute_crawler.common.base_task import LaGouTask, GenerTask
 
-from lxml import html as HTML
+
 
 URL = 'https://www.lagou.com/zhaopin/{key_word}/?labelWords=label'
 
 INDEX_URL = 'https://www.lagou.com/'
 
+CITY='北京'
+
 headers = {
-    'Cookies':''
+    'Cookies':'index_location_city={0}'.format(urllib.quote(CITY)),
+    'Host':"www.lagou.com",
+
 }
-@app.task(bind=True)
+@app.task(bind=True, base=GenerTask)
 def get_key_word(self, *args, **kwargs):
     cr = Crawler()
     cr.set_debug(True)
@@ -27,4 +35,16 @@ def get_key_word(self, *args, **kwargs):
         for key in key_words_list:
             print key.xpath('./@href'), key.xpath('./text()')[0]
             break
+
+
+
+@app.task(bind=True, base=LaGouTask):
+def get_list(self, *args, **kwargs):
+    url = kwargs['url']
+    city
+    cr = Crawler()
+    cr.set_debug(True)
+    resp, error = cr
+
+
 

@@ -8,19 +8,9 @@ import requests
 
 from celery.result import AsyncResult, allow_join_result
 from celery.signals import after_task_publish, task_prerun, before_task_publish
-import celery
+
 
 from celery_distribute_crawler.common.base_task import MyTask
-
-# class MyTask(celery.Task):
-#
-#     def on_failure(self, exc, task_id, args, kwargs, einfo):
-#         print exc,
-#         print task_id
-#         print args
-#         print kwargs
-#         print einfo
-#         print 5
 
 
 from time import sleep

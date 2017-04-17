@@ -17,7 +17,7 @@ from logger import logger
 
 class Crawler(object):
 
-    def __init__(self, referer='', headers={}, p='', md5='', qid='', **kw):
+    def __init__(self, referer='', headers={},  md5='', qid='', p='', **kw):
 
         self.proxy = p
         self.headers = headers
@@ -103,6 +103,7 @@ class Crawler(object):
 
         return self.get_url_of_response(), _error
 
+# cr = Crawler()
 
 if __name__ == '__main__':
     cr = Crawler()
