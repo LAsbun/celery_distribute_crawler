@@ -56,7 +56,7 @@ class Crawler(object):
 
             if html_flag:
                 # self.resp.encoding = 'utf-8'
-                html = self.resp.content
+                html = self.resp.text
         except Exception, e:
             logger.error(e)
             error = str(e)

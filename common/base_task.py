@@ -127,6 +127,6 @@ class GenerTask(MyTask):
         with local_db as conn:
             with conn as cursor:
                 sql = ''' insert into `task` (task_id, task, args, kwargs, finished) values(%s, %s, %s, %s, %s)'''
-                cursor.execute(sql, retval)
+                cursor.executemany(sql, retval)
 
 
