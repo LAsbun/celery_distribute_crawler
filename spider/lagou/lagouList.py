@@ -32,7 +32,7 @@ def get_key_word(self, *args, **kwargs):
     :param kwargs:
     :return: 拉钩列表页任务。 task_id,task, args, kwargs, 1(finished)
     """
-    task_str = 'celery_distribute_crawler.spider.lagou.lagouList'
+    task_str = 'celery_distribute_crawler.spider.lagou.lagouList.get_list'
     finished  = 1
     temp_kw = {'city':CITY}
     # 拉钩限制最多只能30页
@@ -78,7 +78,7 @@ def get_list(self, *args, **kwargs):
     :return:
     """
     url = args[0]
-    city = args[1]
+    city = kwargs['city'].encode('utf-8')
     headers['Cookies'] = urllib.quote(city)
     cr = Crawler()
     cr.set_debug(True)
