@@ -58,7 +58,7 @@ def get_task(self):
     res = defaultdict(list)
     with local_db as con:
         with con as cursor:
-            sql = 'select task_id, task, args, kwargs from `task` where finished = 1'
+            sql = 'select task_id, task, args, kwargs from `task` where finished in (1, 3) limit 50'
             cursor.execute(sql)
             res = cursor.fetchall()
     print

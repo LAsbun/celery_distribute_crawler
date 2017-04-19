@@ -24,7 +24,8 @@ CREATE TABLE `task` (
   `queue` varchar(200) DEFAULT NULL COMMENT "队列",
   `exchange` varchar(200) DEFAULT NULL COMMENT "交换机",
   `routing_key` varchar(200) DEFAULT NULL COMMENT "路由",
-  `finished` tinyint(1) DEFAULT 1 COMMENT "1 待分发，2 已分发，3 成功， 4 失败",
+  `finished` tinyint(1) DEFAULT 1 COMMENT "任务状态 1 待分发，2 已分发，3 成功， 4 失败",
+  `priority` int DEFAULT 1 COMMENT  "优先级 1 最低 9 最高",
   `updatetime` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON update CURRENT_TIMESTAMP COMMENT "时间戳",
   PRIMARY KEY (`task_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

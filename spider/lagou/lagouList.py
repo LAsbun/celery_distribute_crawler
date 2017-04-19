@@ -11,6 +11,9 @@ from celery_distribute_crawler.celery0 import app
 from celery_distribute_crawler.common.base_task import LaGouTask, GenerTask
 from celery_distribute_crawler.common.common import get_task_id
 
+
+from collections import defaultdict
+
 from celery import uuid
 
 URL = 'https://www.lagou.com/zhaopin/{key_word}/?labelWords=label'
@@ -52,11 +55,11 @@ def get_key_word(self, *args, **kwargs):
 
         task_list = []
 
-        for key in key_words_list[:1]:
+        for key in key_words_list:
             bas_url = key.xpath('./@href')[0] #, key.xpath('./text()')[0]
             # break
 
-            for i in xrange(5):
+            for i in xrange(1, _LA_GOU+1):
                 url = bas_url+str(i)
                 temp_args = [url]
                 task_id = get_task_id(str((task_str, temp_args, temp_kw)))
@@ -77,28 +80,32 @@ def get_list(self, *args, **kwargs):
     :param kwargs:  其他的参数，包括但不限于header的一些参数
     :return:
     """
-    url = args[0]
-    city = kwargs['city'].encode('utf-8')
-    headers['Cookies'] = urllib.quote(city)
+    try:
+        url = args[0]
+        city = kwargs['city']
+    except:
+        url = args[0]
+        city = args[1]
+    headers['Cookies'] = urllib.quote(city.encode('utf-8', errors='ignore'))
     cr = Crawler()
     cr.set_debug(True)
     cr.add_header(headers)
     resp, error = cr.req('get', url)
     # print resp, error
-    return parse_list(resp, city)
+    return parse_list(self.request.id, resp, city)
 
-def parse_list(data, city):
+def parse_list(task_id, data, city):
 
     job_results = []
 
     tree = HTML.fromstring(data)
     job_list = tree.xpath('//*[@class="con_list_item default_list"]')
     for job in job_list:
-        _dic = {}
+        _dic = {'task_id':task_id}
         try:
             _dic['position_id'] = str(job.xpath('./@data-positionid')[0].encode('utf-8'))
         except Exception, e:
-            print e
+            # print e
             pass
         try:
             _dic['salary'] = str(job.xpath('./@data-salary')[0].encode('utf-8'))
@@ -107,7 +114,7 @@ def parse_list(data, city):
         try:
             _dic['company'] = str(job.xpath('./@data-company')[0].encode('utf-8'))
         except Exception, e:
-            print e
+            # print e
             pass
         try:
             _dic['companyid'] = str(job.xpath('./@data-companyid')[0].encode('utf-8'))
@@ -116,34 +123,42 @@ def parse_list(data, city):
         try:
             add_re = ''.join( ee.strip() for ee in job.xpath('.//*[@class="add"]//text()')).encode('utf-8')
 
-            _dic['add'] = ','.join([city,add_re]).encode('utf-8')
+            _dic['add'] = ','.join([city,add_re])
         except:
             pass
         try:
 
             temp_str = ''.join([ee for ee in job.xpath('.//*[@class="position"]//*[@class="li_b_l"]/text()') if ee.strip()]).strip()
-            _dic['experience'] = temp_str.split('/')[0].strip().encode('utf-8')
-            _dic['bach'] = temp_str.split('/')[-1].strip().encode('utf-8') #学位
+            _dic['experience'] = temp_str.split('/')[0].strip().encode('utf-8', errors='ignore')
+            _dic['bach'] = temp_str.split('/')[-1].strip().encode('utf-8', errors='ignore') #学位
         except Exception, e:
             print e
             pass
         try:
-            _dic['industry'] = str(job.xpath('.//*[@class="industry"]/text()')[0].strip()).encode('utf-8')
+            _dic['industry'] = job.xpath('.//*[@class="industry"]/text()')[0].strip()
+            # import pdb
+            # pdb.set_trace()
         except:
             pass
         try:
             _dic['tags'] = [ee.strip().encode('utf-8') for ee in job.xpath('.//*[@class="list_item_bot"]/*[@class="li_b_l"]//text()') if ee.strip()]
         except:
             pass
-        # print _dic['company'], _dic['bach'], _dic
+        print _dic['company'], _dic['bach'], _dic
         job_results.append(_dic)
+    print len(job_results)
     return job_results
 
 if __name__ == '__main__':
 
-    # temp_url = 'https://www.lagou.com/zhaopin/Python/2/'
-    # get_list(temp_url, '北京')
-    get_key_word()
+    temp_url = 'https://www.lagou.com/zhaopin/Java/4/'
+    a = get_list(temp_url, u'北京')
+    # a = []
+    import pymongo
+    client = pymongo.MongoClient()
+    db = client['lagou']
+    print  db['List'].insert_many(a)
+    # get_key_word()
 
 
 
