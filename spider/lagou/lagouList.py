@@ -67,9 +67,6 @@ def get_key_word(self, *args, **kwargs):
         return task_list
 
 
-
-
-
 @app.task(bind=True, base=LaGouTask)
 def get_list(self, *args, **kwargs):
     """
