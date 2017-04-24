@@ -29,6 +29,9 @@ CELERYD_CONCURRENCY = 10 # celery worker的并发数 也是命令行-c指定的�
 CELERY_ENABLE_UTC = True
 
 CELERY_TIMEZONE = 'Asia/Shanghai'
+
+CELERYD_LOG_FILE = '/var/log/celery/%n%I.log'
+
 # 配置定时任务
 
 # result_backend = 'rpc://'
@@ -38,8 +41,8 @@ from datetime import timedelta
 
 CELERYBEAT_SCHEDULE = {
     'add-every-30-seconds': {
-        'task': 'celery_distribute_crawler.spider.proxy.proxy_xici.get_xiciproxy',
-        'schedule': timedelta(seconds=6),
+        'task': 'celery_distribute_crawler.tasks.get_task',
+        'schedule': timedelta(seconds=300),
         'options':{
         	'priority':3,
         }
