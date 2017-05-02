@@ -14,6 +14,11 @@ import requests
 from user_agent import generate_user_agent as GetUserAgent
 from logger import logger
 
+from celery_distribute_crawler.celeryconfig import CRAWLER_DEBUG
+
+
+import requests.packages.urllib3
+requests.packages.urllib3.disable_warnings()
 
 class Crawler(object):
 
@@ -30,29 +35,33 @@ class Crawler(object):
         if p:
             self.set_proxy(p)
 
+        if CRAWLER_DEBUG:
+            httplib.HTTPConnection.debuglevel = 1
+            httplib.HTTPSConnection.debuglevel = 1
+
     def set_debug(self, flag=True):
         if flag:
             httplib.HTTPConnection.debuglevel = 1
             httplib.HTTPSConnection.debuglevel = 1
 
-    def req(self, mechod, url, paras={}, paras_type=1, html_flag=True, time_out=(60, 180), **kw):
+    def req(self, method, url, paras={}, paras_type=1, html_flag=True, time_out=(60, 180), **kw):
 
         html, error = '', ''
         try:
-            if mechod.lower() == 'get':
+            if method.lower() == 'get':
                 url = url + urllib.urlencode(paras)
-                self.resp = self.br.get(url, timeout=time_out, **kw)
+                self.resp = self.br.get(url, timeout=time_out, verify=False, **kw)
             else:
                 if paras_type == 0:
                     self.resp = self.br.post(
-                        url, json=paras, timeout=time_out, **kw)
+                        url, json=paras, timeout=time_out, verify=False, **kw)
                 elif paras_type == 1:
                     paras = json.dumps(paras)
                     self.resp = self.br.post(
-                        url, data=paras, timeout=time_out, **kw)
+                        url, data=paras, timeout=time_out, verify=False, **kw)
                 else:
                     self.resp = self.br.post(
-                        url, data=paras, timeout=time_out, **kw)
+                        url, data=paras, timeout=time_out, verify=False, **kw)
 
             if html_flag:
                 # self.resp.encoding = 'utf-8'
@@ -66,8 +75,9 @@ class Crawler(object):
         return html, error
 
     def set_proxy(self, p, https=False):
+        self.proxy = p
         self.br.proxies = {
-            'https': 'http://' + p,
+            'https': 'https://' + p,
             'http': 'http://' + p,
         }
 

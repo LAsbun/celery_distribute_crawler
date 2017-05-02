@@ -41,7 +41,7 @@ def get_task_id(str):
     :return: task_id  7104ace2-dd2b-36ac-84de-56f3ed37e3ad
     """
     # hex = '%032x' % self.int
-    print str
+    # print str
     hex = hashlib.md5(str).hexdigest()
     return '%s-%s-%s-%s-%s' % (
         hex[:8], hex[8:12], hex[12:16], hex[16:20], hex[20:])

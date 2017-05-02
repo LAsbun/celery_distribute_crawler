@@ -27,7 +27,8 @@ class DbHelper(object):
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         if self.__connection:
-            logger.error('disconnect to {0}'.format(self.__db))
+            # 先关闭，再print
             self.__connection.close()
+            logger.error('disconnect to {0}'.format(self.__db))
 
         return False

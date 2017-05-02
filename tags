@@ -115,4 +115,4 @@ tasks.py	tasks.py	1;"	kind:file	line:1
 test.py	test.py	1;"	kind:file	line:1
 verify_proxy.py	spider/proxy/verify_proxy.py	1;"	kind:file	line:1
 wrap	spider/uctxt/add_detail_task.py	/^    def wrap(*ar, **kw):$/;"	kind:function	line:23
-wrap	spider/uctxt/add_detail_task.py	/^    def wrap(*args, **kw):$/;"	kind:function	line:38
+wrap	spider/uctxt/add_detail_task.py	/^    def wrap(*args, **kw):$/;"	kind:function	line:3

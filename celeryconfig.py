@@ -42,7 +42,7 @@ from datetime import timedelta
 CELERYBEAT_SCHEDULE = {
     'add-every-30-seconds': {
         'task': 'celery_distribute_crawler.tasks.get_task',
-        'schedule': timedelta(seconds=300),
+        'schedule': timedelta(seconds=10),
         'options':{
         	'priority':3,
         }
@@ -53,3 +53,6 @@ CELERYBEAT_SCHEDULE = {
 # redis 相关
 REDIS_DB = '0'
 REDIS_HOST = '127.0.0.1'
+
+# 爬虫框架相关
+CRAWLER_DEBUG = True  # debug 模式打开

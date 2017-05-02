@@ -2,10 +2,13 @@
 #coding:utf-8
 __author__ = 'sws'
 
-from celery_distribute_crawler.uctxt_crawler.list import get_list
+from celery_distribute_crawler.common.base_task import GenerTask
+from celery_distribute_crawler.spider.lagou.lagouList import gener_list_task
 # from celery_distribute_crawler.uctxt_crawler.detail import get_detail
 
+from celery_distribute_crawler.celery0 import app
+
+
+
 if __name__ =="__main__":
-    book_url = 'http://www.uctxt.com/book/1/1269/'
-    a = get_list.delay(book_url)
-    print a.result
+    print '*'*100
