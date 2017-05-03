@@ -5,114 +5,166 @@
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
 BROKER_URL	celeryconfig.py	/^BROKER_URL = "amqp:\/\/guest:guest@127.0.0.1:5672\/\/"#'redis:\/\/127.0.0.1:6379\/0' #'amqp:\/\/guest@123.206.71.224\/\/'#'amqp:\/\/dongwm:123456@localhost:5672\/web_develop' # 使用RabbitMQ作为消息代理$/;"	kind:variable	line:9
-CELERYBEAT_SCHEDULE	celeryconfig.py	/^CELERYBEAT_SCHEDULE = {$/;"	kind:variable	line:34
+CELERYBEAT_SCHEDULE	celeryconfig.py	/^CELERYBEAT_SCHEDULE = {$/;"	kind:variable	line:42
 CELERYD_CONCURRENCY	celeryconfig.py	/^CELERYD_CONCURRENCY = 10 # celery worker的并发数 也是命令行-c指定的数目,事实上实践发现并不是worker也多越好,保证任务不堆积,加上一定新增任务的预留就可以$/;"	kind:variable	line:27
+CELERYD_LOG_FILE	celeryconfig.py	/^CELERYD_LOG_FILE = '\/var\/log\/celery\/%n%I.log'$/;"	kind:variable	line:33
 CELERYD_MAX_TASKS_PER_CHILD	celeryconfig.py	/^CELERYD_MAX_TASKS_PER_CHILD = 200 # 每个worker执行了多少任务就会死掉，我建议数量可以大一些，比如200$/;"	kind:variable	line:25
 CELERY_ACCEPT_CONTENT	celeryconfig.py	/^CELERY_ACCEPT_CONTENT = ['json', 'msgpack', 'msgpack', 'yaml'] # 指定接受的内容类型$/;"	kind:variable	line:21
-CELERY_IGNORE_RESULT	celeryconfig.py	/^CELERY_IGNORE_RESULT = True$/;"	kind:variable	line:23
-CELERY_RESULT_BACKEND	celeryconfig.py	/^CELERY_RESULT_BACKEND = "amqp:\/\/guest:guest@127.0.0.1:5672\/\/"#'redis:\/\/127.0.0.1:6379\/0'$/;"	kind:variable	line:13
+CELERY_ENABLE_UTC	celeryconfig.py	/^CELERY_ENABLE_UTC = True$/;"	kind:variable	line:29
+CELERY_IGNORE_RESULT	celeryconfig.py	/^CELERY_IGNORE_RESULT = True  # 这个会忽略掉所有的结果，导致不能够获取到运行错误时的错误信息$/;"	kind:variable	line:23
 CELERY_RESULT_SERIALIZER	celeryconfig.py	/^CELERY_RESULT_SERIALIZER = 'json' # 读取任务结果一般性能要求不高，所以使用了可读性更好的JSON$/;"	kind:variable	line:17
 CELERY_TASK_RESULT_EXPIRES	celeryconfig.py	/^CELERY_TASK_RESULT_EXPIRES = 60 * 60 * 24 # 任务过期时间，不建议直接写86400，应该让这样的magic数字表述更明显$/;"	kind:variable	line:19
 CELERY_TASK_SERIALIZER	celeryconfig.py	/^CELERY_TASK_SERIALIZER = 'json' # 任务序列化和反序列化使用msgpack方案$/;"	kind:variable	line:15
-Connect	common/db_mysql.py	/^def Connect():$/;"	kind:function	line:24
-Crawler	common/crawler.py	/^class Crawler(object):$/;"	kind:class	line:18
-ExecuteSQL	common/db_mysql.py	/^def ExecuteSQL(sql, args = None):$/;"	kind:function	line:30
-ExecuteSQLs	common/db_mysql.py	/^def ExecuteSQLs(sql, args = None):$/;"	kind:function	line:50
+CELERY_TIMEZONE	celeryconfig.py	/^CELERY_TIMEZONE = 'Asia\/Shanghai'$/;"	kind:variable	line:31
+CITY_LIST	spider/lagou/lagouList.py	/^CITY_LIST = [$/;"	kind:variable	line:25
+CRAWLER_DEBUG	celeryconfig.py	/^CRAWLER_DEBUG = True  # debug 模式打开/;"	kind:variable	line:58
+Crawler	common/crawler.py	/^class Crawler(object):$/;"	kind:class	line:23
+DbHelper	common/db_helper.py	/^class DbHelper(object):$/;"	kind:class	line:9
 FORMAT	common/logger.py	/^FORMAT = "%(asctime)-15s %(threadName)s %(filename)s:%(lineno)d %(levelname)s %(message)s"$/;"	kind:variable	line:13
-GetConnection	common/db_mysql.py	/^def GetConnection():$/;"	kind:function	line:18
-MYSQL_DB	common/db_mysql.py	/^MYSQL_DB ='sws'$/;"	kind:variable	line:15
-MYSQL_HOST	common/db_mysql.py	/^MYSQL_HOST = '127.0.0.1'$/;"	kind:variable	line:11
-MYSQL_PORT	common/db_mysql.py	/^MYSQL_PORT = 3306$/;"	kind:variable	line:12
-MYSQL_PWD	common/db_mysql.py	/^MYSQL_PWD = 'aaaaa'$/;"	kind:variable	line:14
-MYSQL_USER	common/db_mysql.py	/^MYSQL_USER = 'root'$/;"	kind:variable	line:13
-QueryBySQL	common/db_mysql.py	/^def QueryBySQL(sql, args = None, size = None):$/;"	kind:function	line:71
-R	common/db_helper.py	/^R = lambda : redis.Redis(host=REDIS_HOST,db=REDIS_DB)$/;"	kind:variable	line:46
+GenerTask	common/base_task.py	/^class GenerTask(MyTask):$/;"	kind:class	line:64
+HOST	common/db_mongo.py	/^HOST = "127.0.0.1"$/;"	kind:variable	line:17
+HOST	mtest/mongo_test.py	/^HOST = "127.0.0.1"$/;"	kind:variable	line:12
+INDEX_URL	spider/lagou/lagouList.py	/^INDEX_URL = 'https:\/\/www.lagou.com\/'$/;"	kind:variable	line:23
+LaGouTask	common/base_task.py	/^class LaGouTask(MyTask):$/;"	kind:class	line:84
+MyTask	common/base_task.py	/^class MyTask(celery.Task):$/;"	kind:class	line:12
+PORT	common/db_mongo.py	/^PORT = 27017$/;"	kind:variable	line:18
+PORT	mtest/mongo_test.py	/^PORT = 27017$/;"	kind:variable	line:13
 R	common/db_redis.py	/^R = lambda : redis.Redis(host=REDIS_HOST,db=REDIS_DB)$/;"	kind:variable	line:15
-REDIS_DB	celeryconfig.py	/^REDIS_DB = '0'$/;"	kind:variable	line:46
-REDIS_HOST	celeryconfig.py	/^REDIS_HOST = '127.0.0.1'$/;"	kind:variable	line:47
+R	common/insert_db.py	/^R = lambda : redis.Redis(host=REDIS_HOST,db=REDIS_DB)$/;"	kind:variable	line:55
+REDIS_DB	celeryconfig.py	/^REDIS_DB = '0'$/;"	kind:variable	line:54
+REDIS_HOST	celeryconfig.py	/^REDIS_HOST = '127.0.0.1'$/;"	kind:variable	line:55
 REDIS_SET_NAME	spider/proxy/proxy_xici.py	/^REDIS_SET_NAME = 'proxy'$/;"	kind:variable	line:20
 URL1	spider/proxy/proxy_xici.py	/^URL1 = 'http:\/\/www.xicidaili.com\/nn\/'$/;"	kind:variable	line:22
 URL2	spider/proxy/proxy_xici.py	/^URL2 = 'http:\/\/www.xicidaili.com\/wt\/'$/;"	kind:variable	line:23
 __author__	celeryconfig.py	/^__author__ = 'sws'$/;"	kind:variable	line:5
+__author__	common/base_task.py	/^__author__ = 'sws'$/;"	kind:variable	line:3
 __author__	common/common.py	/^__author__ = 'sws'$/;"	kind:variable	line:3
+__author__	common/db_helper.py	/^__author__ = 'sws'$/;"	kind:variable	line:3
 __author__	common/db_mysql.py	/^__author__ = 'sws'$/;"	kind:variable	line:3
+__author__	common/items.py	/^__author__ = 'sws'$/;"	kind:variable	line:3
+__author__	mtest/xx-net_text.py	/^__author__ = 'sws'$/;"	kind:variable	line:3
+__author__	spider/lagou/__init__.py	/^__author__ = 'sws'$/;"	kind:variable	line:3
+__author__	spider/lagou/lagouList.py	/^__author__ = 'sws'$/;"	kind:variable	line:3
 __author__	spider/uctxt/add_detail_task.py	/^__author__ = 'sws'$/;"	kind:variable	line:3
 __author__	test.py	/^__author__ = 'sws'$/;"	kind:variable	line:3
-__init__	common/crawler.py	/^    def __init__(self, referer='', headers={}, p='', md5='', qid='', **kw):$/;"	kind:member	line:20
+__author__	util/func_utli.py	/^__author__ = 'sws'$/;"	kind:variable	line:3
+__enter__	common/db_helper.py	/^    def __enter__(self):$/;"	kind:member	line:20
+__exit__	common/db_helper.py	/^    def __exit__(self, exc_type, exc_val, exc_tb):$/;"	kind:member	line:28
+__init__	common/crawler.py	/^    def __init__(self, referer='', headers={},  md5='', qid='', p='', **kw):$/;"	kind:member	line:25
+__init__	common/db_helper.py	/^    def __init__(self, host, user, password, db, port=3306, charset="utf8"):$/;"	kind:member	line:11
 __init__.py	__init__.py	1;"	kind:file	line:1
 __init__.py	common/__init__.py	1;"	kind:file	line:1
+__init__.py	mtest/__init__.py	1;"	kind:file	line:1
 __init__.py	spider/__init__.py	1;"	kind:file	line:1
+__init__.py	spider/lagou/__init__.py	1;"	kind:file	line:1
 __init__.py	spider/proxy/__init__.py	1;"	kind:file	line:1
 __init__.py	spider/uctxt/__init__.py	1;"	kind:file	line:1
-__init__.py	test_rabbitmq/__init__.py	1;"	kind:file	line:1
 __init__.py	util/__init__.py	1;"	kind:file	line:1
-a	test.py	/^    a = get_list.delay(book_url)$/;"	kind:variable	line:10
+_insert_lagou	common/base_task.py	/^    def _insert_lagou(self, data):$/;"	kind:member	line:92
+_update_failure	common/base_task.py	/^    def _update_failure(self, task_id, exc):$/;"	kind:member	line:52
+_update_task	common/base_task.py	/^    def _update_task(self, error_code, task_id):$/;"	kind:member	line:39
+a	common/common.py	/^    a = {'a':5}$/;"	kind:variable	line:50
 add	spider/uctxt/add_detail_task.py	/^def add(a=1, b=2):$/;"	kind:function	line:59
-add	tasks.py	/^def add(x=0, y=0):$/;"	kind:function	line:10
-add_cookie	common/crawler.py	/^    def add_cookie(self, cookie={}):$/;"	kind:member	line:80
+add	tasks.py	/^def add(x=0, y=0):$/;"	kind:function	line:19
+add_cookie	common/crawler.py	/^    def add_cookie(self, cookie={}):$/;"	kind:member	line:90
 add_detail_into_task	spider/uctxt/add_detail_task.py	/^def add_detail_into_task(chap_list=[]):$/;"	kind:function	line:13
 add_detail_task	spider/uctxt/add_detail_task.py	/^def add_detail_task(func, *ar, **kw):$/;"	kind:function	line:21
 add_detail_task.py	spider/uctxt/add_detail_task.py	1;"	kind:file	line:1
-add_header	common/crawler.py	/^    def add_header(self, headers={}):$/;"	kind:member	line:90
-add_referer	common/crawler.py	/^    def add_referer(self, url):$/;"	kind:member	line:87
-app	celery0.py	/^app = Celery('celery_distribute_crawler',$/;"	kind:variable	line:12
+add_header	common/crawler.py	/^    def add_header(self, headers={}):$/;"	kind:member	line:100
+add_referer	common/crawler.py	/^    def add_referer(self, url):$/;"	kind:member	line:97
+app	celery0.py	/^app = Celery('celery_distribute_crawler',$/;"	kind:variable	line:15
+b	common/common.py	/^    b = [1, 2]$/;"	kind:variable	line:51
+base_task.py	common/base_task.py	1;"	kind:file	line:1
 book_cha_url	spider/uctxt/detail.py	/^    book_cha_url = "http:\/\/www.uctxt.com\/book\/6\/6640\/8164197.html"$/;"	kind:variable	line:72
 book_url	spider/uctxt/list.py	/^    book_url = "http:\/\/www.uctxt.com\/book\/1\/1269\/"$/;"	kind:variable	line:87
-book_url	test.py	/^    book_url = 'http:\/\/www.uctxt.com\/book\/1\/1269\/'$/;"	kind:variable	line:9
 celery0.py	celery0.py	1;"	kind:file	line:1
 celeryconfig.py	celeryconfig.py	1;"	kind:file	line:1
-check_proxy_in_proxy	common/db_helper.py	/^def check_proxy_in_proxy(args):$/;"	kind:function	line:30
-check_string_in_redis	common/db_helper.py	/^def check_string_in_redis(set_name, string):$/;"	kind:function	line:61
+check_proxy_in_proxy	common/insert_db.py	/^def check_proxy_in_proxy(args):$/;"	kind:function	line:39
 check_string_in_redis	common/db_redis.py	/^def check_string_in_redis(set_name, string):$/;"	kind:function	line:28
+check_string_in_redis	common/insert_db.py	/^def check_string_in_redis(set_name, string):$/;"	kind:function	line:70
+client	common/db_mongo.py	/^client = MongoClient(host=HOST, port=PORT)$/;"	kind:variable	line:19
+client	mtest/mongo_test.py	/^client = MongoClient(host=HOST, port=PORT)$/;"	kind:variable	line:14
+collection	mtest/mongo_test.py	/^collection = test.collection_test$/;"	kind:variable	line:20
 common.py	common/common.py	1;"	kind:file	line:1
-cr	common/crawler.py	/^    cr = Crawler()$/;"	kind:variable	line:108
+cr	common/crawler.py	/^    cr = Crawler()$/;"	kind:variable	line:119
+crawl_list	spider/lagou/lagouList.py	/^def crawl_list(self, *args, **kwargs):$/;"	kind:function	line:108
 crawler.py	common/crawler.py	1;"	kind:file	line:1
+data	mtest/mongo_test.py	/^data = [{$/;"	kind:variable	line:22
 db_helper.py	common/db_helper.py	1;"	kind:file	line:1
+db_mongo.py	common/db_mongo.py	1;"	kind:file	line:1
 db_mysql.py	common/db_mysql.py	1;"	kind:file	line:1
 db_redis.py	common/db_redis.py	1;"	kind:file	line:1
 detail.py	spider/uctxt/detail.py	1;"	kind:file	line:1
-get_content	spider/proxy/proxy_xici.py	/^def get_content(base_url):$/;"	kind:function	line:98
-get_cookie	common/crawler.py	/^    def get_cookie(self, method, url_base, paras={}, paras_type=1, **kw):$/;"	kind:member	line:96
-get_cookie_handle	common/crawler.py	/^    def get_cookie_handle(self):$/;"	kind:member	line:93
-get_cookie_str	common/crawler.py	/^    def get_cookie_str(self):$/;"	kind:member	line:77
+div_error	tasks.py	/^def div_error(self, a, b):$/;"	kind:function	line:32
+error_handler	tasks.py	/^def error_handler(self, uuid):$/;"	kind:function	line:40
+func_utli.py	util/func_utli.py	1;"	kind:file	line:1
+gener_list_task	spider/lagou/lagouList.py	/^def gener_list_task(self, *args, **kwargs):$/;"	kind:function	line:36
+get_content	spider/proxy/proxy_xici.py	/^def get_content(base_url):$/;"	kind:function	line:99
+get_cookie	common/crawler.py	/^    def get_cookie(self, method, url_base, paras={}, paras_type=1, **kw):$/;"	kind:member	line:106
+get_cookie_handle	common/crawler.py	/^    def get_cookie_handle(self):$/;"	kind:member	line:103
+get_cookie_str	common/crawler.py	/^    def get_cookie_str(self):$/;"	kind:member	line:87
 get_detail	spider/uctxt/detail.py	/^def get_detail(url):$/;"	kind:function	line:49
 get_ip_ports	spider/proxy/proxy_xici.py	/^def get_ip_ports(content):$/;"	kind:function	line:60
 get_list	spider/uctxt/list.py	/^def get_list(url):$/;"	kind:function	line:66
-get_proxy	common/common.py	/^def get_proxy():$/;"	kind:function	line:7
-get_response	common/crawler.py	/^    def get_response(self):$/;"	kind:member	line:83
-get_url	common/crawler.py	/^    def get_url(self, method, url_base, paras={}, paras_type=1, **kw):$/;"	kind:member	line:101
-get_url_of_response	common/crawler.py	/^    def get_url_of_response(self):$/;"	kind:member	line:74
-get_verify_proxies	common/common.py	/^def get_verify_proxies():$/;"	kind:function	line:26
-get_xiciproxy	spider/proxy/proxy_xici.py	/^def get_xiciproxy(self):$/;"	kind:function	line:124
+get_proxy	common/common.py	/^def get_proxy():$/;"	kind:function	line:9
+get_response	common/crawler.py	/^    def get_response(self):$/;"	kind:member	line:93
+get_task	tasks.py	/^def get_task(self):$/;"	kind:function	line:57
+get_task_id	common/common.py	/^def get_task_id(str):$/;"	kind:function	line:38
+get_url	common/crawler.py	/^    def get_url(self, method, url_base, paras={}, paras_type=1, **kw):$/;"	kind:member	line:111
+get_url_of_response	common/crawler.py	/^    def get_url_of_response(self):$/;"	kind:member	line:84
+get_verify_proxies	common/common.py	/^def get_verify_proxies():$/;"	kind:function	line:29
+get_xiciproxy	spider/proxy/proxy_xici.py	/^def get_xiciproxy(self):$/;"	kind:function	line:125
 git_list	sync_git.py	/^git_list = [$/;"	kind:variable	line:13
 hd	spider/proxy/proxy_xici.py	/^hd = {$/;"	kind:variable	line:26
 hh	spider/uctxt/add_detail_task.py	/^def hh(*ar, **kw):$/;"	kind:function	line:46
-include	celery0.py	/^             include=[$/;"	kind:variable	line:13
+include	celery0.py	/^             include=[$/;"	kind:variable	line:16
+insert_db.py	common/insert_db.py	1;"	kind:file	line:1
 insert_detail_task	spider/uctxt/add_detail_task.py	/^def insert_detail_task(func, *args, **kw):$/;"	kind:function	line:36
-insert_list_to_redis	common/db_helper.py	/^def insert_list_to_redis(set_name, args):$/;"	kind:function	line:49
-insert_mysql_proxy	common/db_helper.py	/^def insert_mysql_proxy(args):$/;"	kind:function	line:18
+insert_list_to_redis	common/insert_db.py	/^def insert_list_to_redis(set_name, args):$/;"	kind:function	line:58
+insert_mysql_proxy	common/insert_db.py	/^def insert_mysql_proxy(args):$/;"	kind:function	line:18
 insert_string_to_redis	common/db_redis.py	/^def insert_string_to_redis(set_name, *args):$/;"	kind:function	line:17
 is_Alive	spider/proxy/proxy_xici.py	/^def is_Alive(proxy, https):$/;"	kind:function	line:39
+items.py	common/items.py	1;"	kind:file	line:1
+lagouList.py	spider/lagou/lagouList.py	1;"	kind:file	line:1
+lagou_db	common/db_mongo.py	/^lagou_db = client.lagou$/;"	kind:variable	line:21
 list.py	spider/uctxt/list.py	1;"	kind:file	line:1
+local_db	common/db_mysql.py	/^local_db = DbHelper(host='127.0.0.1', user='root', password='aaaaa', db='sws')$/;"	kind:variable	line:10
 logger	common/logger.py	/^logger = logging.getLogger('crawlLog')$/;"	kind:variable	line:16
 logger.py	common/logger.py	1;"	kind:file	line:1
+mongo_test.py	mtest/mongo_test.py	1;"	kind:file	line:1
+on_failure	common/base_task.py	/^    def on_failure(self, exc, task_id, args, kwargs, einfo):$/;"	kind:member	line:16
+on_success	common/base_task.py	/^    def on_success(self, retval, task_id, args, kwargs):$/;"	kind:member	line:23
+on_success	common/base_task.py	/^    def on_success(self, retval, task_id, args, kwargs):$/;"	kind:member	line:68
+on_success	common/base_task.py	/^    def on_success(self, retval, task_id, args, kwargs):$/;"	kind:member	line:86
 parse_detail	spider/uctxt/detail.py	/^def parse_detail(page=''):$/;"	kind:function	line:27
+parse_list	spider/lagou/lagouList.py	/^def parse_list(task_id, job_results):$/;"	kind:function	line:156
 parse_list	spider/uctxt/list.py	/^def parse_list(page, url):$/;"	kind:function	line:24
 pp	spider/uctxt/add_detail_task.py	/^        def pp(*ar, **kw):$/;"	kind:function	line:50
+proxies	mtest/xx-net_text.py	/^proxies = {$/;"	kind:variable	line:8
 proxy_xici.py	spider/proxy/proxy_xici.py	1;"	kind:file	line:1
 pwd_path	sync_git.py	/^pwd_path = os.getcwd()$/;"	kind:variable	line:11
 qq	spider/uctxt/add_detail_task.py	/^    def qq(func, *ar, **kw):$/;"	kind:function	line:48
-queue.py	test_rabbitmq/queue.py	1;"	kind:file	line:1
-remove_string_from_redis	common/db_helper.py	/^def remove_string_from_redis(set_name, string):$/;"	kind:function	line:70
+queue.py	mtest/queue.py	1;"	kind:file	line:1
 remove_string_from_redis	common/db_redis.py	/^def remove_string_from_redis(set_name, string):$/;"	kind:function	line:37
-req	common/crawler.py	/^    def req(self, mechod, url, paras={}, paras_type=1, html_flag=False, time_out=(60, 180), **kw):$/;"	kind:member	line:38
-req	tasks.py	/^def req(url="http:\/\/httpbin.org\/ip"):$/;"	kind:function	line:13
-set_debug	common/crawler.py	/^    def set_debug(self, flag=True):$/;"	kind:member	line:33
-set_proxy	common/crawler.py	/^    def set_proxy(self, p, https=False):$/;"	kind:member	line:68
+remove_string_from_redis	common/insert_db.py	/^def remove_string_from_redis(set_name, string):$/;"	kind:function	line:79
+req	common/crawler.py	/^    def req(self, method, url, paras={}, paras_type=1, html_flag=True, time_out=(60, 180), **kw):$/;"	kind:member	line:47
+req	mtest/xx-net_text.py	/^def req():$/;"	kind:function	line:31
+req	tasks.py	/^def req(url="http:\/\/httpbin.org\/ip"):$/;"	kind:function	line:24
+req_wrap	mtest/xx-net_text.py	/^def req_wrap(func):$/;"	kind:function	line:20
+req_wrap	util/func_utli.py	/^def req_wrap(func):$/;"	kind:function	line:6
+set_debug	common/crawler.py	/^    def set_debug(self, flag=True):$/;"	kind:member	line:42
+set_proxy	common/crawler.py	/^    def set_proxy(self, p, https=False):$/;"	kind:member	line:77
 sync_git.py	sync_git.py	1;"	kind:file	line:1
 task.py	model/task.py	1;"	kind:file	line:1
+task_id	mtest/mongo_test.py	/^    task_id = collection.insert_many(data)$/;"	kind:variable	line:33
 tasks.py	tasks.py	1;"	kind:file	line:1
+test	mtest/mongo_test.py	/^test = client.mongo_test$/;"	kind:variable	line:18
 test.py	test.py	1;"	kind:file	line:1
+update_proxy_all	common/insert_db.py	/^def update_proxy_all(args):$/;"	kind:function	line:30
+update_task	tasks.py	/^def update_task(sender, headers, **kwargs):$/;"	kind:function	line:85
 verify_proxy.py	spider/proxy/verify_proxy.py	1;"	kind:file	line:1
+wa	mtest/xx-net_text.py	/^    def wa():$/;"	kind:function	line:22
+wa	util/func_utli.py	/^    def wa():$/;"	kind:function	line:8
 wrap	spider/uctxt/add_detail_task.py	/^    def wrap(*ar, **kw):$/;"	kind:function	line:23
-wrap	spider/uctxt/add_detail_task.py	/^    def wrap(*args, **kw):$/;"	kind:function	line:3
+wrap	spider/uctxt/add_detail_task.py	/^    def wrap(*args, **kw):$/;"	kind:function	line:38
+xx-net_text.py	mtest/xx-net_text.py	1;"	kind:file	line:1

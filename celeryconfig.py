@@ -56,3 +56,17 @@ REDIS_HOST = '127.0.0.1'
 
 # 爬虫框架相关
 CRAWLER_DEBUG = True  # debug 模式打开
+
+# mongodb 相关
+MONGODB_HOST = '123.206.71.224'
+MONGODB_READER = "reader"
+MONGODB_READER_PWD = "readeraaaaa"
+MONGODB_WRITER = "writer"
+MONGODB_WRITER_PWD = "writeraaaaa"
+
+# mysql 相关
+MYSQLDB_HOST = "123.206.71.224"
+MYSQLDB_USER = "root"
+MYSQLDB_PWD= "aaaaa"
+MYSQLDB_DB= "sws"
+

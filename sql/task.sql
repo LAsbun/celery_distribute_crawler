@@ -49,8 +49,8 @@ CREATE TABLE `hh` (
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8;
 
 
-insert into `task` (task_id, task, args) VALUES ("1", "celery_distribute_crawler.tasks.div_error", "[1, 0]");
-insert into `task` (task_id, task, args) VALUES ("11", "celery_distribute_crawler.tasks.div_error", "[1, 1]");
-insert into `task` (task_id, task, args) VALUES ("1111", "celery_distribute_crawler.tasks.div_error", "[1, 2]");
-insert into `task` (task_id, task, args) VALUES ("11111", "celery_distribute_crawler.tasks.div_error", "[1, 3]");
-insert into `task` (task_id, task, args) VALUES ("111", "celery_distribute_crawler.tasks.div_error", "[1, 0]");
+-- insert into `task` (task_id, task, args) VALUES ("1", "celery_distribute_crawler.tasks.div_error", "[1, 0]");
+-- insert into `task` (task_id, task, args) VALUES ("11", "celery_distribute_crawler.tasks.div_error", "[1, 1]");
+-- insert into `task` (task_id, task, args) VALUES ("1111", "celery_distribute_crawler.tasks.div_error", "[1, 2]");
+-- insert into `task` (task_id, task, args) VALUES ("11111", "celery_distribute_crawler.tasks.div_error", "[1, 3]");
+-- insert into `task` (task_id, task, args) VALUES ("111", "celery_distribute_crawler.tasks.div_error", "[1, 0]");

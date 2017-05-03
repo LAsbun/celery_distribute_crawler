@@ -28,7 +28,15 @@ class DbHelper(object):
     def __exit__(self, exc_type, exc_val, exc_tb):
         if self.__connection:
             # 先关闭，再print
-            self.__connection.close()
-            logger.error('disconnect to {0}'.format(self.__db))
+            try:
+                self.__connection.close()
+            except pymysql.Error as e:
+                if e.message == "Already closed":
+                    pass
+                else:
+                    print 'close db :: {0}, type:{1}'.format(e.message, type(e.message))
+                    raise e
+            finally:
+                logger.error('disconnect to {0}'.format(self.__db))
 
         return False

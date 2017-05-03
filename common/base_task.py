@@ -7,7 +7,7 @@ from celery import uuid
 from pymongo.errors import DuplicateKeyError
 
 from celery_distribute_crawler.common.db_mysql import local_db
-# from celery_distribute_crawler.common.db_mongo import lagou_db
+from celery_distribute_crawler.common.db_mongo import lagou_db
 
 class MyTask(celery.Task):
     """
@@ -90,13 +90,4 @@ class LaGouTask(MyTask):
 
 
     def _insert_lagou(self, data):
-        from pymongo import MongoClient
-        from pymongo.errors import DuplicateKeyError
-
-        HOST = "127.0.0.1"
-        PORT = 27017
-        client = MongoClient(host=HOST, port=PORT)
-
-        lagou_db = client.lagou
-
-        lagou_db['List'].insert_many(data)
+        lagou_db['lagou_List'].insert_many(data)

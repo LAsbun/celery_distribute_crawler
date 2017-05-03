@@ -18,4 +18,4 @@ HOST = "127.0.0.1"
 PORT = 27017
 client = MongoClient(host=HOST, port=PORT)
 
-lagou_db = client.lagou
+lagou_db = client.sws
