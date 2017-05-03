@@ -66,7 +66,9 @@ MONGODB_WRITER_PWD = "writeraaaaa"
 
 # mysql 相关
 MYSQLDB_HOST = "123.206.71.224"
-MYSQLDB_USER = "root"
-MYSQLDB_PWD= "aaaaa"
+MYSQLDB_USER_READER = "reader"
+MYSQLDB_PWD_READER = "reader"
+MYSQLDB_USER_WRITER = "writer"
+MYSQLDB_PWD_WRITER = "writer"
 MYSQLDB_DB= "sws"
 
