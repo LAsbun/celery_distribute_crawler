@@ -44,22 +44,36 @@ class MyTask(celery.Task):
         :param error_code: 后面可能会对不同的任务状态进行重试，以及其他
         :return: None
         """
-        with local_db as conn:
-            with conn as cursor:
-                sql = """ update `task` set finished = {0} where task_id = "{1}" """.format(error_code, task_id)
-                cursor.execute(sql)
+
+        cursor = local_db.get_cursor()
+        sql = """ update `task` set finished = {0} where task_id = "{1}" """.format(error_code, task_id)
+        cursor.execute(sql)
+        #
+        # with local_db as conn:
+        #     with conn as cursor:
+        #         sql = """ update `task` set finished = {0} where task_id = "{1}" """.format(error_code, task_id)
+        #         cursor.execute(sql)
                 
     def _update_failure(self, task_id, exc):
         print 'failure...', exc
-        with local_db as conn:
-            with conn as cursor:
-                sql = """
+
+        cursor = local_db.get_cursor()
+        conn = local_db.get_con()
+        sql = """
                     insert into  `hh`(error_info, task_id) VALUES ("{0}", "{1}") ON Duplicate key UPDATE error_info = "{0}"
-                """.format(conn.escape_string(exc), task_id)
-                # sql = """update `hh` set error_info = {0} where task_id = "{1}" """.format(exc, task_id)
-                cursor.execute(sql)
-                # sql = '''update `update_task` set error_info = {0} where task_id = {1}'''.format(task_id,exc)
-                # cursor.execute(sql)
+            """.format(conn.escape_string(exc), task_id)
+        # sql = """update `hh` set error_info = {0} where task_id = "{1}" """.format(exc, task_id)
+        cursor.execute(sql)
+
+        # with local_db as conn:
+        #     with conn as cursor:
+        #         sql = """
+        #             insert into  `hh`(error_info, task_id) VALUES ("{0}", "{1}") ON Duplicate key UPDATE error_info = "{0}"
+        #         """.format(conn.escape_string(exc), task_id)
+        #         # sql = """update `hh` set error_info = {0} where task_id = "{1}" """.format(exc, task_id)
+        #         cursor.execute(sql)
+        #         # sql = '''update `update_task` set error_info = {0} where task_id = {1}'''.format(task_id,exc)
+        #         # cursor.execute(sql)
 
 class GenerTask(MyTask):
     """
@@ -75,10 +89,14 @@ class GenerTask(MyTask):
         """
         super(GenerTask, self).on_success(retval, task_id, args, kwargs)
 
-        with local_db as conn:
-            with conn as cursor:
-                sql = ''' insert into `task` (task_id, task, args, kwargs, finished) values(%s, %s, %s, %s, %s) ON DUPLICATE KEY UPDATE task_id = VALUES(task_id)'''
-                cursor.executemany(sql, retval)
+        cursor = local_db.get_cursor()
+        sql = ''' insert into `task` (task_id, task, args, kwargs, finished) values(%s, %s, %s, %s, %s) ON DUPLICATE KEY UPDATE task_id = VALUES(task_id)'''
+        cursor.executemany(sql, retval)
+
+        # with local_db as conn:
+        #     with conn as cursor:
+        #         sql = ''' insert into `task` (task_id, task, args, kwargs, finished) values(%s, %s, %s, %s, %s) ON DUPLICATE KEY UPDATE task_id = VALUES(task_id)'''
+        #         cursor.executemany(sql, retval)
 
 
 class LaGouTask(MyTask):

@@ -59,10 +59,12 @@ CRAWLER_DEBUG = True  # debug 模式打开
 
 # mongodb 相关
 MONGODB_HOST = '123.206.71.224'
+MONGODB_PORT = 29011
 MONGODB_READER = "reader"
 MONGODB_READER_PWD = "readeraaaaa"
 MONGODB_WRITER = "writer"
 MONGODB_WRITER_PWD = "writeraaaaa"
+MONGODB_DB = 'sws'
 
 # mysql 相关
 MYSQLDB_HOST = "123.206.71.224"
