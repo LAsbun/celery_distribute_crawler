@@ -8,8 +8,6 @@ from db_helper import DbHelper
 
 from celery_distribute_crawler.celeryconfig import MYSQLDB_DB, MONGODB_HOST, MYSQLDB_PWD_WRITER, MYSQLDB_USER_WRITER
 
-global local_db
-
 local_db = DbHelper(host=MONGODB_HOST, user=MYSQLDB_USER_WRITER, password=MYSQLDB_PWD_WRITER, db=MYSQLDB_DB)
 
 

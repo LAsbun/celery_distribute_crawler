@@ -56,9 +56,11 @@ import json
 @app.task(bind=True, ignore_result=True)
 def get_task(self):
     res = defaultdict(list)
-    cursor = local_db.get_cursor()
+    conn = local_db.get_con()
+    cursor = conn.cursor()
     sql = 'select task_id, task, args, kwargs from `task` where finished in (1, 3) limit 50'
     cursor.execute(sql)
+    conn.commit()
     res = cursor.fetchall()
     # with local_db as con:
     #     with con as cursor:
@@ -102,9 +104,11 @@ headers ==> {u'origin': u'gen9374@sws-pc', u'root_id': '3cdbe96a-8d52-408a-a27f-
     if "celery_distribute_crawler.tasks.get_task" == sender:
         # 如果是分发任务的函数不需要更新数据库任务
         return
-    cursor = local_db.get_cursor()
+    conn = local_db.get_con()
+    cursor = conn.cursor()
     sql = """ update `task` set finished = {0} where task_id = "{1}" """.format(2, headers['id'])
     cursor.execute(sql)
+    conn.commit()
 
     # with local_db as conn:
     #     with conn as cursor:

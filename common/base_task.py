@@ -44,9 +44,11 @@ class MyTask(celery.Task):
         :return: None
         """
 
-        cursor = local_db.get_cursor()
+        conn = local_db.get_con()
+        cursor = conn.cursor()
         sql = """ update `task` set finished = {0} where task_id = "{1}" """.format(error_code, task_id)
         cursor.execute(sql)
+        conn.commit()
         #
         # with local_db as conn:
         #     with conn as cursor:
@@ -56,13 +58,14 @@ class MyTask(celery.Task):
     def _update_failure(self, task_id, exc):
         print 'failure...', exc
 
-        cursor = local_db.get_cursor()
         conn = local_db.get_con()
+        cursor = conn.cursor()
         sql = """
                     insert into  `hh`(error_info, task_id) VALUES ("{0}", "{1}") ON Duplicate key UPDATE error_info = "{0}"
             """.format(conn.escape_string(exc), task_id)
         # sql = """update `hh` set error_info = {0} where task_id = "{1}" """.format(exc, task_id)
         cursor.execute(sql)
+        conn.commit()
 
         # with local_db as conn:
         #     with conn as cursor:
@@ -88,9 +91,11 @@ class GenerTask(MyTask):
         """
         super(GenerTask, self).on_success(retval, task_id, args, kwargs)
 
-        cursor = local_db.get_cursor()
+        con = local_db.get_con()
+        cursor = con.cursor()
         sql = ''' insert into `task` (task_id, task, args, kwargs, finished) values(%s, %s, %s, %s, %s) ON DUPLICATE KEY UPDATE task_id = VALUES(task_id)'''
         cursor.executemany(sql, retval)
+        con.commit()
 
         # with local_db as conn:
         #     with conn as cursor:
