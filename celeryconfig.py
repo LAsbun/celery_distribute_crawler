@@ -6,7 +6,7 @@ __author__ = 'sws'
 
 
 
-BROKER_URL = "amqp://guest:guest@127.0.0.1:5672//"#'redis://127.0.0.1:6379/0' #'amqp://guest@123.206.71.224//'#'amqp://dongwm:123456@localhost:5672/web_develop' # 使用RabbitMQ作为消息代理
+BROKER_URL = "amqp://guest:guest@123.206.71.224:5672//"#'redis://127.0.0.1:6379/0' #'amqp://guest@123.206.71.224//'#'amqp://dongwm:123456@localhost:5672/web_develop' # 使用RabbitMQ作为消息代理
 
 # CELERY_RESULT_BACKEND = "amqp://guest:guest@127.0.0.1:5672//" # 'redis://123.206.71.224:6379/0' #amqp://' #'redis://localhost:6379/0' # 把任务结果存在了Redis
 
