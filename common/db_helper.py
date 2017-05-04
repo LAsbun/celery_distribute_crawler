@@ -42,26 +42,26 @@ class DbHelper(object):
             return self.__con
 
     #
-    # def __enter__(self):
-    #     con = pymysql.connect(host=self.__host, port=self.__port,
-    #                           user=self.__user, password=self.__password, database=self.__db,
-    #                           charset=self.__charset)
-    #     self.__connection = con
-    #     logger.error('Connected to {0}'.format(self.__db))
-    #     return self.__connection
-    #
-    # def __exit__(self, exc_type, exc_val, exc_tb):
-    #     if self.__connection:
-    #         # 先关闭，再print
-    #         try:
-    #             self.__connection.close()
-    #         except pymysql.Error as e:
-    #             if e.message == "Already closed":
-    #                 pass
-    #             else:
-    #                 print 'close db :: {0}, type:{1}'.format(e.message, type(e.message))
-    #                 raise e
-    #         finally:
-    #             logger.error('disconnect to {0}'.format(self.__db))
-    #
-    #     return False
+    def __enter__(self):
+        con = pymysql.connect(host=self.__host, port=self.__port,
+                              user=self.__user, password=self.__password, database=self.__db,
+                              charset=self.__charset)
+        self.__connection = con
+        logger.error('Connected to {0}'.format(self.__db))
+        return self.__connection
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        if self.__connection:
+            # 先关闭，再print
+            try:
+                self.__connection.close()
+            except pymysql.Error as e:
+                if e.message == "Already closed":
+                    pass
+                else:
+                    print 'close db :: {0}, type:{1}'.format(e.message, type(e.message))
+                    raise e
+            finally:
+                logger.error('disconnect to {0}'.format(self.__db))
+
+        return False

@@ -19,7 +19,6 @@ class MyTask(celery.Task):
         self._update_task(3, task_id)
         self._update_failure(task_id, str(einfo))
 
-
     def on_success(self, retval, task_id, args, kwargs):
         # print 'success...', retval
         self._update_task(4, task_id)
@@ -109,3 +108,13 @@ class LaGouTask(MyTask):
 
     def _insert_lagou(self, data):
         lagou_db['lagou_List'].insert_many(data)
+
+# print local_db
+#
+# cursor = local_db.get_cursor()
+# print cursor
+# import time
+# time.sleep(10)
+# print cursor
+# time.sleep(10)
+# print cursor
