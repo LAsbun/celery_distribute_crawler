@@ -10,3 +10,4 @@ gevent == 1.2.1
 user-agent == 0.1.5
 pymysql == 0.7.11
 pymongo == 3.4.0
+paramiko == 2.1.2

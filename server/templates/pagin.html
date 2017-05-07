@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block body%}
+<div>
+    <ul>
+        {% from bson import json_util %}
+        {% for line in lines %}
+        <ol><p class="text-capitalize">{{ json_util.dumps(line, ensure_ascii=False, indent=1) }} </p></ol>
+        {% end %}
+    </ul>
+</div>
+{% end %}
+
+{% block foot %}
+
+<nav aria-label="Page navigation">
+    <ul class="pagination">
+        <li>
+            <a href="/page/1" aria-label="首页">
+                <span aria-hidden="true">首页</span>
+            </a>
+        </li>
+        {% for i in xrange(pre_five, index) %}
+        <li><a href="/page/{{ i }}">{{ i }}</a></li>
+        {% end %}
+
+        <li class = "active"><a href="#}">{{ index }}</a></li>
+
+        {% for i in xrange(index+1, last_five) %}
+        <li><a href="/page/{{ i }}">{{ i }}</a></li>
+        {% end %}
+
+        <li>
+            <a href="/page/{{ total_pages }}" aria-label="尾页">
+                <span aria-hidden="true">尾页</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+{% for i in xrange(1, 10, 3) %}
+{{ i }}
+{% end %}
+
+{% end %}
+
+
+
+{% block test %}
+
+<div id="codeEditor"></div>
+<div id="splitter">                <div id="buttons">                    <div>                        <button id="toTree" class="convert" title="解析JSON (Ctrl + >)">                            <div class="convert-right"></div>                        </button>                    </div>                    <div>                        <button id="toCode" class="convert" title="生成JSON (Ctrl + <)">                            <div class="convert-left"></div>                        </button>                    </div>                </div>                <div id="drag">                </div>            </div>
+<div id="treeEditor"></div>
+
+{% end %}

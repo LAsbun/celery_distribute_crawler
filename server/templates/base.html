@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>数据展示-第{{ index }} 页</title>
+
+    <!-- Bootstrap -->
+    <link href="{{ static_url('css/bootstrap3/bootstrap.min.css')}}" rel="stylesheet">
+    <title>前端展示</title>
+    {% block header %} {% end %}
+</head>
+<body>
+
+    {% block body %}
+    {% end %}
+
+    {% block test %}
+    {% end  %}
+
+    {% block foot %}
+    {% end %}
+
+</body>
+
+
+<script src="{{ static_url('js/bootstrap3/bootstrap.min.js') }}"></script>
+<script src="{{ static_url('js/jquery/jquery-1.9.1.min.js') }}"></script>
+<script src="{{ static_url('js/others/app.min.js') }}"></script>
+</html>

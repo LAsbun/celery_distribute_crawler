@@ -26,5 +26,5 @@ print uri
 client = MongoClient(host=uri, port=MONGODB_PORT, connect=False)
 
 lagou_db = client[MONGODB_DB]
-print lagou_db
-print lagou_db['lagou_list'].insert_many([{}, {}])
+# print lagou_db
+# print lagou_db['lagou_list'].insert_many([{}, {}])
