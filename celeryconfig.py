@@ -5,7 +5,7 @@ from __future__ import absolute_import
 __author__ = 'sws'
 
 
-BROKER_URL = "amqp://guest:guest@123.206.71.224:5672//"#'redis://123.206.71.224:6379/0' #'amqp://guest@123.206.71.224//'#'amqp://dongwm:123456@localhost:5672/web_develop' # 使用RabbitMQ作为消息代理
+BROKER_URL = "amqp://guest:guest@182.254.222.204//"#'redis://123.206.71.224:6379/0' #'amqp://guest@123.206.71.224//'#'amqp://dongwm:123456@localhost:5672/web_develop' # 使用RabbitMQ作为消息代理
 
 # CELERY_RESULT_BACKEND = "amqp://guest:guest@123.206.71.224:5672//" # 'redis://123.206.71.224:6379/0' #amqp://' #'redis://localhost:6379/0' # 把任务结果存在了Redis
 
@@ -23,9 +23,9 @@ CELERY_IGNORE_RESULT = True  # 这个会忽略掉所有的结果，导致不能�
 
 CELERYD_MAX_TASKS_PER_CHILD = 200 # 每个worker执行了多少任务就会死掉，我建议数量可以大一些，比如200
 
-CELERYD_CONCURRENCY = 1024 # celery worker的并发数 也是命令行-c指定的数目,事实上实践发现并不是worker也多越好,保证任务不堆积,加上一定新增任务的预留就可以
+CELERYD_CONCURRENCY = 512 # celery worker的并发数 也是命令行-c指定的数目,事实上实践发现并不是worker也多越好,保证任务不堆积,加上一定新增任务的预留就可以
 
-CELERY_ENABLE_UTC = True
+CELERY_ENABLE_UTC = False
 
 CELERY_TIMEZONE = 'Asia/Shanghai'
 
@@ -50,9 +50,9 @@ CELERYBEAT_SCHEDULE = {
     },
 }
 
-# redis 相关
-REDIS_DB = '0'
-REDIS_HOST = '123.206.71.224'
+# # redis 相关
+# REDIS_DB = '0'
+# REDIS_HOST = '123.206.71.224'
 
 # 爬虫框架相关
 CRAWLER_DEBUG = True  # debug 模式打开
@@ -67,7 +67,7 @@ MONGODB_WRITER_PWD = "writeraaaaa"
 MONGODB_DB = 'sws'
 
 # mysql 相关
-MYSQLDB_HOST = "123.206.71.224"
+MYSQLDB_HOST = "182.254.222.204"
 MYSQLDB_USER_READER = "reader"
 MYSQLDB_PWD_READER = "reader"
 MYSQLDB_USER_WRITER = "writer"
