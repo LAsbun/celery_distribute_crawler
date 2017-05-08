@@ -1,6 +1,6 @@
 Pysocks==1.5.6
+amqp == 2.1.4
 celery == 4.0.0
-amqp == 1.4.9
 lxml == 3.7.1
 chardet == 2.3.0
 MySQL-python == 1.2.5
