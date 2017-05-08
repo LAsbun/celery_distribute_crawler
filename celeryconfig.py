@@ -50,9 +50,9 @@ CELERYBEAT_SCHEDULE = {
     },
 }
 
-# # redis 相关
-# REDIS_DB = '0'
-# REDIS_HOST = '123.206.71.224'
+# redis 相关
+REDIS_DB = '0'
+REDIS_HOST = '123.206.71.224'
 
 # 爬虫框架相关
 CRAWLER_DEBUG = True  # debug 模式打开
