@@ -13,7 +13,7 @@
             <li {% if active_tab == "tasks" %}class="active"{% end %}><a href="{{ reverse_url('tasks') }}">Tasks</a></li>
             <li {% if active_tab == "broker" %}class="active"{% end %}><a href="{{ reverse_url('broker') }}">Broker</a></li>
             <li {% if active_tab == "monitor" %}class="active"{% end %}><a href="{{ reverse_url('monitor') }}">Monitor</a></li>
-            <li><a href="http://182.254.222.204:15672/#/queues">Rabbitmq</a></li>
+            <li><a href="http://182.254.222.204:15672/#/queues">任务队列监控</a></li>
             <li><a href="http://182.254.222.204:18889/page/1">数据展示</a></li>
         </ul>
       </div>
