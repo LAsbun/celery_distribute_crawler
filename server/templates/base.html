@@ -9,6 +9,12 @@
 
     <!-- Bootstrap -->
     <link href="{{ static_url('css/bootstrap3/bootstrap.min.css')}}" rel="stylesheet">
+    <style type="text/css">
+
+        li{list-style-type:none;}
+        {% block css %}
+        {% end %}
+    </style>
     <title>前端展示</title>
     {% block header %} {% end %}
 </head>
@@ -29,4 +35,11 @@
 <script src="{{ static_url('js/bootstrap3/bootstrap.min.js') }}"></script>
 <script src="{{ static_url('js/jquery/jquery-1.9.1.min.js') }}"></script>
 <script src="{{ static_url('js/others/app.min.js') }}"></script>
+<script src="{{ static_url('js/zhedie.js')}}"></script>
+<script type="text/javascript">
+
+    {% block script %}
+    {% end %}
+
+</script>
 </html>

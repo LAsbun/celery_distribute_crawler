@@ -3,10 +3,10 @@
 {% block body%}
 <div>
     <ul>
+        <div class="wrap-menu"></div>
         {% from bson import json_util %}
-        {% for line in lines %}
-        <ol><p class="text-capitalize">{{ json_util.dumps(line, ensure_ascii=False, indent=1) }} </p></ol>
-        {% end %}
+
+
     </ul>
 </div>
 {% end %}
@@ -38,18 +38,12 @@
     </ul>
 </nav>
 
-{% for i in xrange(1, 10, 3) %}
-{{ i }}
 {% end %}
 
-{% end %}
+{% block script %}
+var testMenu={% raw json_util.dumps(lines, ensure_ascii=False, indent=1) %};
 
-
-
-{% block test %}
-
-<div id="codeEditor"></div>
-<div id="splitter">                <div id="buttons">                    <div>                        <button id="toTree" class="convert" title="解析JSON (Ctrl + >)">                            <div class="convert-right"></div>                        </button>                    </div>                    <div>                        <button id="toCode" class="convert" title="生成JSON (Ctrl + <)">                            <div class="convert-left"></div>                        </button>                    </div>                </div>                <div id="drag">                </div>            </div>
-<div id="treeEditor"></div>
-
+$(function(){
+    new AccordionMenu({menuArrs:testMenu});
+});
 {% end %}
