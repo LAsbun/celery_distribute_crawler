@@ -13,9 +13,9 @@
           <h2>{{ getattr(task, 'name', None) }}
             <small>{{ task.uuid }}</small>
             {% if task.state == "STARTED" %}
-                <button style="float: right" class="btn btn-danger" onclick="flower.on_task_terminate(event)">Terminate</button>
+                <button style="float: right" class="btn btn-danger" onclick="flower.on_task_terminate(event)">任务终止</button>
             {% elif task.state == "RECEIVED" or task.state == "RETRY" %}
-                <button  style="float: right" class="btn btn-danger" onclick="flower.on_task_revoke(event)">Revoke</button>
+                <button  style="float: right" class="btn btn-danger" onclick="flower.on_task_revoke(event)">撤销任务重试</button>
             {% end %}
           </h2>
         </div>
@@ -25,15 +25,15 @@
               <caption>Basic task options</caption>
               <tbody>
               <tr>
-                <td>Name</td>
+                <td>任务名称</td>
                 <td>{{ getattr(task, 'name', None) }}</td>
               </tr>
               <tr>
-                <td>UUID</td>
+                <td>任务唯一ID</td>
                 <td>{{ task.uuid }}</td>
               </tr>
               <tr>
-                <td>State</td>
+                <td>任务状态</td>
                 <td>
                   {% if task.state == "SUCCESS" %}
                   <span class="label label-success">{{ task.state }}</span>
@@ -45,15 +45,15 @@
                 </td>
               </tr>
               <tr>
-                <td>args</td>
+                <td>任务元组参数</td>
                 <td>{{ task.args }}</td>
               </tr>
               <tr>
-                <td>kwargs</td>
+                <td>任务字典参数</td>
                 <td>{{ task.kwargs }}</td>
               </tr>
               <tr>
-                <td>Result</td>
+                <td>任务结果</td>
                 <td>{{ getattr(task, 'result', '') }}</td>
               </tr>
               </tbody>

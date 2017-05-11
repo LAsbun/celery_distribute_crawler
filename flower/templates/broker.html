@@ -7,19 +7,19 @@
 {% block container %}
   <div class="container-fluid">
     <div class="page-header">
-        <h3><small>Broker:</small> {{ broker_url }}</h3>
+        <h3><small>消息中间件地址:</small> {{ broker_url }}</h3>
     </div>
 
     <table id="queue-table" class="table table-bordered table-striped">
-      <caption>Queues</caption>
+      <caption>消息中间件队列信息</caption>
       <thead>
         <tr>
-            <th>Name</th>
-            <th>Messages</th>
-            <th>Unacked</th>
-            <th>Ready</th>
-            <th>Consumers</th>
-            <th>Idle since</th>
+            <th>队列名称</th>
+            <th>当前队列所有任务数目</th>
+            <th>未分发任务数目</th>
+            <th>准备分发任务数目</th>
+            <th>消费者数目</th>
+            <th>队列上一次空闲时间</th>
         </tr>
       </thead>
       <tbody>

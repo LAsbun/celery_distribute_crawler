@@ -7,11 +7,11 @@
 {% block container %}
   <div class="container-fluid">
     <div class="btn-group btn-group-justified">
-        <a id="btn-active" class="btn btn-default btn-large" href="{{ reverse_url('tasks') }}?state=STARTED">Active: {{ sum(map(lambda x:x.get('active') or 0, workers.values() )) }}</a>
-        <a id="btn-processed" class="btn btn-default btn-large" href="{{ reverse_url('tasks') }}">Processed: {{ sum(map(lambda x:x.get('task-received') or 0, workers.values() )) }}</a>
-        <a id="btn-failed" class="btn btn-default btn-large" href="{{ reverse_url('tasks') }}?state=FAILURE">Failed: {{ sum(map(lambda x:x.get('task-failed') or 0, workers.values() )) }}</a>
-        <a id="btn-succeeded" class="btn btn-default btn-large" href="{{ reverse_url('tasks') }}?state=SUCCESS">Succeeded: {{ sum(map(lambda x:x.get('task-succeeded') or 0, workers.values() )) }}</a>
-        <a id="btn-retried" class="btn btn-default btn-large" href="{{ reverse_url('tasks') }}?state=RETRY">Retried: {{ sum(map(lambda x:x.get('task-retried') or 0, workers.values() )) }}</a>
+        <a id="btn-active" class="btn btn-default btn-large" href="{{ reverse_url('tasks') }}?state=STARTED">正在运行的任务: {{ sum(map(lambda x:x.get('active') or 0, workers.values() )) }}</a>
+        <a id="btn-processed" class="btn btn-default btn-large" href="{{ reverse_url('tasks') }}">已经执行的任务数目: {{ sum(map(lambda x:x.get('task-received') or 0, workers.values() )) }}</a>
+        <a id="btn-failed" class="btn btn-default btn-large" href="{{ reverse_url('tasks') }}?state=FAILURE">失败的任务数目: {{ sum(map(lambda x:x.get('task-failed') or 0, workers.values() )) }}</a>
+        <a id="btn-succeeded" class="btn btn-default btn-large" href="{{ reverse_url('tasks') }}?state=SUCCESS">成功的任务数目: {{ sum(map(lambda x:x.get('task-succeeded') or 0, workers.values() )) }}</a>
+        <a id="btn-retried" class="btn btn-default btn-large" href="{{ reverse_url('tasks') }}?state=RETRY">重新执行的任务数目: {{ sum(map(lambda x:x.get('task-retried') or 0, workers.values() )) }}</a>
     </div>
 
     <div class="panel panel-default">
@@ -20,14 +20,14 @@
     <table id="workers-table" class="table table-bordered table-striped">
       <thead>
         <tr>
-            <th>Worker Name</th>
-            <th>Status</th>
-            <th>Active</th>
-            <th>Processed</th>
-            <th>Failed</th>
-            <th>Succeeded</th>
-            <th>Retried</th>
-            <th>Load Average</th>
+            <th>消费者名称</th>
+            <th>状态</th>
+            <th>正在运行的任务数目</th>
+            <th>已经执行的任务总数目</th>
+            <th>失败的任务数目</th>
+            <th>成功的任务数目</th>
+            <th>重新执行的任务数目</th>
+            <th>刷新频率</th>
         </tr>
       </thead>
       <tbody>
