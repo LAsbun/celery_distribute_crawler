@@ -31,8 +31,10 @@ def req(url="http://httpbin.org/ip"):
 @app.task(bind=True, base=MyTask)
 def div_error(self, a, b):
     # return a/b
-    sleep(20)
-    return float(a) / b
+    try:
+        return a/b
+    except Exception, e:
+        self.retry(exc=e, countdown=1)
 
     # return self.request.id
 
@@ -50,15 +52,12 @@ from celery_distribute_crawler.common.db_mysql import local_db
 from collections import defaultdict
 import json
 
-
-
-
 @app.task(bind=True, ignore_result=True)
 def get_task(self):
     res = defaultdict(list)
     conn = local_db.get_con()
     cursor = conn.cursor()
-    sql = 'select task_id, task, args, kwargs from `task` where finished != 4 limit 200'
+    sql = 'select task_id, task, args, kwargs from `task` where retry < 3 and finished != 4 limit 200'
     cursor.execute(sql)
     conn.commit()
     res = cursor.fetchall()
@@ -84,7 +83,7 @@ def get_task(self):
             print type(args)
             print type(kwargs)
             print type(ee[0])
-            func.apply_async(args=args, kwargs=kwargs, task_id=ee[0], priority=3)
+            func.apply_async(args=args, kwargs=kwargs, task_id=ee[0], priority=3, retry=True)
 
 
 @after_task_publish.connect#(sender=["celery_distribute_crawler.tasks.get_task", "celery_distribute_crawler.tasks.div_error"])

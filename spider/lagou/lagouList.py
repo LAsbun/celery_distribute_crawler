@@ -112,46 +112,49 @@ def crawl_list(self, *args, **kwargs):
     :param kwargs:  其他的参数，包括但不限于header的一些参数
     :return:
     """
-
     try:
-        if not kwargs:
-            kwargs = {"url": "https://www.lagou.com/jobs/positionAjax.json?city=%E5%8C%97%E4%BA%AC&needAddtionalResult=false", "headers": {"Referer": "https://www.lagou.com/jobs/list_Java?labelWords=sug&fromSearch=true"}, "method": "post", "req_param": {"first": True, "pn": 1, "kd": "Java"}}
-            args = []
-    except:
-        pass
-    atgs = []
 
-    list_header = {
-        "Host": "www.lagou.com",
-        "Accept": "application/json, text/javascript, */*; q=0.01",
-        "Accept-Language": "en-US,en;q=0.5",
-        "Accept-Encoding": "gzip, deflate, br",
-        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
-        "X-Requested-With": "XMLHttpRequest",
-        # 'Cookie'
-    }
+        try:
+            if not kwargs:
+                kwargs = {"url": "https://www.lagou.com/jobs/positionAjax.json?city=%E5%8C%97%E4%BA%AC&needAddtionalResult=false", "headers": {"Referer": "https://www.lagou.com/jobs/list_Java?labelWords=sug&fromSearch=true"}, "method": "post", "req_param": {"first": True, "pn": 1, "kd": "Java"}}
+                args = []
+        except:
+            pass
+        atgs = []
 
-    # cr.set_debug(True)
-    url = kwargs['url']
-    method = kwargs.get('method', 'get')
-    referer = kwargs.get('headers', {}).get('Referer', None)
+        list_header = {
+            "Host": "www.lagou.com",
+            "Accept": "application/json, text/javascript, */*; q=0.01",
+            "Accept-Language": "en-US,en;q=0.5",
+            "Accept-Encoding": "gzip, deflate, br",
+            "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+            "X-Requested-With": "XMLHttpRequest",
+            # 'Cookie'
+        }
 
-    param = kwargs.get('req_param', {})
+        # cr.set_debug(True)
+        url = kwargs['url']
+        method = kwargs.get('method', 'get')
+        referer = kwargs.get('headers', {}).get('Referer', None)
 
-    if referer:
-        list_header['Referer'] = referer
+        param = kwargs.get('req_param', {})
 
-    cr = Crawler()
-    cr.set_proxy('127.0.0.1:8087')
-    cr.req('get', 'https://activity.lagou.com/activityapi/icon/showIcon.json?callback=jQuery111306045271617199887_1493362357868&type=COMPANY&_=1493362357869')
-    # cr.add_referer('referer')
-    resp, error = cr.req(method=method, url=url, headers=list_header, paras=param)
-    # print resp
-    json_data = json.loads(resp)
-    results = json_data.get('content', {}).get('positionResult', {}).get('result', [])
-    if not results:
-        return []
-    return parse_list(self.request.id, results)
+        if referer:
+            list_header['Referer'] = referer
+
+        cr = Crawler()
+        cr.set_proxy('127.0.0.1:8087')
+        cr.req('get', 'https://activity.lagou.com/activityapi/icon/showIcon.json?callback=jQuery111306045271617199887_1493362357868&type=COMPANY&_=1493362357869')
+        # cr.add_referer('referer')
+        resp, error = cr.req(method=method, url=url, headers=list_header, paras=param)
+        # print resp
+        json_data = json.loads(resp)
+        results = json_data.get('content', {}).get('positionResult', {}).get('result', [])
+        if not results:
+            return []
+        return parse_list(self.request.id, results)
+    except Exception, e:
+        raise self.retry(exc=e, countdown=2)
 
 def parse_list(task_id, job_results):
     """

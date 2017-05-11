@@ -42,7 +42,7 @@ from datetime import timedelta
 CELERYBEAT_SCHEDULE = {
     'add-every-30-seconds': {
         'task': 'celery_distribute_crawler.tasks.get_task',
-        'schedule': timedelta(seconds=10),
+        'schedule': timedelta(seconds=60),
         'options':{
         	'priority':3,
         }

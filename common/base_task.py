@@ -24,7 +24,21 @@ class MyTask(celery.Task):
         # print 'success...', retval
         self._update_task(4, task_id)
         # self._insert_test_table([(task_id, retval)])
-
+    def on_retry(self, exc, task_id, args, kwargs, einfo):
+        '''
+        更新retry的次数
+        :param exc:
+        :param task_id:
+        :param args:
+        :param kwargs:
+        :param einfo:
+        :return:
+        '''
+        conn = local_db.get_con()
+        cursor = conn.cursor()
+        sql = """ update `task` set retry=retry+1 where task_id = "{0}" """.format(task_id)
+        cursor.execute(sql)
+        conn.commit()
     # def _insert_test_table(self, data):
     #     with local_db as conn:
     #         with conn as cursor:

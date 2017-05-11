@@ -25,6 +25,7 @@ CREATE TABLE `task` (
   `exchange` varchar(200) DEFAULT NULL COMMENT "交换机",
   `routing_key` varchar(200) DEFAULT NULL COMMENT "路由",
   `finished` tinyint(1) DEFAULT 1 COMMENT "任务状态 1 待分发，2 已分发，3 成功， 4 失败",
+  `retry` tinyint(1) DEFAULT 0 COMMENT "最大重试次数，如果是重试2次了，就放弃改任务",
   `priority` int DEFAULT 1 COMMENT  "优先级 1 最低 9 最高",
   `updatetime` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON update CURRENT_TIMESTAMP COMMENT "时间戳",
   PRIMARY KEY (`task_id`)
