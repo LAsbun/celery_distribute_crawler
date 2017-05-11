@@ -8,6 +8,7 @@ import tornado.options
 import tornado.web
 
 from celery_distribute_crawler.common.db_mongo import lagou_db
+from celery_distribute_crawler.celeryconfig import MONGODB_COLLECTION
 
 class IndexHandler(tornado.web.RequestHandler):
     def get(self):
@@ -29,11 +30,11 @@ class FlipHandler(tornado.web.RequestHandler):
     def get(self, index=1):
         print index
         index = int(index)
-        total_count = lagou_db['lagou_List'].count()
+        total_count = lagou_db[MONGODB_COLLECTION].count()
         total_pages = total_count/10 + (1 if total_count % 10 else 0)
         skip_num = (int(index)-1)*10
         skip_num = skip_num if skip_num > 0 else 0
-        res = lagou_db['lagou_List'].find(skip=skip_num, limit=10)
+        res = lagou_db[MONGODB_COLLECTION].find(skip=skip_num, limit=10)
         print type(res[0])
         context = {
             "lines": res,

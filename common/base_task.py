@@ -8,6 +8,7 @@ from pymongo.errors import DuplicateKeyError
 
 from celery_distribute_crawler.common.db_mysql import local_db
 from celery_distribute_crawler.common.db_mongo import lagou_db
+from celery_distribute_crawler.celeryconfig import MONGODB_COLLECTION
 
 class MyTask(celery.Task):
     """
@@ -112,7 +113,7 @@ class LaGouTask(MyTask):
 
 
     def _insert_lagou(self, data):
-        lagou_db['lagou_List'].insert_many(data)
+        lagou_db[MONGODB_COLLECTION].insert_many(data)
 
 # print local_db
 #
