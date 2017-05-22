@@ -23,7 +23,7 @@ CELERY_IGNORE_RESULT = True  # 这个会忽略掉所有的结果，导致不能�
 
 CELERYD_MAX_TASKS_PER_CHILD = 200 # 每个worker执行了多少任务就会死掉，我建议数量可以大一些，比如200
 
-CELERYD_CONCURRENCY = 10 # celery worker的并发数 也是命令行-c指定的数目,事实上实践发现并不是worker也多越好,保证任务不堆积,加上一定新增任务的预留就可以
+CELERYD_CONCURRENCY = 6 # celery worker的并发数 也是命令行-c指定的数目,事实上实践发现并不是worker也多越好,保证任务不堆积,加上一定新增任务的预留就可以
 
 CELERY_ENABLE_UTC = False
 
