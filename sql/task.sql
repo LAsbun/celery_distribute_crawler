@@ -34,20 +34,18 @@ CREATE TABLE `task` (
 DROP TABLE IF EXISTS `update_task`;
 CREATE TABLE `update_task` (
   `task_id` VARCHAR(36) NOT NULL  COMMENT "唯一任务ID, 使用uuid4生成" ,
-  `task` varchar(200) NOT NULL comment "任务的全称",
   `error_info` TEXT DEFAULT NULL COMMENT "错误信息，如果成功，就什么也没有",
   `updatetime` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON update CURRENT_TIMESTAMP COMMENT "时间戳",
   PRIMARY KEY (`task_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `hh`;
-CREATE TABLE `hh` (
-  `task_id` VARCHAR(36) NOT NULL  COMMENT "唯一任务ID, 使用uuid4生成" ,
-  `error_info` TEXT DEFAULT NULL ,
-  `hh` TEXT DEFAULT NULL,
-  `update_time` TIMESTAMP DEFAULT CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
-  PRIMARY KEY (`task_id`)
-) ENGINE = InnoDB DEFAULT CHARSET=utf8;
+-- DROP TABLE IF EXISTS `hh`;
+-- CREATE TABLE `hh` (
+--   `task_id` VARCHAR(36) NOT NULL  COMMENT "唯一任务ID, 使用uuid4生成" ,
+--   `error_info` TEXT DEFAULT NULL ,
+--   `update_time` TIMESTAMP DEFAULT CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+--   PRIMARY KEY (`task_id`)
+-- ) ENGINE = InnoDB DEFAULT CHARSET=utf8;
 
 
 -- insert into `task` (task_id, task, args) VALUES ("1", "celery_distribute_crawler.tasks.div_error", "[1, 0]");

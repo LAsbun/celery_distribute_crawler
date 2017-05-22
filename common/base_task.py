@@ -76,7 +76,7 @@ class MyTask(celery.Task):
         conn = local_db.get_con()
         cursor = conn.cursor()
         sql = """
-                    insert into  `hh`(error_info, task_id) VALUES ("{0}", "{1}") ON Duplicate key UPDATE error_info = "{0}"
+                    insert into  `update_task`(error_info, task_id) VALUES ("{0}", "{1}") ON Duplicate key UPDATE error_info = "{0}"
             """.format(conn.escape_string(exc), task_id)
         # sql = """update `hh` set error_info = {0} where task_id = "{1}" """.format(exc, task_id)
         cursor.execute(sql)
