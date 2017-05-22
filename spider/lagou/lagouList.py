@@ -93,7 +93,7 @@ def gener_list_task(self, *args, **kwargs):
                 temp_kw['url'] = url
                 temp_kw['method'] = 'post'
                 temp_kw['headers'] = {}
-                temp_kw['headers']['Referer'] = REFERER_URL.format(**{'key_word': key_word})
+                temp_kw['headers']['Referer'] = REFERER_URL.format(**{'key_word': urllib.quote(key_word)})
                 temp_kw['req_param'] = post_data
                 task_id = get_task_id(str((task_str, temp_args, temp_kw)))
 
@@ -144,7 +144,7 @@ def crawl_list(self, *args, **kwargs):
 
         cr = Crawler()
         cr.set_proxy('127.0.0.1:8087')
-        cr.req('get', 'https://activity.lagou.com/activityapi/icon/showIcon.json?callback=jQuery111306045271617199887_1493362357868&type=COMPANY&_=1493362357869')
+        # cr.req('get', 'https://activity.lagou.com/activityapi/icon/showIcon.json?callback=jQuery111306045271617199887_1493362357868&type=COMPANY&_=1493362357869')
         # cr.add_referer('referer')
         resp, error = cr.req(method=method, url=url, headers=list_header, paras=param)
         # print resp
@@ -175,7 +175,7 @@ if __name__ == '__main__':
     # temp_url = 'https://www.lagou.com/zhaopin/Java/4/'
     # a = gener_list_task(temp_url, u'北京')
     kw = {"url": "https://www.lagou.com/jobs/positionAjax.json?city=%E5%8C%97%E4%BA%AC&needAddtionalResult=false", "headers": {"Referer": "https://www.lagou.com/jobs/list_Java?labelWords=sug&fromSearch=true"}, "method": "post", "req_param": {"first": True, "pn": 1, "kd": "Java"}}
-
+    kw = {'url': 'https://www.lagou.com/jobs/positionAjax.json?city=%E5%8C%97%E4%BA%AC&needAddtionalResult=false', 'headers': {'Referer': u'https://www.lagou.com/jobs/list_%E5%BE%8B%E5%B8%88?labelWords=sug&fromSearch=true'}, 'method': 'post', 'req_param': {'kd': '\u4ea7\u54c1\u8fd0\u8425', 'pn': 5, 'first': False}}
     atgs = []
     import time
     st = time.time()

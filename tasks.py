@@ -129,3 +129,42 @@ headers ==> {u'origin': u'gen9374@sws-pc', u'root_id': '3cdbe96a-8d52-408a-a27f-
 # @signals.worker_process_init
 # def on_work_init(sender, **kwargs):
 #     signals.before_task_publish.connect(update_task, sender=sender.app.tasks[get_task.func_name])
+@app.task(bind=True)
+def test_one_case(self, task_id=None):
+    """
+    查异常原因
+    :param task_id: 任务唯一ID
+    :return:
+    """
+    if task_id is not None:
+        conn = local_db.get_con()
+        cursor = conn.cursor()
+        sql = """ select * from `task` where task_id = "{0}" """.format(task_id)
+        cursor.execute(sql)
+        conn.commit()
+        res =  cursor.fetchall()
+    else:
+        conn = local_db.get_con()
+        cursor = conn.cursor()
+        sql = """ select * from `task` where finished = 3 limit 1 """
+        cursor.execute(sql)
+        conn.commit()
+        res =  cursor.fetchall()
+
+    if res:
+        print res
+        for ee in res:
+            func = self.app.tasks[ee[1]]
+            try:
+                args = json.loads(ee[2]) or []
+            except:
+                args = []
+            try:
+                kwargs = json.loads(ee[3]) or {}
+            except:
+                kwargs = {}
+            print func
+            print type(args)
+            print type(kwargs)
+            print type(ee[0])
+            print func.apply_async(args=args, kwargs=kwargs, task_id=ee[0], priority=3, retry=True)
