@@ -22,7 +22,7 @@
         <div class="row-fluid">
           <div class="span6">
             <table class="table table-bordered table-striped">
-              <caption>Basic task options</caption>
+              <caption>任务基本信息</caption>
               <tbody>
               <tr>
                 <td>任务名称</td>
@@ -60,23 +60,46 @@
             </table>
           </div>
 
+
+
+
           <div class="span6">
             <table class="table table-bordered table-striped">
-              <caption>Advanced task options</caption>
+              <caption>任务执行相关信息</caption>
               <tbody>
               {% for name in task._fields %}
-                {% if name not in ['name', 'uuid', 'state', 'args', 'kwargs', 'result'] and getattr(task, name, None) is not None %}
+                {% if name in ['received', 'retries', 'started', 'succeeded', 'worker', 'retried', 'traceback','failed', 'exception', 'runtime'] and getattr(task, name, None) is not None %}
                 <tr>
-                  <td>{{ humanize(name) }}</td>
+                  {% if name == "received" %}
+                  <td class="{{ name }}">接收任务时间</td>
+                  {% elif name == "retries" %}
+                  <td class="{{ name }}">重试次数</td>
+                  {% elif name == "started" %}
+                  <td class="{{ name }}">任务开始执行时间</td>
+                  {% elif name == "succeeded" %}
+                  <td class="{{ name }}">任务执行成功反馈时间</td>
+                  {% elif name == "retried" %}
+                  <td class="{{ name }}">任务上次重试时间</td>
+                  {% elif name == "failed" %}
+                  <td class="{{ name }}">任务失败反馈时间</td>
+                  {% elif name == "traceback" %}
+                  <td class="{{ name }}">任务失败反馈信息</td>
+                  {% elif name == "runtime" %}
+                  <td class="{{ name }}">任务运行时间</td>
+                  {% elif name == "exception" %}
+                  <td class="{{ name }}">任务失败原因</td>
+                  {% elif name == "worker" %}
+                  <td class="{{ name }}">执行任务的消费者</td>
+                  {% end %}
                   <td>
-                    {% if name in ['sent', 'received', 'started', 'succeeded', 'retried', 'timestamp', 'failed'] %}
+                    {% if name in ['received', 'started', 'succeeded', 'retried', 'failed'] %}
                     {{ humanize(getattr(task, name, None), type='time') }}
                     {% elif name == 'worker' %}
                     <a
                         href="{{ reverse_url('worker', task.worker.hostname) }}">{{ task.worker.hostname }}</a>
-                    {% elif name == 'traceback' %}
+                    {% elif name in ['traceback','exception'] %}
                     <pre>{{ getattr(task, name, None) }}</pre>
-                    {% else %}
+                    {% elif name in ['retries','runtime'] %}
                       {{ getattr(task, name, None) }}
                     {% end %}
                   </td>
