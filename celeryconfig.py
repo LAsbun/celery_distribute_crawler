@@ -53,7 +53,7 @@ CELERYBEAT_SCHEDULE = {
 
 # redis 相关
 REDIS_HOST = '182.254.222.204'
-
+REDIS_DB = '0'
 # 爬虫框架相关
 CRAWLER_DEBUG = True  # debug 模式打开
 
