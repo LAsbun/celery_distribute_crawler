@@ -5,11 +5,11 @@ from __future__ import absolute_import
 __author__ = 'sws'
 
 
-BROKER_URL = "amqp://guest:guest@182.254.222.204//"#'redis://123.206.71.224:6379/0' #'amqp://guest@123.206.71.224//'#'amqp://dongwm:123456@localhost:5672/web_develop' # 使用RabbitMQ作为消息代理
+BROKER_URL = "amqp://guest:guest@182.254.222.204//"#'redis://182.254.222.204:6379/0' #'amqp://guest@182.254.222.204//'#'amqp://dongwm:123456@localhost:5672/web_develop' # 使用RabbitMQ作为消息代理
 
-# CELERY_RESULT_BACKEND = "amqp://guest:guest@123.206.71.224:5672//" # 'redis://123.206.71.224:6379/0' #amqp://' #'redis://localhost:6379/0' # 把任务结果存在了Redis
+# CELERY_RESULT_BACKEND = "amqp://guest:guest@182.254.222.204:5672//" # 'redis://182.254.222.204:6379/0' #amqp://' #'redis://localhost:6379/0' # 把任务结果存在了Redis
 
-# CELERY_RESULT_BACKEND = "amqp://guest:guest@123.206.71.224:5672//"#'redis://123.206.71.224:6379/0'
+# CELERY_RESULT_BACKEND = "amqp://guest:guest@182.254.222.204:5672//"#'redis://182.254.222.204:6379/0'
 
 CELERY_TASK_SERIALIZER = 'json' # 任务序列化和反序列化使用msgpack方案
 
@@ -52,13 +52,13 @@ CELERYBEAT_SCHEDULE = {
 
 # redis 相关
 REDIS_DB = '0'
-REDIS_HOST = '123.206.71.224'
+REDIS_HOST = '182.254.222.204'
 
 # 爬虫框架相关
 CRAWLER_DEBUG = True  # debug 模式打开
 
 # mongodb 相关
-MONGODB_HOST = '123.206.71.224'
+MONGODB_HOST = '182.254.222.204'
 MONGODB_PORT = 29011
 MONGODB_READER = "reader"
 MONGODB_READER_PWD = "readeraaaaa"

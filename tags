@@ -4,38 +4,126 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
-BROKER_URL	celeryconfig.py	/^BROKER_URL = "amqp:\/\/guest:guest@127.0.0.1:5672\/\/"#'redis:\/\/127.0.0.1:6379\/0' #'amqp:\/\/guest@123.206.71.224\/\/'#'amqp:\/\/dongwm:123456@localhost:5672\/web_develop' # 使用RabbitMQ作为消息代理$/;"	kind:variable	line:9
+BROKER_URL	celeryconfig.py	/^BROKER_URL = "amqp:\/\/guest:guest@127.0.0.1\/\/"#'redis:\/\/127.0.0.1:6379\/0' #'amqp:\/\/guest@127.0.0.1\/\/'#'amqp:\/\/dongwm:123456@localhost:5672\/web_develop' # 使用RabbitMQ作为消息代理$/;"	kind:variable	line:8
+BaseHandler	flower/views/__init__.py	/^class BaseHandler(tornado.web.RequestHandler):$/;"	kind:class	line:15
+BaseTaskHandler	flower/api/tasks.py	/^class BaseTaskHandler(BaseHandler):$/;"	kind:class	line:28
+BaseWebSocketHandler	flower/api/__init__.py	/^class BaseWebSocketHandler(tornado.websocket.WebSocketHandler):$/;"	kind:class	line:6
+Broker	flower/utils/broker.py	/^class Broker(object):$/;"	kind:class	line:155
+BrokerBase	flower/utils/broker.py	/^class BrokerBase(object):$/;"	kind:class	line:30
+BrokerMonitor	flower/views/monitor.py	/^class BrokerMonitor(BaseHandler):$/;"	kind:class	line:87
+BrokerView	flower/views/broker.py	/^class BrokerView(BaseHandler):$/;"	kind:class	line:16
 CELERYBEAT_SCHEDULE	celeryconfig.py	/^CELERYBEAT_SCHEDULE = {$/;"	kind:variable	line:42
-CELERYD_CONCURRENCY	celeryconfig.py	/^CELERYD_CONCURRENCY = 10 # celery worker的并发数 也是命令行-c指定的数目,事实上实践发现并不是worker也多越好,保证任务不堆积,加上一定新增任务的预留就可以$/;"	kind:variable	line:27
-CELERYD_LOG_FILE	celeryconfig.py	/^CELERYD_LOG_FILE = '\/var\/log\/celery\/%n%I.log'$/;"	kind:variable	line:33
-CELERYD_MAX_TASKS_PER_CHILD	celeryconfig.py	/^CELERYD_MAX_TASKS_PER_CHILD = 200 # 每个worker执行了多少任务就会死掉，我建议数量可以大一些，比如200$/;"	kind:variable	line:25
-CELERY_ACCEPT_CONTENT	celeryconfig.py	/^CELERY_ACCEPT_CONTENT = ['json', 'msgpack', 'msgpack', 'yaml'] # 指定接受的内容类型$/;"	kind:variable	line:21
-CELERY_ENABLE_UTC	celeryconfig.py	/^CELERY_ENABLE_UTC = True$/;"	kind:variable	line:29
-CELERY_IGNORE_RESULT	celeryconfig.py	/^CELERY_IGNORE_RESULT = True  # 这个会忽略掉所有的结果，导致不能够获取到运行错误时的错误信息$/;"	kind:variable	line:23
-CELERY_RESULT_SERIALIZER	celeryconfig.py	/^CELERY_RESULT_SERIALIZER = 'json' # 读取任务结果一般性能要求不高，所以使用了可读性更好的JSON$/;"	kind:variable	line:17
-CELERY_TASK_RESULT_EXPIRES	celeryconfig.py	/^CELERY_TASK_RESULT_EXPIRES = 60 * 60 * 24 # 任务过期时间，不建议直接写86400，应该让这样的magic数字表述更明显$/;"	kind:variable	line:19
-CELERY_TASK_SERIALIZER	celeryconfig.py	/^CELERY_TASK_SERIALIZER = 'json' # 任务序列化和反序列化使用msgpack方案$/;"	kind:variable	line:15
-CELERY_TIMEZONE	celeryconfig.py	/^CELERY_TIMEZONE = 'Asia\/Shanghai'$/;"	kind:variable	line:31
+CELERYD_CONCURRENCY	celeryconfig.py	/^CELERYD_CONCURRENCY = 10 # celery worker的并发数 也是命令行-c指定的数目,事实上实践发现并不是worker也多越好,保证任务不堆积,加上一定新增任务的预留就可以$/;"	kind:variable	line:26
+CELERYD_LOG_FILE	celeryconfig.py	/^CELERYD_LOG_FILE = '\/var\/log\/celery\/%n%I.log'$/;"	kind:variable	line:32
+CELERYD_MAX_TASKS_PER_CHILD	celeryconfig.py	/^CELERYD_MAX_TASKS_PER_CHILD = 200 # 每个worker执行了多少任务就会死掉，我建议数量可以大一些，比如200$/;"	kind:variable	line:24
+CELERY_ACCEPT_CONTENT	celeryconfig.py	/^CELERY_ACCEPT_CONTENT = ['json', 'msgpack', 'msgpack', 'yaml'] # 指定接受的内容类型$/;"	kind:variable	line:20
+CELERY_ENABLE_UTC	celeryconfig.py	/^CELERY_ENABLE_UTC = False$/;"	kind:variable	line:28
+CELERY_IGNORE_RESULT	celeryconfig.py	/^CELERY_IGNORE_RESULT = True  # 这个会忽略掉所有的结果，导致不能够获取到运行错误时的错误信息$/;"	kind:variable	line:22
+CELERY_RESULT_SERIALIZER	celeryconfig.py	/^CELERY_RESULT_SERIALIZER = 'json' # 读取任务结果一般性能要求不高，所以使用了可读性更好的JSON$/;"	kind:variable	line:16
+CELERY_TASK_RESULT_EXPIRES	celeryconfig.py	/^CELERY_TASK_RESULT_EXPIRES = 60 * 60 * 24 # 任务过期时间，不建议直接写86400，应该让这样的magic数字表述更明显$/;"	kind:variable	line:18
+CELERY_TASK_SERIALIZER	celeryconfig.py	/^CELERY_TASK_SERIALIZER = 'json' # 任务序列化和反序列化使用msgpack方案$/;"	kind:variable	line:14
+CELERY_TIMEZONE	celeryconfig.py	/^CELERY_TIMEZONE = 'Asia\/Shanghai'$/;"	kind:variable	line:30
 CITY_LIST	spider/lagou/lagouList.py	/^CITY_LIST = [$/;"	kind:variable	line:25
-CRAWLER_DEBUG	celeryconfig.py	/^CRAWLER_DEBUG = True  # debug 模式打开/;"	kind:variable	line:58
+CRAWLER_DEBUG	celeryconfig.py	/^CRAWLER_DEBUG = True  # debug 模式打开$/;"	kind:variable	line:58
+ControlHandler	flower/api/control.py	/^class ControlHandler(BaseHandler):$/;"	kind:class	line:16
+Counter	flower/utils/backports/collections.py	/^class Counter(dict):$/;"	kind:class	line:9
 Crawler	common/crawler.py	/^class Crawler(object):$/;"	kind:class	line:23
-DbHelper	common/db_helper.py	/^class DbHelper(object):$/;"	kind:class	line:9
+DATE_FORMAT	flower/api/tasks.py	/^    DATE_FORMAT = '%Y-%m-%d %H:%M:%S.%f'$/;"	kind:variable	line:158
+DEFAULT_CONFIG_FILE	flower/options.py	/^DEFAULT_CONFIG_FILE = 'flowerconfig.py'$/;"	kind:variable	line:9
+DEFAULT_PRIORITY_STEPS	flower/utils/broker.py	/^    DEFAULT_PRIORITY_STEPS = [0, 3, 6, 9]$/;"	kind:variable	line:102
+DashboardUpdateHandler	flower/views/dashboard.py	/^class DashboardUpdateHandler(websocket.WebSocketHandler):$/;"	kind:class	line:77
+DashboardView	flower/views/dashboard.py	/^class DashboardView(BaseHandler):$/;"	kind:class	line:23
+DbHelper	common/db_helper.py	/^class DbHelper(object):$/;"	kind:class	line:10
+ENV_VAR_PREFIX	flower/command.py	/^    ENV_VAR_PREFIX = 'FLOWER_'$/;"	kind:variable	line:33
+EVENTS	flower/api/events.py	/^EVENTS = ('task-sent', 'task-received', 'task-started', 'task-succeeded',$/;"	kind:variable	line:20
+Events	flower/events.py	/^class Events(threading.Thread):$/;"	kind:class	line:54
+EventsApiHandler	flower/api/events.py	/^class EventsApiHandler(BaseWebSocketHandler):$/;"	kind:class	line:8
+EventsState	flower/events.py	/^class EventsState(State):$/;"	kind:class	line:31
 FORMAT	common/logger.py	/^FORMAT = "%(asctime)-15s %(threadName)s %(filename)s:%(lineno)d %(levelname)s %(message)s"$/;"	kind:variable	line:13
-GenerTask	common/base_task.py	/^class GenerTask(MyTask):$/;"	kind:class	line:64
-HOST	common/db_mongo.py	/^HOST = "127.0.0.1"$/;"	kind:variable	line:17
+FailedTaskMonitor	flower/views/monitor.py	/^class FailedTaskMonitor(BaseHandler):$/;"	kind:class	line:70
+FlipHandler	server/view.py	/^class FlipHandler(tornado.web.RequestHandler):$/;"	kind:class	line:28
+Flower	flower/app.py	/^class Flower(tornado.web.Application):$/;"	kind:class	line:23
+FlowerCommand	flower/command.py	/^class FlowerCommand(Command):$/;"	kind:class	line:32
+GenerTask	common/base_task.py	/^class GenerTask(MyTask):$/;"	kind:class	line:95
+GetQueueLengths	flower/api/tasks.py	/^class GetQueueLengths(BaseTaskHandler):$/;"	kind:class	line:365
+GithubLoginHandler	flower/views/auth.py	/^class GithubLoginHandler(BaseHandler, tornado.auth.OAuth2Mixin):$/;"	kind:class	line:74
+GoogleAuth2LoginHandler	flower/views/auth.py	/^class GoogleAuth2LoginHandler(BaseHandler, tornado.auth.GoogleOAuth2Mixin):$/;"	kind:class	line:22
+HOST	common/db_mongo.py	/^HOST = "127.0.0.1"$/;"	kind:variable	line:20
 HOST	mtest/mongo_test.py	/^HOST = "127.0.0.1"$/;"	kind:variable	line:12
 INDEX_URL	spider/lagou/lagouList.py	/^INDEX_URL = 'https:\/\/www.lagou.com\/'$/;"	kind:variable	line:23
-LaGouTask	common/base_task.py	/^class LaGouTask(MyTask):$/;"	kind:class	line:84
-MyTask	common/base_task.py	/^class MyTask(celery.Task):$/;"	kind:class	line:12
-PORT	common/db_mongo.py	/^PORT = 27017$/;"	kind:variable	line:18
+INSPECT_METHODS	flower/api/control.py	/^    INSPECT_METHODS = ('stats', 'active_queues', 'registered', 'scheduled',$/;"	kind:variable	line:17
+IndexHandler	server/view.py	/^class IndexHandler(tornado.web.RequestHandler):$/;"	kind:class	line:13
+KEYWORDS_DOWN	flower/utils/template.py	/^KEYWORDS_DOWN = ('args', 'kwargs')$/;"	kind:variable	line:24
+KEYWORDS_UP	flower/utils/template.py	/^KEYWORDS_UP = ('ssl', 'uri', 'url', 'uuid', 'eta')$/;"	kind:variable	line:23
+LaGouTask	common/base_task.py	/^class LaGouTask(MyTask):$/;"	kind:class	line:121
+ListTaskTypes	flower/api/tasks.py	/^class ListTaskTypes(BaseTaskHandler):$/;"	kind:class	line:497
+ListTasks	flower/api/tasks.py	/^class ListTasks(BaseTaskHandler):$/;"	kind:class	line:389
+ListWorkers	flower/api/workers.py	/^class ListWorkers(ControlHandler):$/;"	kind:class	line:14
+LoginHandler	flower/views/auth.py	/^class LoginHandler(BaseHandler):$/;"	kind:class	line:69
+LogoutHandler	flower/views/auth.py	/^class LogoutHandler(BaseHandler):$/;"	kind:class	line:157
+MONGODB_COLLECTION	celeryconfig.py	/^MONGODB_COLLECTION = "test_list"$/;"	kind:variable	line:68
+MONGODB_DB	celeryconfig.py	/^MONGODB_DB = 'sws'$/;"	kind:variable	line:67
+MONGODB_HOST	celeryconfig.py	/^MONGODB_HOST = '127.0.0.1'$/;"	kind:variable	line:61
+MONGODB_PORT	celeryconfig.py	/^MONGODB_PORT = 29011$/;"	kind:variable	line:62
+MONGODB_READER	celeryconfig.py	/^MONGODB_READER = "reader"$/;"	kind:variable	line:63
+MONGODB_READER_PWD	celeryconfig.py	/^MONGODB_READER_PWD = "readeraaaaa"$/;"	kind:variable	line:64
+MONGODB_WRITER	celeryconfig.py	/^MONGODB_WRITER = "writer"$/;"	kind:variable	line:65
+MONGODB_WRITER_PWD	celeryconfig.py	/^MONGODB_WRITER_PWD = "writeraaaaa"$/;"	kind:variable	line:66
+MYSQLDB_DB	celeryconfig.py	/^MYSQLDB_DB= "sws"$/;"	kind:variable	line:76
+MYSQLDB_HOST	celeryconfig.py	/^MYSQLDB_HOST = "127.0.0.1"$/;"	kind:variable	line:71
+MYSQLDB_PWD_READER	celeryconfig.py	/^MYSQLDB_PWD_READER = "reader"$/;"	kind:variable	line:73
+MYSQLDB_PWD_WRITER	celeryconfig.py	/^MYSQLDB_PWD_WRITER = "writer"$/;"	kind:variable	line:75
+MYSQLDB_USER_READER	celeryconfig.py	/^MYSQLDB_USER_READER = "reader"$/;"	kind:variable	line:72
+MYSQLDB_USER_WRITER	celeryconfig.py	/^MYSQLDB_USER_WRITER = "writer"$/;"	kind:variable	line:74
+Monitor	flower/views/monitor.py	/^class Monitor(BaseHandler):$/;"	kind:class	line:14
+MyTask	common/base_task.py	/^class MyTask(celery.Task):$/;"	kind:class	line:13
+NotFoundErrorHandler	flower/views/error.py	/^class NotFoundErrorHandler(BaseHandler):$/;"	kind:class	line:8
+NullHandler	flower/utils/backports/__init__.py	/^class NullHandler(logging.Handler):$/;"	kind:class	line:4
+PORT	common/db_mongo.py	/^PORT = 27017$/;"	kind:variable	line:21
 PORT	mtest/mongo_test.py	/^PORT = 27017$/;"	kind:variable	line:13
+PoemPageHandler	server/view.py	/^class PoemPageHandler(tornado.web.RequestHandler):$/;"	kind:class	line:17
 R	common/db_redis.py	/^R = lambda : redis.Redis(host=REDIS_HOST,db=REDIS_DB)$/;"	kind:variable	line:15
 R	common/insert_db.py	/^R = lambda : redis.Redis(host=REDIS_HOST,db=REDIS_DB)$/;"	kind:variable	line:55
 REDIS_DB	celeryconfig.py	/^REDIS_DB = '0'$/;"	kind:variable	line:54
 REDIS_HOST	celeryconfig.py	/^REDIS_HOST = '127.0.0.1'$/;"	kind:variable	line:55
 REDIS_SET_NAME	spider/proxy/proxy_xici.py	/^REDIS_SET_NAME = 'proxy'$/;"	kind:variable	line:20
+RabbitMQ	flower/utils/broker.py	/^class RabbitMQ(BrokerBase):$/;"	kind:class	line:47
+Redis	flower/utils/broker.py	/^class Redis(BrokerBase):$/;"	kind:class	line:100
+SEP	flower/utils/broker.py	/^    SEP = '\\x06\\x16'$/;"	kind:variable	line:101
+SucceededTaskMonitor	flower/views/monitor.py	/^class SucceededTaskMonitor(BaseHandler):$/;"	kind:class	line:20
+TaskAbort	flower/api/tasks.py	/^class TaskAbort(BaseTaskHandler):$/;"	kind:class	line:324
+TaskApply	flower/api/tasks.py	/^class TaskApply(BaseTaskHandler):$/;"	kind:class	line:81
+TaskAsyncApply	flower/api/tasks.py	/^class TaskAsyncApply(BaseTaskHandler):$/;"	kind:class	line:157
+TaskInfo	flower/api/tasks.py	/^class TaskInfo(BaseTaskHandler):$/;"	kind:class	line:536
+TaskRateLimit	flower/api/control.py	/^class TaskRateLimit(ControlHandler):$/;"	kind:class	line:534
+TaskResult	flower/api/tasks.py	/^class TaskResult(BaseTaskHandler):$/;"	kind:class	line:275
+TaskRevoke	flower/api/control.py	/^class TaskRevoke(ControlHandler):$/;"	kind:class	line:436
+TaskSend	flower/api/tasks.py	/^class TaskSend(BaseTaskHandler):$/;"	kind:class	line:223
+TaskTimout	flower/api/control.py	/^class TaskTimout(ControlHandler):$/;"	kind:class	line:474
+TaskView	flower/views/tasks.py	/^class TaskView(BaseHandler):$/;"	kind:class	line:20
+TasksDataTable	flower/views/tasks.py	/^class TasksDataTable(BaseHandler):$/;"	kind:class	line:31
+TasksView	flower/views/tasks.py	/^class TasksView(BaseHandler):$/;"	kind:class	line:83
+TimeToCompletionMonitor	flower/views/monitor.py	/^class TimeToCompletionMonitor(BaseHandler):$/;"	kind:class	line:37
 URL1	spider/proxy/proxy_xici.py	/^URL1 = 'http:\/\/www.xicidaili.com\/nn\/'$/;"	kind:variable	line:22
 URL2	spider/proxy/proxy_xici.py	/^URL2 = 'http:\/\/www.xicidaili.com\/wt\/'$/;"	kind:variable	line:23
+UUID_REGEX	flower/utils/template.py	/^UUID_REGEX = re.compile(r'^[\\w]{8}(-[\\w]{4}){3}-[\\w]{12}$')$/;"	kind:variable	line:25
+VERSION	flower/__init__.py	/^VERSION = (1, 0, 0)$/;"	kind:variable	line:3
+WorkerPoolAutoscale	flower/api/control.py	/^class WorkerPoolAutoscale(ControlHandler):$/;"	kind:class	line:268
+WorkerPoolGrow	flower/api/control.py	/^class WorkerPoolGrow(ControlHandler):$/;"	kind:class	line:163
+WorkerPoolRestart	flower/api/control.py	/^class WorkerPoolRestart(ControlHandler):$/;"	kind:class	line:113
+WorkerPoolShrink	flower/api/control.py	/^class WorkerPoolShrink(ControlHandler):$/;"	kind:class	line:215
+WorkerQueueAddConsumer	flower/api/control.py	/^class WorkerQueueAddConsumer(ControlHandler):$/;"	kind:class	line:327
+WorkerQueueCancelConsumer	flower/api/control.py	/^class WorkerQueueCancelConsumer(ControlHandler):$/;"	kind:class	line:381
+WorkerShutDown	flower/api/control.py	/^class WorkerShutDown(ControlHandler):$/;"	kind:class	line:74
+WorkerView	flower/views/workers.py	/^class WorkerView(BaseHandler):$/;"	kind:class	line:15
+_OAUTH_ACCESS_TOKEN_URL	flower/views/auth.py	/^    _OAUTH_ACCESS_TOKEN_URL = "https:\/\/github.com\/login\/oauth\/access_token"$/;"	kind:variable	line:77
+_OAUTH_AUTHORIZE_URL	flower/views/auth.py	/^    _OAUTH_AUTHORIZE_URL = "https:\/\/github.com\/login\/oauth\/authorize"$/;"	kind:variable	line:76
+_OAUTH_NO_CALLBACKS	flower/views/auth.py	/^    _OAUTH_NO_CALLBACKS = False$/;"	kind:variable	line:78
+_OAUTH_SETTINGS_KEY	flower/views/auth.py	/^    _OAUTH_SETTINGS_KEY = 'oauth'$/;"	kind:variable	line:23
+_OAUTH_SETTINGS_KEY	flower/views/auth.py	/^    _OAUTH_SETTINGS_KEY = 'oauth'$/;"	kind:variable	line:79
+__add__	flower/utils/backports/collections.py	/^    def __add__(self, other):$/;"	kind:member	line:122
+__all__	flower/api/events.py	/^__all__ = list(map(getClassName, EVENTS))$/;"	kind:variable	line:36
+__and__	flower/utils/backports/collections.py	/^    def __and__(self, other):$/;"	kind:member	line:172
 __author__	celeryconfig.py	/^__author__ = 'sws'$/;"	kind:variable	line:5
 __author__	common/base_task.py	/^__author__ = 'sws'$/;"	kind:variable	line:3
 __author__	common/common.py	/^__author__ = 'sws'$/;"	kind:variable	line:3
@@ -43,27 +131,62 @@ __author__	common/db_helper.py	/^__author__ = 'sws'$/;"	kind:variable	line:3
 __author__	common/db_mysql.py	/^__author__ = 'sws'$/;"	kind:variable	line:3
 __author__	common/items.py	/^__author__ = 'sws'$/;"	kind:variable	line:3
 __author__	mtest/xx-net_text.py	/^__author__ = 'sws'$/;"	kind:variable	line:3
+__author__	server/__init__.py	/^__author__ = 'sws'$/;"	kind:variable	line:3
+__author__	server/view.py	/^__author__ = 'sws'$/;"	kind:variable	line:3
 __author__	spider/lagou/__init__.py	/^__author__ = 'sws'$/;"	kind:variable	line:3
 __author__	spider/lagou/lagouList.py	/^__author__ = 'sws'$/;"	kind:variable	line:3
 __author__	spider/uctxt/add_detail_task.py	/^__author__ = 'sws'$/;"	kind:variable	line:3
 __author__	test.py	/^__author__ = 'sws'$/;"	kind:variable	line:3
 __author__	util/func_utli.py	/^__author__ = 'sws'$/;"	kind:variable	line:3
-__enter__	common/db_helper.py	/^    def __enter__(self):$/;"	kind:member	line:20
-__exit__	common/db_helper.py	/^    def __exit__(self, exc_type, exc_val, exc_tb):$/;"	kind:member	line:28
+__delitem__	flower/utils/backports/collections.py	/^    def __delitem__(self, elem):$/;"	kind:member	line:102
+__enter__	common/db_helper.py	/^    def __enter__(self):$/;"	kind:member	line:45
+__exit__	common/db_helper.py	/^    def __exit__(self, exc_type, exc_val, exc_tb):$/;"	kind:member	line:53
 __init__	common/crawler.py	/^    def __init__(self, referer='', headers={},  md5='', qid='', p='', **kw):$/;"	kind:member	line:25
-__init__	common/db_helper.py	/^    def __init__(self, host, user, password, db, port=3306, charset="utf8"):$/;"	kind:member	line:11
+__init__	common/db_helper.py	/^    def __init__(self, host, user, password, db, port=3306, charset="utf8"):$/;"	kind:member	line:12
+__init__	flower/app.py	/^    def __init__(self, options=None, capp=None, events=None,$/;"	kind:member	line:27
+__init__	flower/events.py	/^    def __init__(self, *args, **kwargs):$/;"	kind:member	line:34
+__init__	flower/events.py	/^    def __init__(self, capp, db=None, persistent=False,$/;"	kind:member	line:57
+__init__	flower/utils/backports/collections.py	/^    def __init__(self, iterable=None, **kwds):$/;"	kind:member	line:19
+__init__	flower/utils/broker.py	/^    def __init__(self, broker_url, *args, **kwargs):$/;"	kind:member	line:104
+__init__	flower/utils/broker.py	/^    def __init__(self, broker_url, *args, **kwargs):$/;"	kind:member	line:31
+__init__	flower/utils/broker.py	/^    def __init__(self, broker_url, http_api, io_loop=None, **kwargs):$/;"	kind:member	line:48
 __init__.py	__init__.py	1;"	kind:file	line:1
 __init__.py	common/__init__.py	1;"	kind:file	line:1
+__init__.py	flower/__init__.py	1;"	kind:file	line:1
+__init__.py	flower/api/__init__.py	1;"	kind:file	line:1
+__init__.py	flower/utils/__init__.py	1;"	kind:file	line:1
+__init__.py	flower/utils/backports/__init__.py	1;"	kind:file	line:1
+__init__.py	flower/views/__init__.py	1;"	kind:file	line:1
 __init__.py	mtest/__init__.py	1;"	kind:file	line:1
+__init__.py	server/__init__.py	1;"	kind:file	line:1
 __init__.py	spider/__init__.py	1;"	kind:file	line:1
 __init__.py	spider/lagou/__init__.py	1;"	kind:file	line:1
 __init__.py	spider/proxy/__init__.py	1;"	kind:file	line:1
 __init__.py	spider/uctxt/__init__.py	1;"	kind:file	line:1
 __init__.py	util/__init__.py	1;"	kind:file	line:1
-_insert_lagou	common/base_task.py	/^    def _insert_lagou(self, data):$/;"	kind:member	line:92
-_update_failure	common/base_task.py	/^    def _update_failure(self, task_id, exc):$/;"	kind:member	line:52
-_update_task	common/base_task.py	/^    def _update_task(self, error_code, task_id):$/;"	kind:member	line:39
+__main__.py	flower/__main__.py	1;"	kind:file	line:1
+__main__.py	server/__main__.py	1;"	kind:file	line:1
+__missing__	flower/utils/backports/collections.py	/^    def __missing__(self, key):$/;"	kind:member	line:32
+__new__	flower/utils/broker.py	/^    def __new__(cls, broker_url, *args, **kwargs):$/;"	kind:member	line:156
+__new__	flower/views/auth.py	/^    def __new__(cls, *args, **kwargs):$/;"	kind:member	line:70
+__or__	flower/utils/backports/collections.py	/^    def __or__(self, other):$/;"	kind:member	line:155
+__repr__	flower/utils/backports/collections.py	/^    def __repr__(self):$/;"	kind:member	line:107
+__sub__	flower/utils/backports/collections.py	/^    def __sub__(self, other):$/;"	kind:member	line:139
+__version__	flower/__init__.py	/^__version__ = '.'.join(map(str, VERSION)) + '-dev'$/;"	kind:variable	line:4
+_as_dict	flower/views/dashboard.py	/^    def _as_dict(cls, worker):$/;"	kind:member	line:56
+_connect	common/db_helper.py	/^    def _connect(self):$/;"	kind:member	line:23
+_info	flower/views/dashboard.py	/^    def _info(cls, worker):$/;"	kind:member	line:63
+_insert_lagou	common/base_task.py	/^    def _insert_lagou(self, data):$/;"	kind:member	line:129
+_keys	flower/views/dashboard.py	/^        def _keys():$/;"	kind:function	line:68
+_on_access_token	flower/views/auth.py	/^    def _on_access_token(self, future, response):$/;"	kind:member	line:100
+_on_auth	flower/views/auth.py	/^    def _on_auth(self, user):$/;"	kind:member	line:130
+_on_auth	flower/views/auth.py	/^    def _on_auth(self, user):$/;"	kind:member	line:43
+_prepare_virtual_host	flower/utils/broker.py	/^    def _prepare_virtual_host(self, vhost):$/;"	kind:member	line:139
+_q_for_pri	flower/utils/broker.py	/^    def _q_for_pri(self, queue, pri):$/;"	kind:member	line:123
+_update_failure	common/base_task.py	/^    def _update_failure(self, task_id, exc):$/;"	kind:member	line:73
+_update_task	common/base_task.py	/^    def _update_task(self, error_code, task_id):$/;"	kind:member	line:53
 a	common/common.py	/^    a = {'a':5}$/;"	kind:variable	line:50
+abs_path	flower/utils/__init__.py	/^def abs_path(path):$/;"	kind:function	line:32
 add	spider/uctxt/add_detail_task.py	/^def add(a=1, b=2):$/;"	kind:function	line:59
 add	tasks.py	/^def add(x=0, y=0):$/;"	kind:function	line:19
 add_cookie	common/crawler.py	/^    def add_cookie(self, cookie={}):$/;"	kind:member	line:90
@@ -73,98 +196,309 @@ add_detail_task.py	spider/uctxt/add_detail_task.py	1;"	kind:file	line:1
 add_header	common/crawler.py	/^    def add_header(self, headers={}):$/;"	kind:member	line:100
 add_referer	common/crawler.py	/^    def add_referer(self, url):$/;"	kind:member	line:97
 app	celery0.py	/^app = Celery('celery_distribute_crawler',$/;"	kind:variable	line:15
+app	server/__main__.py	/^    app = tornado.web.Application($/;"	kind:variable	line:22
+app.py	flower/app.py	1;"	kind:file	line:1
+apply_env_options	flower/command.py	/^    def apply_env_options(self):$/;"	kind:member	line:61
+apply_options	flower/command.py	/^    def apply_options(self, prog_name, argv):$/;"	kind:member	line:77
+as_dict	flower/utils/tasks.py	/^def as_dict(task):$/;"	kind:function	line:77
+auth.py	flower/views/auth.py	1;"	kind:file	line:1
 b	common/common.py	/^    b = [1, 2]$/;"	kind:variable	line:51
+backend_configured	flower/api/tasks.py	/^    def backend_configured(result):$/;"	kind:member	line:44
 base_task.py	common/base_task.py	1;"	kind:file	line:1
 book_cha_url	spider/uctxt/detail.py	/^    book_cha_url = "http:\/\/www.uctxt.com\/book\/6\/6640\/8164197.html"$/;"	kind:variable	line:72
 book_url	spider/uctxt/list.py	/^    book_url = "http:\/\/www.uctxt.com\/book\/1\/1269\/"$/;"	kind:variable	line:87
+broker.py	flower/utils/broker.py	1;"	kind:file	line:1
+broker.py	flower/views/broker.py	1;"	kind:file	line:1
+bugreport	flower/utils/__init__.py	/^def bugreport(app=None):$/;"	kind:function	line:14
+capp	flower/views/__init__.py	/^    def capp(self):$/;"	kind:member	line:95
 celery0.py	celery0.py	1;"	kind:file	line:1
 celeryconfig.py	celeryconfig.py	1;"	kind:file	line:1
+check_origin	flower/views/dashboard.py	/^    def check_origin(self, origin):$/;"	kind:member	line:144
 check_proxy_in_proxy	common/insert_db.py	/^def check_proxy_in_proxy(args):$/;"	kind:function	line:39
 check_string_in_redis	common/db_redis.py	/^def check_string_in_redis(set_name, string):$/;"	kind:function	line:28
 check_string_in_redis	common/insert_db.py	/^def check_string_in_redis(set_name, string):$/;"	kind:function	line:70
-client	common/db_mongo.py	/^client = MongoClient(host=HOST, port=PORT)$/;"	kind:variable	line:19
+client	common/db_mongo.py	/^client = MongoClient(host=uri, port=MONGODB_PORT, connect=False)$/;"	kind:variable	line:26
 client	mtest/mongo_test.py	/^client = MongoClient(host=HOST, port=PORT)$/;"	kind:variable	line:14
 collection	mtest/mongo_test.py	/^collection = test.collection_test$/;"	kind:variable	line:20
+collections.py	flower/utils/backports/collections.py	1;"	kind:file	line:1
+command.py	flower/command.py	1;"	kind:file	line:1
 common.py	common/common.py	1;"	kind:file	line:1
+control.py	flower/api/control.py	1;"	kind:file	line:1
+cookie_secret	flower/urls.py	/^    cookie_secret=gen_cookie_secret(),$/;"	kind:variable	line:24
+copy	flower/utils/backports/collections.py	/^    def copy(self):$/;"	kind:member	line:98
 cr	common/crawler.py	/^    cr = Crawler()$/;"	kind:variable	line:119
 crawl_list	spider/lagou/lagouList.py	/^def crawl_list(self, *args, **kwargs):$/;"	kind:function	line:108
 crawler.py	common/crawler.py	1;"	kind:file	line:1
+dashboard.py	flower/views/dashboard.py	1;"	kind:file	line:1
+dashboard_update	flower/views/dashboard.py	/^    def dashboard_update(cls, app):$/;"	kind:member	line:118
 data	mtest/mongo_test.py	/^data = [{$/;"	kind:variable	line:22
 db_helper.py	common/db_helper.py	1;"	kind:file	line:1
 db_mongo.py	common/db_mongo.py	1;"	kind:file	line:1
 db_mysql.py	common/db_mysql.py	1;"	kind:file	line:1
 db_redis.py	common/db_redis.py	1;"	kind:file	line:1
+debug	server/__main__.py	/^        debug=True$/;"	kind:variable	line:26
+default	flower/options.py	/^       default="name,uuid,state,args,kwargs,result,received,started,runtime,worker",$/;"	kind:variable	line:63
+default_options	flower/options.py	/^default_options = options$/;"	kind:variable	line:72
+delay	flower/app.py	/^    def delay(self, method, *args, **kwargs):$/;"	kind:member	line:72
 detail.py	spider/uctxt/detail.py	1;"	kind:file	line:1
 div_error	tasks.py	/^def div_error(self, a, b):$/;"	kind:function	line:32
-error_handler	tasks.py	/^def error_handler(self, uuid):$/;"	kind:function	line:40
+early_version	flower/command.py	/^    def early_version(self, argv):$/;"	kind:member	line:120
+elements	flower/utils/backports/collections.py	/^    def elements(self):$/;"	kind:member	line:47
+emit	flower/utils/backports/__init__.py	/^    def emit(self, record):$/;"	kind:member	line:7
+error.py	flower/views/error.py	1;"	kind:file	line:1
+error_handler	tasks.py	/^def error_handler(self, uuid):$/;"	kind:function	line:42
+error_reason	flower/api/control.py	/^    def error_reason(self, workername, response):$/;"	kind:member	line:55
+event	flower/events.py	/^    def event(self, event):$/;"	kind:member	line:38
+events.py	flower/api/events.py	1;"	kind:file	line:1
+events.py	flower/events.py	1;"	kind:file	line:1
+events_enable_interval	flower/events.py	/^    events_enable_interval = 5000$/;"	kind:variable	line:55
+extract_settings	flower/command.py	/^    def extract_settings(self):$/;"	kind:member	line:97
+format_task	flower/views/tasks.py	/^    def format_task(self, args):$/;"	kind:member	line:71
+format_time	flower/utils/template.py	/^def format_time(time, tz):$/;"	kind:function	line:28
+fromkeys	flower/utils/backports/collections.py	/^    def fromkeys(cls, iterable, v=None):$/;"	kind:member	line:65
 func_utli.py	util/func_utli.py	1;"	kind:file	line:1
+gen_cookie_secret	flower/utils/__init__.py	/^def gen_cookie_secret():$/;"	kind:function	line:10
 gener_list_task	spider/lagou/lagouList.py	/^def gener_list_task(self, *args, **kwargs):$/;"	kind:function	line:36
+get	flower/api/tasks.py	/^    def get(self):$/;"	kind:member	line:368
+get	flower/api/tasks.py	/^    def get(self):$/;"	kind:member	line:391
+get	flower/api/tasks.py	/^    def get(self):$/;"	kind:member	line:499
+get	flower/api/tasks.py	/^    def get(self, taskid):$/;"	kind:member	line:277
+get	flower/api/tasks.py	/^    def get(self, taskid):$/;"	kind:member	line:538
+get	flower/api/workers.py	/^    def get(self):$/;"	kind:member	line:17
+get	flower/views/auth.py	/^    def get(self):$/;"	kind:member	line:112
+get	flower/views/auth.py	/^    def get(self):$/;"	kind:member	line:158
+get	flower/views/auth.py	/^    def get(self):$/;"	kind:member	line:26
+get	flower/views/broker.py	/^    def get(self):$/;"	kind:member	line:19
+get	flower/views/dashboard.py	/^    def get(self):$/;"	kind:member	line:26
+get	flower/views/error.py	/^    def get(self):$/;"	kind:member	line:9
+get	flower/views/monitor.py	/^    def get(self):$/;"	kind:member	line:16
+get	flower/views/monitor.py	/^    def get(self):$/;"	kind:member	line:22
+get	flower/views/monitor.py	/^    def get(self):$/;"	kind:member	line:39
+get	flower/views/monitor.py	/^    def get(self):$/;"	kind:member	line:72
+get	flower/views/monitor.py	/^    def get(self):$/;"	kind:member	line:90
+get	flower/views/tasks.py	/^    def get(self):$/;"	kind:member	line:33
+get	flower/views/tasks.py	/^    def get(self):$/;"	kind:member	line:85
+get	flower/views/tasks.py	/^    def get(self, task_id):$/;"	kind:member	line:22
+get	flower/views/workers.py	/^    def get(self, name):$/;"	kind:member	line:18
+get	server/view.py	/^    def get(self):$/;"	kind:member	line:14
+get	server/view.py	/^    def get(self):$/;"	kind:member	line:18
+get	server/view.py	/^    def get(self, index=1):$/;"	kind:member	line:30
+getClassName	flower/api/events.py	/^def getClassName(eventname):$/;"	kind:function	line:24
+get_active_queue_names	flower/api/control.py	/^    def get_active_queue_names(cls):$/;"	kind:member	line:66
+get_argument	flower/views/__init__.py	/^    def get_argument(self, name, default=[], strip=True, type=None):$/;"	kind:member	line:77
+get_auth_http_client	flower/views/auth.py	/^    def get_auth_http_client(self):$/;"	kind:member	line:108
+get_authenticated_user	flower/views/auth.py	/^    def get_authenticated_user(self, redirect_uri, code, callback):$/;"	kind:member	line:82
+get_con	common/db_helper.py	/^    def get_con(self):$/;"	kind:member	line:37
 get_content	spider/proxy/proxy_xici.py	/^def get_content(base_url):$/;"	kind:function	line:99
 get_cookie	common/crawler.py	/^    def get_cookie(self, method, url_base, paras={}, paras_type=1, **kw):$/;"	kind:member	line:106
 get_cookie_handle	common/crawler.py	/^    def get_cookie_handle(self):$/;"	kind:member	line:103
 get_cookie_str	common/crawler.py	/^    def get_cookie_str(self):$/;"	kind:member	line:87
+get_current_user	flower/views/__init__.py	/^    def get_current_user(self):$/;"	kind:member	line:53
+get_cursor	common/db_helper.py	/^    def get_cursor(self):$/;"	kind:member	line:29
 get_detail	spider/uctxt/detail.py	/^def get_detail(url):$/;"	kind:function	line:49
 get_ip_ports	spider/proxy/proxy_xici.py	/^def get_ip_ports(content):$/;"	kind:function	line:60
 get_list	spider/uctxt/list.py	/^def get_list(url):$/;"	kind:function	line:66
 get_proxy	common/common.py	/^def get_proxy():$/;"	kind:function	line:9
 get_response	common/crawler.py	/^    def get_response(self):$/;"	kind:member	line:93
-get_task	tasks.py	/^def get_task(self):$/;"	kind:function	line:57
+get_task	tasks.py	/^def get_task(self):$/;"	kind:function	line:56
+get_task_args	flower/api/tasks.py	/^    def get_task_args(self):$/;"	kind:member	line:29
+get_task_by_id	flower/utils/tasks.py	/^def get_task_by_id(events, task_id):$/;"	kind:function	line:66
 get_task_id	common/common.py	/^def get_task_id(str):$/;"	kind:function	line:38
 get_url	common/crawler.py	/^    def get_url(self, method, url_base, paras={}, paras_type=1, **kw):$/;"	kind:member	line:111
 get_url_of_response	common/crawler.py	/^    def get_url_of_response(self):$/;"	kind:member	line:84
 get_verify_proxies	common/common.py	/^def get_verify_proxies():$/;"	kind:function	line:29
 get_xiciproxy	spider/proxy/proxy_xici.py	/^def get_xiciproxy(self):$/;"	kind:function	line:125
 git_list	sync_git.py	/^git_list = [$/;"	kind:variable	line:13
+handle_argv	flower/command.py	/^    def handle_argv(self, prog_name, argv=None):$/;"	kind:member	line:58
+handlers	flower/urls.py	/^handlers = [$/;"	kind:variable	line:30
+handlers	server/__main__.py	/^        handlers=[(r'\/', IndexHandler), (r'\/poem', PoemPageHandler), (r'\/page\/(\\d*)', FlipHandler)],$/;"	kind:variable	line:23
 hd	spider/proxy/proxy_xici.py	/^hd = {$/;"	kind:variable	line:26
+help	flower/options.py	/^       help="OAuth2 key (requires --auth)")$/;"	kind:variable	line:27
+help	flower/options.py	/^       help="OAuth2 redirect uri (requires --auth)")$/;"	kind:variable	line:31
+help	flower/options.py	/^       help="OAuth2 secret (requires --auth)")$/;"	kind:variable	line:29
+help	flower/options.py	/^       help="SSL certificate authority (CA) file")$/;"	kind:variable	line:43
+help	flower/options.py	/^       help="SSL certificate file")$/;"	kind:variable	line:45
+help	flower/options.py	/^       help="SSL key file")$/;"	kind:variable	line:47
+help	flower/options.py	/^       help="auth handler class")$/;"	kind:variable	line:66
+help	flower/options.py	/^       help="configuration file")$/;"	kind:variable	line:55
+help	flower/options.py	/^       help="enable http basic authentication")$/;"	kind:variable	line:25
+help	flower/options.py	/^       help="enable persistent mode")$/;"	kind:variable	line:39
+help	flower/options.py	/^       help="enable support for the 'X-Real-Ip' and 'X-Scheme' headers.")$/;"	kind:variable	line:49
+help	flower/options.py	/^       help="flower database file")$/;"	kind:variable	line:37
+help	flower/options.py	/^       help="inspect broker e.g. http:\/\/guest:guest@localhost:15672\/api\/")$/;"	kind:variable	line:41
+help	flower/options.py	/^       help="inspect timeout (in milliseconds)")$/;"	kind:variable	line:21
+help	flower/options.py	/^       help="maximum number of tasks to keep in memory")$/;"	kind:variable	line:35
+help	flower/options.py	/^       help="maximum number of workers to keep in memory")$/;"	kind:variable	line:33
+help	flower/options.py	/^       help="periodically enable Celery events")$/;"	kind:variable	line:57
+help	flower/options.py	/^       help="regexp of emails to grant access")$/;"	kind:variable	line:23
+help	flower/options.py	/^       help="secure cookie secret")$/;"	kind:variable	line:53
+help	flower/options.py	/^       help="show time in relative format")$/;"	kind:variable	line:61
+help	flower/options.py	/^       help="slugs of columns on \/tasks\/ page, delimited by comma")$/;"	kind:variable	line:64
+help	flower/options.py	/^       help="use custom task formatter")$/;"	kind:variable	line:59
 hh	spider/uctxt/add_detail_task.py	/^def hh(*ar, **kw):$/;"	kind:function	line:46
+http_server	server/__main__.py	/^    http_server = tornado.httpserver.HTTPServer(app)$/;"	kind:variable	line:28
+humanize	flower/utils/template.py	/^def humanize(obj, type=None, length=None):$/;"	kind:function	line:33
+imap	flower/views/tasks.py	/^    imap = map$/;"	kind:variable	line:10
 include	celery0.py	/^             include=[$/;"	kind:variable	line:16
 insert_db.py	common/insert_db.py	1;"	kind:file	line:1
 insert_detail_task	spider/uctxt/add_detail_task.py	/^def insert_detail_task(func, *args, **kw):$/;"	kind:function	line:36
 insert_list_to_redis	common/insert_db.py	/^def insert_list_to_redis(set_name, args):$/;"	kind:function	line:58
 insert_mysql_proxy	common/insert_db.py	/^def insert_mysql_proxy(args):$/;"	kind:function	line:18
 insert_string_to_redis	common/db_redis.py	/^def insert_string_to_redis(set_name, *args):$/;"	kind:function	line:17
+io_loop	flower/utils/broker.py	/^    io_loop = ioloop.IOLoop.instance()$/;"	kind:variable	line:183
 is_Alive	spider/proxy/proxy_xici.py	/^def is_Alive(proxy, https):$/;"	kind:function	line:39
+is_flower_envvar	flower/command.py	/^    def is_flower_envvar(self, name):$/;"	kind:member	line:131
+is_flower_option	flower/command.py	/^    def is_flower_option(arg):$/;"	kind:member	line:126
+is_worker	flower/api/control.py	/^    def is_worker(self, workername):$/;"	kind:member	line:52
 items.py	common/items.py	1;"	kind:file	line:1
+iter_tasks	flower/utils/tasks.py	/^def iter_tasks(events, limit=None, type=None, worker=None, state=None,$/;"	kind:function	line:11
+key	flower/views/tasks.py	/^        def key(item):$/;"	kind:function	line:44
 lagouList.py	spider/lagou/lagouList.py	1;"	kind:file	line:1
-lagou_db	common/db_mongo.py	/^lagou_db = client.lagou$/;"	kind:variable	line:21
+lagou_db	common/db_mongo.py	/^lagou_db = client[MONGODB_DB]$/;"	kind:variable	line:28
 list.py	spider/uctxt/list.py	1;"	kind:file	line:1
-local_db	common/db_mysql.py	/^local_db = DbHelper(host='127.0.0.1', user='root', password='aaaaa', db='sws')$/;"	kind:variable	line:10
+listeners	flower/views/dashboard.py	/^    listeners = []$/;"	kind:variable	line:78
+local_db	common/db_mysql.py	/^local_db = DbHelper(host=MYSQLDB_HOST, user=MYSQLDB_USER_WRITER, password=MYSQLDB_PWD_WRITER, db=MYSQLDB_DB)$/;"	kind:variable	line:11
 logger	common/logger.py	/^logger = logging.getLogger('crawlLog')$/;"	kind:variable	line:16
+logger	flower/api/control.py	/^logger = logging.getLogger(__name__)$/;"	kind:variable	line:13
+logger	flower/api/tasks.py	/^logger = logging.getLogger(__name__)$/;"	kind:variable	line:25
+logger	flower/api/workers.py	/^logger = logging.getLogger(__name__)$/;"	kind:variable	line:11
+logger	flower/app.py	/^logger = logging.getLogger(__name__)$/;"	kind:variable	line:20
+logger	flower/command.py	/^logger = logging.getLogger(__name__)$/;"	kind:variable	line:29
+logger	flower/events.py	/^logger = logging.getLogger(__name__)$/;"	kind:variable	line:28
+logger	flower/utils/broker.py	/^logger = logging.getLogger(__name__)$/;"	kind:variable	line:27
+logger	flower/views/broker.py	/^logger = logging.getLogger(__name__)$/;"	kind:variable	line:13
+logger	flower/views/dashboard.py	/^logger = logging.getLogger(__name__)$/;"	kind:variable	line:20
+logger	flower/views/tasks.py	/^logger = logging.getLogger(__name__)$/;"	kind:variable	line:17
+logger	flower/views/workers.py	/^logger = logging.getLogger(__name__)$/;"	kind:variable	line:12
 logger.py	common/logger.py	1;"	kind:file	line:1
+login_url	flower/urls.py	/^    login_url='\/login',$/;"	kind:variable	line:26
+main	flower/__main__.py	/^def main():$/;"	kind:function	line:8
+main	flower/utils/broker.py	/^def main():$/;"	kind:function	line:167
+max_workers	flower/app.py	/^    max_workers = 4$/;"	kind:variable	line:25
 mongo_test.py	mtest/mongo_test.py	1;"	kind:file	line:1
-on_failure	common/base_task.py	/^    def on_failure(self, exc, task_id, args, kwargs, einfo):$/;"	kind:member	line:16
+monitor.py	flower/views/monitor.py	1;"	kind:file	line:1
+most_common	flower/utils/backports/collections.py	/^    def most_common(self, n=None):$/;"	kind:member	line:35
+normalize_options	flower/api/tasks.py	/^    def normalize_options(self, options):$/;"	kind:member	line:57
+on_close	flower/api/__init__.py	/^    def on_close(self):$/;"	kind:member	line:16
+on_close	flower/views/dashboard.py	/^    def on_close(self):$/;"	kind:member	line:103
+on_enable_events	flower/events.py	/^    def on_enable_events(self):$/;"	kind:member	line:127
+on_event	flower/events.py	/^    def on_event(self, event):$/;"	kind:member	line:135
+on_failure	common/base_task.py	/^    def on_failure(self, exc, task_id, args, kwargs, einfo):$/;"	kind:member	line:17
+on_message	flower/api/__init__.py	/^    def on_message(self, message):$/;"	kind:member	line:13
+on_message	flower/views/dashboard.py	/^    def on_message(self, message):$/;"	kind:member	line:100
+on_retry	common/base_task.py	/^    def on_retry(self, exc, task_id, args, kwargs, einfo):$/;"	kind:member	line:27
+on_success	common/base_task.py	/^    def on_success(self, retval, task_id, args, kwargs):$/;"	kind:member	line:123
 on_success	common/base_task.py	/^    def on_success(self, retval, task_id, args, kwargs):$/;"	kind:member	line:23
-on_success	common/base_task.py	/^    def on_success(self, retval, task_id, args, kwargs):$/;"	kind:member	line:68
-on_success	common/base_task.py	/^    def on_success(self, retval, task_id, args, kwargs):$/;"	kind:member	line:86
+on_success	common/base_task.py	/^    def on_success(self, retval, task_id, args, kwargs):$/;"	kind:member	line:99
+on_update_time	flower/views/dashboard.py	/^    def on_update_time(cls, app):$/;"	kind:member	line:111
+open	flower/api/__init__.py	/^    def open(self):$/;"	kind:member	line:9
+open	flower/api/events.py	/^    def open(self, task_id=None):$/;"	kind:member	line:9
+open	flower/views/dashboard.py	/^    def open(self):$/;"	kind:member	line:83
+options.py	flower/options.py	1;"	kind:file	line:1
+page_update_interval	flower/views/dashboard.py	/^    page_update_interval = 2000$/;"	kind:variable	line:81
 parse_detail	spider/uctxt/detail.py	/^def parse_detail(page=''):$/;"	kind:function	line:27
-parse_list	spider/lagou/lagouList.py	/^def parse_list(task_id, job_results):$/;"	kind:function	line:156
+parse_list	spider/lagou/lagouList.py	/^def parse_list(task_id, job_results):$/;"	kind:function	line:159
 parse_list	spider/uctxt/list.py	/^def parse_list(page, url):$/;"	kind:function	line:24
+parse_search_terms	flower/utils/search.py	/^def parse_search_terms(raw_search_value):$/;"	kind:function	line:6
+periodic_callback	flower/views/dashboard.py	/^    periodic_callback = None$/;"	kind:variable	line:79
+pool_executor_cls	flower/app.py	/^    pool_executor_cls = ThreadPoolExecutor$/;"	kind:variable	line:24
+post	flower/api/control.py	/^    def post(self, taskid):$/;"	kind:member	line:438
+post	flower/api/control.py	/^    def post(self, taskname):$/;"	kind:member	line:476
+post	flower/api/control.py	/^    def post(self, taskname):$/;"	kind:member	line:536
+post	flower/api/control.py	/^    def post(self, workername):$/;"	kind:member	line:115
+post	flower/api/control.py	/^    def post(self, workername):$/;"	kind:member	line:165
+post	flower/api/control.py	/^    def post(self, workername):$/;"	kind:member	line:217
+post	flower/api/control.py	/^    def post(self, workername):$/;"	kind:member	line:270
+post	flower/api/control.py	/^    def post(self, workername):$/;"	kind:member	line:329
+post	flower/api/control.py	/^    def post(self, workername):$/;"	kind:member	line:383
+post	flower/api/control.py	/^    def post(self, workername):$/;"	kind:member	line:76
+post	flower/api/tasks.py	/^    def post(self, taskid):$/;"	kind:member	line:326
+post	flower/api/tasks.py	/^    def post(self, taskname):$/;"	kind:member	line:161
+post	flower/api/tasks.py	/^    def post(self, taskname):$/;"	kind:member	line:225
+post	flower/api/tasks.py	/^    def post(self, taskname):$/;"	kind:member	line:84
+post	flower/views/error.py	/^    def post(self):$/;"	kind:member	line:12
 pp	spider/uctxt/add_detail_task.py	/^        def pp(*ar, **kw):$/;"	kind:function	line:50
+prepend_url	flower/utils/__init__.py	/^def prepend_url(url, prefix):$/;"	kind:function	line:40
+preprocess_search_value	flower/utils/search.py	/^def preprocess_search_value(raw_value):$/;"	kind:function	line:78
+print_banner	flower/command.py	/^    def print_banner(self, ssl):$/;"	kind:member	line:135
 proxies	mtest/xx-net_text.py	/^proxies = {$/;"	kind:variable	line:8
 proxy_xici.py	spider/proxy/proxy_xici.py	1;"	kind:file	line:1
 pwd_path	sync_git.py	/^pwd_path = os.getcwd()$/;"	kind:variable	line:11
 qq	spider/uctxt/add_detail_task.py	/^    def qq(func, *ar, **kw):$/;"	kind:function	line:48
 queue.py	mtest/queue.py	1;"	kind:file	line:1
+queues	flower/utils/broker.py	/^    def queues(self, names):$/;"	kind:member	line:129
+queues	flower/utils/broker.py	/^    def queues(self, names):$/;"	kind:member	line:43
+queues	flower/utils/broker.py	/^    def queues(self, names):$/;"	kind:member	line:70
+redis	flower/utils/broker.py	/^    redis = None$/;"	kind:variable	line:24
 remove_string_from_redis	common/db_redis.py	/^def remove_string_from_redis(set_name, string):$/;"	kind:function	line:37
 remove_string_from_redis	common/insert_db.py	/^def remove_string_from_redis(set_name, string):$/;"	kind:function	line:79
+render	flower/views/__init__.py	/^    def render(self, *args, **kwargs):$/;"	kind:member	line:16
 req	common/crawler.py	/^    def req(self, method, url, paras={}, paras_type=1, html_flag=True, time_out=(60, 180), **kw):$/;"	kind:member	line:47
 req	mtest/xx-net_text.py	/^def req():$/;"	kind:function	line:31
 req	tasks.py	/^def req(url="http:\/\/httpbin.org\/ip"):$/;"	kind:function	line:24
 req_wrap	mtest/xx-net_text.py	/^def req_wrap(func):$/;"	kind:function	line:20
 req_wrap	util/func_utli.py	/^def req_wrap(func):$/;"	kind:function	line:6
+reverse_url	flower/views/__init__.py	/^    def reverse_url(self, *args):$/;"	kind:member	line:99
+run	flower/events.py	/^    def run(self):$/;"	kind:member	line:101
+run_from_argv	flower/command.py	/^    def run_from_argv(self, prog_name, argv=None, **_kwargs):$/;"	kind:member	line:35
+safe_result	flower/api/tasks.py	/^    def safe_result(self, result):$/;"	kind:member	line:71
+satisfies_search_terms	flower/utils/search.py	/^def satisfies_search_terms(task, search_terms):$/;"	kind:function	line:34
+search.py	flower/utils/search.py	1;"	kind:file	line:1
+send_message	flower/api/__init__.py	/^    def send_message(cls, message):$/;"	kind:member	line:22
+send_message	flower/api/events.py	/^    def send_message(cls, event):$/;"	kind:member	line:14
 set_debug	common/crawler.py	/^    def set_debug(self, flag=True):$/;"	kind:member	line:42
 set_proxy	common/crawler.py	/^    def set_proxy(self, p, https=False):$/;"	kind:member	line:77
+settings	flower/urls.py	/^settings = dict($/;"	kind:variable	line:21
+setup_logging	flower/command.py	/^    def setup_logging(self):$/;"	kind:member	line:89
+sigterm_handler	flower/command.py	/^        def sigterm_handler(signal, frame):$/;"	kind:function	line:46
+sort_keys	flower/utils/tasks.py	/^sort_keys = {'name': str, 'state': str, 'received': float, 'started': float}$/;"	kind:variable	line:50
+sort_tasks	flower/utils/tasks.py	/^def sort_tasks(tasks, sort_by):$/;"	kind:function	line:53
+sort_url	flower/utils/template.py	/^def sort_url(name, key, sort_by, params=None, class_name='sort'):$/;"	kind:function	line:62
+start	flower/app.py	/^    def start(self):$/;"	kind:member	line:45
+start	flower/events.py	/^    def start(self):$/;"	kind:member	line:88
+static_path	flower/urls.py	/^    static_path=os.path.join(os.path.dirname(__file__), "static"),$/;"	kind:variable	line:23
+static_path	server/__main__.py	/^        static_path=os.path.join(os.path.dirname(__file__), "statics"),$/;"	kind:variable	line:25
+static_url_prefix	flower/urls.py	/^    static_url_prefix='\/static\/',$/;"	kind:variable	line:25
+stop	flower/app.py	/^    def stop(self):$/;"	kind:member	line:66
+stop	flower/events.py	/^    def stop(self):$/;"	kind:member	line:94
+string_types	flower/utils/template.py	/^string_types = (str, unicode) if PY2 else (str,)$/;"	kind:variable	line:20
+stringified_dict_contains_value	flower/utils/search.py	/^def stringified_dict_contains_value(key, value, str_dict):$/;"	kind:function	line:59
 sync_git.py	sync_git.py	1;"	kind:file	line:1
 task.py	model/task.py	1;"	kind:file	line:1
+task_args_contains_search_args	flower/utils/search.py	/^def task_args_contains_search_args(task_args, search_args):$/;"	kind:function	line:82
 task_id	mtest/mongo_test.py	/^    task_id = collection.insert_many(data)$/;"	kind:variable	line:33
+tasks.py	flower/api/tasks.py	1;"	kind:file	line:1
+tasks.py	flower/utils/tasks.py	1;"	kind:file	line:1
+tasks.py	flower/views/tasks.py	1;"	kind:file	line:1
 tasks.py	tasks.py	1;"	kind:file	line:1
+template.py	flower/utils/template.py	1;"	kind:file	line:1
+template_path	flower/urls.py	/^    template_path=os.path.join(os.path.dirname(__file__), "templates"),$/;"	kind:variable	line:22
+template_path	server/__main__.py	/^        template_path=os.path.join(os.path.dirname(__file__), "templates"),$/;"	kind:variable	line:24
 test	mtest/mongo_test.py	/^test = client.mongo_test$/;"	kind:variable	line:18
 test.py	test.py	1;"	kind:file	line:1
+test_one_case	tasks.py	/^def test_one_case(self, task_id=None):$/;"	kind:function	line:133
+thismodule	flower/api/events.py	/^thismodule = sys.modules[__name__]$/;"	kind:variable	line:29
+transport	flower/app.py	/^    def transport(self):$/;"	kind:member	line:76
+update	flower/utils/backports/collections.py	/^    def update(self, iterable=None, **kwds):$/;"	kind:member	line:69
+update_cache	flower/api/control.py	/^    def update_cache(self, workername=None):$/;"	kind:member	line:22
 update_proxy_all	common/insert_db.py	/^def update_proxy_all(args):$/;"	kind:function	line:30
-update_task	tasks.py	/^def update_task(sender, headers, **kwargs):$/;"	kind:function	line:85
+update_response_result	flower/api/tasks.py	/^    def update_response_result(self, response, result):$/;"	kind:member	line:50
+update_task	tasks.py	/^def update_task(sender, headers, **kwargs):$/;"	kind:function	line:90
+update_workers	flower/api/control.py	/^    def update_workers(cls, app, workername=None):$/;"	kind:member	line:28
+uri	common/db_mongo.py	/^uri = "mongodb:\/\/%s:%s@%s\/%s" % ($/;"	kind:variable	line:22
+urls.py	flower/urls.py	1;"	kind:file	line:1
+validate_http_api	flower/utils/broker.py	/^    def validate_http_api(cls, http_api):$/;"	kind:member	line:94
 verify_proxy.py	spider/proxy/verify_proxy.py	1;"	kind:file	line:1
+view.py	server/view.py	1;"	kind:file	line:1
 wa	mtest/xx-net_text.py	/^    def wa():$/;"	kind:function	line:22
 wa	util/func_utli.py	/^    def wa():$/;"	kind:function	line:8
+wait_results	flower/api/tasks.py	/^    def wait_results(self, result, response):$/;"	kind:function	line:147
+worker_cache	flower/api/control.py	/^    worker_cache = collections.defaultdict(dict)$/;"	kind:variable	line:19
+workers	flower/views/dashboard.py	/^    workers = None$/;"	kind:variable	line:80
+workers.py	flower/api/workers.py	1;"	kind:file	line:1
+workers.py	flower/views/workers.py	1;"	kind:file	line:1
 wrap	spider/uctxt/add_detail_task.py	/^    def wrap(*ar, **kw):$/;"	kind:function	line:23
 wrap	spider/uctxt/add_detail_task.py	/^    def wrap(*args, **kw):$/;"	kind:function	line:38
+write_error	flower/api/tasks.py	/^    def write_error(self, status_code, **kwargs):$/;"	kind:member	line:47
+write_error	flower/views/__init__.py	/^    def write_error(self, status_code, **kwargs):$/;"	kind:member	line:23
 xx-net_text.py	mtest/xx-net_text.py	1;"	kind:file	line:1

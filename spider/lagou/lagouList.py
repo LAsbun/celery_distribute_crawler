@@ -152,7 +152,7 @@ def crawl_list(self, *args, **kwargs):
         results = json_data.get('content', {}).get('positionResult', {}).get('result', [])
         if not results:
             return []
-        return parse_list(self.request.id, results)
+        return parse_list(self.request.id, results)   # 调用解析函数
     except Exception, e:
         raise self.retry(exc=e, countdown=2)
 
@@ -182,7 +182,9 @@ if __name__ == '__main__':
     for i in xrange(10):
         try:
 
-            print crawl_list(*atgs, **kw)
+            res = crawl_list(*atgs, **kw)
+            for i in res[:3]:
+                print i
         except:
             pass
         else:
