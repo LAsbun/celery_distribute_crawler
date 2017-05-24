@@ -57,7 +57,7 @@ def get_task(self):
     res = defaultdict(list)
     conn = local_db.get_con()
     cursor = conn.cursor()
-    sql = 'select task_id, task, args, kwargs from `task` where retry < 3 and finished != 4 limit 200'
+    sql = 'select task_id, task, args, kwargs from `task` where retry < 3 and finished != 4 order by priority desc limit 200'
     cursor.execute(sql)
     conn.commit()
     res = cursor.fetchall()
@@ -86,7 +86,7 @@ def get_task(self):
             func.apply_async(args=args, kwargs=kwargs, task_id=ee[0], priority=3, retry=True)
 
 
-@after_task_publish.connect#(sender=["celery_distribute_crawler.tasks.get_task", "celery_distribute_crawler.tasks.div_error"])
+@after_task_publish.connect                          #(sender=["celery_distribute_crawler.tasks.get_task", "celery_distribute_crawler.tasks.div_error"])
 def update_task(sender, headers, **kwargs):
     """
     kwargs => {
