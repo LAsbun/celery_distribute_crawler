@@ -54,7 +54,11 @@
               </tr>
               <tr>
                 <td>任务结果</td>
-                <td>{{ getattr(task, 'result', '') }}</td>
+                {% if task.state == "SUCCESS" %}
+                <td><a href="/display?index=1&task_id={{ task.uuid }}">{{ getattr(task, 'result', '') }}</a></td>
+                  {% else %}
+                  <td>{{ getattr(task, 'result', '') }}></td>
+                  {% end %}
               </tr>
               </tbody>
             </table>

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block navbar %}
+        {% module Template("navbar.html", active_tab="display") %}
+{% end %}
+
+{% block container%}
+
+<div>
+    <h3>没有对应task_id为 <span>{{ task_id }}</span> 的数据</h3>
+    <h2><a href="{{ reverse_url('display') }}">请跳转展示首页</a></h2>
+</div>
+
+
+{% end %}

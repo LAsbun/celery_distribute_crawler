@@ -28,3 +28,5 @@ client = MongoClient(host=uri, port=MONGODB_PORT, connect=False)
 lagou_db = client[MONGODB_DB]
 # print lagou_db
 # print lagou_db['lagou_list'].insert_many([{}, {}])
+# res =  list(lagou_db['test_list'].find(dict(task_id="f1d12fba-dbdb-d6c9-1b94-176f97f525a3"), skip=9, limit=10))
+# print len(res)

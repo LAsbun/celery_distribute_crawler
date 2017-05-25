@@ -17,6 +17,8 @@ from .views.error import NotFoundErrorHandler
 from .views.dashboard import DashboardView, DashboardUpdateHandler
 from .utils import gen_cookie_secret
 
+# display
+from .views.display import GetDataByTaskId, PoemPageHandler, DisplayView
 
 settings = dict(
     template_path=os.path.join(os.path.dirname(__file__), "templates"),
@@ -24,6 +26,7 @@ settings = dict(
     cookie_secret=gen_cookie_secret(),
     static_url_prefix='/static/',
     login_url='/login',
+    debug=True
 )
 
 
@@ -36,6 +39,7 @@ handlers = [
     url(r"/tasks", TasksView, name='tasks'),
     url(r"/tasks/datatable", TasksDataTable),
     url(r"/broker", BrokerView, name='broker'),
+    url(r"/display", DisplayView, name='display'),
     # Worker API
     (r"/api/workers", workers.ListWorkers),
     (r"/api/worker/shutdown/(.+)", control.WorkerShutDown),
@@ -82,6 +86,13 @@ handlers = [
     # Auth
     (r"/login", auth.LoginHandler),
     url(r"/logout", auth.LogoutHandler, name='logout'),
+
+    # display
+    # (r'/', IndexHandler),
+    # (r'/poem', PoemPageHandler),
+    # (r'/page/', FlipHandler),
+    # (r'/filter', GetDataByTaskId),
+
 
     # Error
     (r".*", NotFoundErrorHandler),

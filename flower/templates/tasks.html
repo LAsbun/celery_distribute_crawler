@@ -22,19 +22,14 @@
       <th>任务结果</th>
       <th>消费者接收任务时间</th>
       <th>消费者开始执行任务时间</th>
-      <th>任务执行时间</th>
+      <th>任务执行成功时间</th>
       <th>消费者名称</th>
-      <th>Exchange</th>
-      <th>Routing Key</th>
-      <th>Retries</th>
-      <th>Revoked</th>
-      <th>Exception</th>
-      <th>Expires</th>
-      <th>ETA</th>
+
     </tr>
     </thead>
     <tbody>
     {% for uuid, task in tasks %}
+    {{ task }}
         {% if getattr(task, 'name', None) is None %}
             {% continue %}
         {% end %}
@@ -46,9 +41,9 @@
       <td>{{ task.kwargs }}</td>
       <td>
         {% if task.state == "SUCCESS" %}
-            {{ task.result }}
+            {{ task.result[:20] }}
         {% elif task.state == "FAILURE" %}
-            {{ task.exception }}
+            {{ task.exception[:20] }}
         {% end %}
       </td>
       <td>{{ humanize(task.received, type='time') }}</td>
@@ -58,14 +53,7 @@
             {{ '%.2f' % humanize(task.timestamp - task.started) }} sec
         {% end %}
       </td>
-      <td>{{ task.worker }}</td>
-      <td>{{ task.exchange }}</td>
-      <td>{{ task.routing_key }}</td>
-      <td>{{ task.retries }}</td>
-      <td>{{ humanize(task.revoked, type='time') }}</td>
-      <td>{{ task.exception }}</td>
-      <td>{{ task.expires }}</td>
-      <td>{{ task.eta }}</td>
+
     </tr>
       {% end %}
     </tbody>

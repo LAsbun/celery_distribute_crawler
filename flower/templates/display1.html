@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block navbar %}
+        {% module Template("navbar.html", active_tab="display") %}
+{% end %}
+
+{% block container%}
+<div >
+    {% if not task_id%}
+    <pre><h4>当前共抓取{{ total_count }}条数据,当前页面展示的是第{{ right }}条到第{{ left }}条</h4></pre>
+            <form class="form-inline" style="margin-left: 75%" method="get" action="/display">
+  <div class="form-group">
+    <div class="input-group">
+        <input type="text" class="hidden" name="index" value="1"/>
+      <input type="text" class="form-control" id="exampleInputAmount" name="task_id" placeholder="使用task_id筛选"/>
+        <button type="submit" class="btn btn-primary">搜索</button>
+
+    </div>
+  </div>
+    {% else %}
+    <pre><h4>task_id为 <span>{{ task_id }}</span> 的任务共抓取{{ total_count }}条数据,当前页面展示的是第{{ right }}条到第{{ left }}条</h4></pre>
+
+            </form>
+
+    {% end %}
+
+
+</div>
+<div>
+    <ul>
+
+        <div class="wrap-menu"></div>
+        {% from bson import json_util %}
+
+
+    </ul>
+</div>
+<nav aria-label="Page navigation">
+    <ul class="pagination">
+        <li>
+            <a href="/display?index=1{% if task_id %}&task_id={{ task_id }}{% end %}" aria-label="首页">
+                <span aria-hidden="true">首页</span>
+            </a>
+        </li>
+        {% for i in xrange(pre_five, index) %}
+        <li><a href="/display?index={{ i }}{% if task_id %}&task_id={{ task_id }}{% end %}">{{ i }}</a></li>
+        {% end %}
+
+        <li class = "active"><a href="#">{{ index }}</a></li>
+
+        {% for i in xrange(index+1, last_five+1) %}
+        <li><a href="/display?index={{ i }}{% if task_id %}&task_id={{ task_id }}{% end %}">{{ i }}</a></li>
+        {% end %}
+
+        <li>
+            <a href="/display?index={{ total_pages }}{% if task_id %}&task_id={{ task_id }}{% end %}" aria-label="尾页">
+                <span aria-hidden="true">尾页</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+{% end %}
+{% block extra_scripts %}
+<script src="{{ static_url('js/zhedie.js')}}"></script>
+<script>
+var testMenu={% raw json_util.dumps(lines, ensure_ascii=False, indent=1) %};
+
+$(function(){
+    new AccordionMenu({menuArrs:testMenu});
+});
+</script>
+{% end %}
