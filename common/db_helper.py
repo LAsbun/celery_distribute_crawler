@@ -21,8 +21,8 @@ class DbHelper(object):
         self._connect()
 
     def _connect(self):
-        self.__con = MySQLdb.connect(host=self.__host, port=self.__port,
-                              user=self.__user, passwd=self.__password, db=self.__db,
+        self.__con = pymysql.connect(host=self.__host, port=self.__port,
+                              user=self.__user, password=self.__password, database=self.__db,
                               charset=self.__charset, autocommit=True)
         # return con
 
