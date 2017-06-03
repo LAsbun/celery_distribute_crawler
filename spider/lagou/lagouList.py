@@ -116,7 +116,11 @@ def crawl_list(self, *args, **kwargs):
 
         try:
             if not kwargs:
-                kwargs = {"url": "https://www.lagou.com/jobs/positionAjax.json?city=%E5%8C%97%E4%BA%AC&needAddtionalResult=false", "headers": {"Referer": "https://www.lagou.com/jobs/list_Java?labelWords=sug&fromSearch=true"}, "method": "post", "req_param": {"first": True, "pn": 1, "kd": "Java"}}
+                kwargs = {"url": "https://www.lagou.com/jobs/positionAjax.json?city=%E5%8C%97%E4%BA%AC&needAddtionalResult=false",
+                          "headers": {"Referer": "https://www.lagou.com/jobs/list_Java?labelWords=sug&fromSearch=true"},
+                          "method": "post",
+                          "req_param": {"first": True, "pn": 1, "kd": "Java"}
+                          }
                 args = []
         except:
             pass
@@ -143,9 +147,7 @@ def crawl_list(self, *args, **kwargs):
             list_header['Referer'] = referer
 
         cr = Crawler()
-        cr.set_proxy('127.0.0.1:8087')
-        # cr.req('get', 'https://activity.lagou.com/activityapi/icon/showIcon.json?callback=jQuery111306045271617199887_1493362357868&type=COMPANY&_=1493362357869')
-        # cr.add_referer('referer')
+        cr.set_proxy('127.0.0.1:8087')  # 设置IP
         resp, error = cr.req(method=method, url=url, headers=list_header, paras=param)
         # print resp
         json_data = json.loads(resp)

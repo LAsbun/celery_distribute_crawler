@@ -12,18 +12,16 @@ from celery_distribute_crawler.celeryconfig import MONGODB_COLLECTION
 
 class MyTask(celery.Task):
     """
-        任务反馈，failure, success
+        任务反馈，failure, success,retry
     """
     def on_failure(self, exc, task_id, args, kwargs, einfo):
 
-        print 'on_failure....{0}, type:{1}'.format(einfo.exc_info, type(einfo))
         self._update_task(3, task_id)
         self._update_failure(task_id, str(einfo))
 
     def on_success(self, retval, task_id, args, kwargs):
-        # print 'success...', retval
         self._update_task(4, task_id)
-        # self._insert_test_table([(task_id, retval)])
+
     def on_retry(self, exc, task_id, args, kwargs, einfo):
         '''
         更新retry的次数
@@ -39,16 +37,6 @@ class MyTask(celery.Task):
         sql = """ update `task` set retry=retry+1 where task_id = "{0}" """.format(task_id)
         cursor.execute(sql)
         conn.commit()
-    # def _insert_test_table(self, data):
-    #     with local_db as conn:
-    #         with conn as cursor:
-    #             sql = """insert ignore into `hh` (task_id, hh) values(%s, %s)"""
-    #             cursor.executemany(sql, args=data)
-
-    # def _insert_lagou(self, data):
-    #     with local_db as conn:
-    #         with conn as cursor:
-    #             sql = '''insert '''
 
     def _update_task(self, error_code, task_id):
         """
@@ -64,11 +52,6 @@ class MyTask(celery.Task):
         sql = """ update `task` set finished = {0} where task_id = "{1}" """.format(error_code, task_id)
         cursor.execute(sql)
         conn.commit()
-        #
-        # with local_db as conn:
-        #     with conn as cursor:
-        #         sql = """ update `task` set finished = {0} where task_id = "{1}" """.format(error_code, task_id)
-        #         cursor.execute(sql)
                 
     def _update_failure(self, task_id, exc):
         print 'failure...', exc
@@ -76,9 +59,9 @@ class MyTask(celery.Task):
         conn = local_db.get_con()
         cursor = conn.cursor()
         sql = """
-                    insert into  `update_task`(error_info, task_id) VALUES ("{0}", "{1}") ON Duplicate key UPDATE error_info = "{0}"
+                    insert into  `update_task`(error_info, task_id) VALUES ("{0}", "{1}")
+                    ON Duplicate key UPDATE error_info = "{0}"
             """.format(conn.escape_string(exc), task_id)
-        # sql = """update `hh` set error_info = {0} where task_id = "{1}" """.format(exc, task_id)
         cursor.execute(sql)
         conn.commit()
 

@@ -86,7 +86,7 @@ def get_task(self):
             func.apply_async(args=args, kwargs=kwargs, task_id=ee[0], priority=3, retry=True)
 
 
-@after_task_publish.connect                          #(sender=["celery_distribute_crawler.tasks.get_task", "celery_distribute_crawler.tasks.div_error"])
+@after_task_publish.connect
 def update_task(sender, headers, **kwargs):
     """
     kwargs => {
@@ -109,15 +109,10 @@ headers ==> {u'origin': u'gen9374@sws-pc', u'root_id': '3cdbe96a-8d52-408a-a27f-
     cursor.execute(sql)
     conn.commit()
 
-    # with local_db as conn:
-    #     with conn as cursor:
-    #         sql = """ update `task` set finished = {0} where task_id = "{1}" """.format(2, headers['id'])
-    #         cursor.execute(sql)
-
-    for k, v in kwargs.iteritems():
-        print "{0} ==> {1}, type(v) => {2}".format(k, v, type(v))
-
-    print '*'*100
+    # for k, v in kwargs.iteritems():
+    #     print "{0} ==> {1}, type(v) => {2}".format(k, v, type(v))
+    #
+    # print '*'*100
 
 
 # from celery import signals
