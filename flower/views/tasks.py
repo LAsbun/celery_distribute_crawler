@@ -73,10 +73,7 @@ class TasksDataTable(BaseHandler):
         custom_format_task = self.application.options.format_task
 
         if custom_format_task:
-            try:
-                task = custom_format_task(copy.copy(task))
-            except:
-                logger.exception("Failed to format '%s' task", uuid)
+            task = custom_format_task(copy.copy(task))
         return uuid, task
 
 
@@ -89,6 +86,7 @@ class TasksView(BaseHandler):
         time = 'natural-time' if app.options.natural_time else 'time'
         if capp.conf.CELERY_TIMEZONE:
             time += '-' + capp.conf.CELERY_TIMEZONE
+
         self.render(
             "tasks.html",
             tasks=[],

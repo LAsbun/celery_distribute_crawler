@@ -25,7 +25,6 @@ class DashboardView(BaseHandler):
     @gen.coroutine
     def get(self):
         refresh = self.get_argument('refresh', default=False, type=bool)
-        json = self.get_argument('json', default=False, type=bool)
 
         app = self.application
         events = app.events.state
@@ -47,10 +46,7 @@ class DashboardView(BaseHandler):
             info.update(status=worker.alive)
             workers[name] = info
 
-        if json:
-            self.write(dict(data=list(workers.values())))
-        else:
-            self.render("dashboard.html", workers=workers, broker=broker)
+        self.render("dashboard.html", workers=workers, broker=broker)
 
     @classmethod
     def _as_dict(cls, worker):
@@ -140,6 +136,3 @@ class DashboardUpdateHandler(websocket.WebSocketHandler):
                 retried=retried,
                 loadavg=getattr(worker, 'loadavg', None))
         return workers
-
-    def check_origin(self, origin):
-        return True

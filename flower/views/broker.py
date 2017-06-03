@@ -34,8 +34,7 @@ class BrokerView(BaseHandler):
         try:
             queue_names = ControlHandler.get_active_queue_names()
             if not queue_names:
-                queue_names = set([self.capp.conf.CELERY_DEFAULT_QUEUE]) |\
-                        set([q.name for q in self.capp.conf.CELERY_QUEUES or [] if q.name])
+                queue_names = set([self.capp.conf.CELERY_DEFAULT_QUEUE])
 
             queues = yield broker.queues(sorted(queue_names))
         except Exception as e:

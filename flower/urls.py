@@ -16,9 +16,8 @@ from .views.tasks import TaskView, TasksView, TasksDataTable
 from .views.error import NotFoundErrorHandler
 from .views.dashboard import DashboardView, DashboardUpdateHandler
 from .utils import gen_cookie_secret
+from .views.display import DisplayView
 
-# display
-from .views.display import GetDataByTaskId, PoemPageHandler, DisplayView
 
 settings = dict(
     template_path=os.path.join(os.path.dirname(__file__), "templates"),
@@ -26,7 +25,6 @@ settings = dict(
     cookie_secret=gen_cookie_secret(),
     static_url_prefix='/static/',
     login_url='/login',
-    debug=True
 )
 
 
@@ -85,14 +83,7 @@ handlers = [
      {"path": settings['static_path']}),
     # Auth
     (r"/login", auth.LoginHandler),
-    url(r"/logout", auth.LogoutHandler, name='logout'),
-
-    # display
-    # (r'/', IndexHandler),
-    # (r'/poem', PoemPageHandler),
-    # (r'/page/', FlipHandler),
-    # (r'/filter', GetDataByTaskId),
-
+    (r"/logout", auth.LogoutHandler),
 
     # Error
     (r".*", NotFoundErrorHandler),
