@@ -32,11 +32,16 @@ class MyTask(celery.Task):
         :param einfo:
         :return:
         '''
-        conn = local_db.get_con()
-        cursor = conn.cursor()
-        sql = """ update `task` set retry=retry+1 where task_id = "{0}" """.format(task_id)
-        cursor.execute(sql)
-        conn.commit()
+        with local_db as conn:
+            with conn as cursor:
+                sql = """ update `task` set retry=retry+1 where task_id = "{0}" """.format(task_id)
+                cursor.execute(sql)
+                conn.commit()
+        # conn = local_db.get_con()
+        # cursor = conn.cursor()
+        # sql = """ update `task` set retry=retry+1 where task_id = "{0}" """.format(task_id)
+        # cursor.execute(sql)
+        # conn.commit()
 
     def _update_task(self, error_code, task_id):
         """
@@ -47,23 +52,38 @@ class MyTask(celery.Task):
         :return: None
         """
 
-        conn = local_db.get_con()
-        cursor = conn.cursor()
-        sql = """ update `task` set finished = {0} where task_id = "{1}" """.format(error_code, task_id)
-        cursor.execute(sql)
-        conn.commit()
+        with local_db as conn:
+            with conn as cursor:
+                sql = """ update `task` set finished = {0} where task_id = "{1}" """.format(error_code, task_id)
+                cursor.execute(sql)
+                conn.commit()
+
+        # conn = local_db.get_con()
+        # cursor = conn.cursor()
+        # sql = """ update `task` set finished = {0} where task_id = "{1}" """.format(error_code, task_id)
+        # cursor.execute(sql)
+        # conn.commit()
                 
     def _update_failure(self, task_id, exc):
         print 'failure...', exc
 
-        conn = local_db.get_con()
-        cursor = conn.cursor()
-        sql = """
-                    insert into  `update_task`(error_info, task_id) VALUES ("{0}", "{1}")
-                    ON Duplicate key UPDATE error_info = "{0}"
-            """.format(conn.escape_string(exc), task_id)
-        cursor.execute(sql)
-        conn.commit()
+        with local_db as conn:
+            with conn as cursor:
+                sql = """
+                  insert into  `update_task`(error_info, task_id) VALUES ("{0}", "{1}")
+                  ON Duplicate key UPDATE error_info = "{0}"
+                """.format(conn.escape_string(exc), task_id)
+                cursor.execute(sql)
+                conn.commit()
+
+        # conn = local_db.get_con()
+        # cursor = conn.cursor()
+        # sql = """
+        #             insert into  `update_task`(error_info, task_id) VALUES ("{0}", "{1}")
+        #             ON Duplicate key UPDATE error_info = "{0}"
+        #     """.format(conn.escape_string(exc), task_id)
+        # cursor.execute(sql)
+        # conn.commit()
 
         # with local_db as conn:
         #     with conn as cursor:
@@ -89,11 +109,16 @@ class GenerTask(MyTask):
         """
         super(GenerTask, self).on_success(retval, task_id, args, kwargs)
 
-        con = local_db.get_con()
-        cursor = con.cursor()
-        sql = ''' insert into `task` (task_id, task, args, kwargs, finished) values(%s, %s, %s, %s, %s) ON DUPLICATE KEY UPDATE task_id = VALUES(task_id)'''
-        cursor.executemany(sql, retval)
-        con.commit()
+        with local_db as conn:
+            with conn as cursor:
+                sql = ''' insert into `task` (task_id, task, args, kwargs, finished) values(%s, %s, %s, %s, %s) ON DUPLICATE KEY UPDATE task_id = VALUES(task_id)'''
+                cursor.execute(sql)
+                conn.commit()
+        # con = local_db.get_con()
+        # cursor = con.cursor()
+        # sql = ''' insert into `task` (task_id, task, args, kwargs, finished) values(%s, %s, %s, %s, %s) ON DUPLICATE KEY UPDATE task_id = VALUES(task_id)'''
+        # cursor.executemany(sql, retval)
+        # con.commit()
 
         # with local_db as conn:
         #     with conn as cursor:

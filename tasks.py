@@ -55,12 +55,20 @@ import json
 @app.task(bind=True, ignore_result=True)
 def get_task(self):
     res = defaultdict(list)
-    conn = local_db.get_con()
-    cursor = conn.cursor()
-    sql = 'select task_id, task, args, kwargs from `task` where retry < 3 and finished != 4 order by priority desc limit 200'
-    cursor.execute(sql)
-    conn.commit()
-    res = cursor.fetchall()
+
+    with local_db as conn:
+        with conn as cursor:
+            sql = 'select task_id, task, args, kwargs from `task` where retry < 3 and finished != 4 order by priority desc limit 200'
+            cursor.execute(sql)
+            conn.commit()
+            res = cursor.fetchall()
+    # conn = local_db.get_con()
+    # cursor = conn.cursor()
+    # sql = 'select task_id, task, args, kwargs from `task` where retry < 3 and finished != 4 order by priority desc limit 200'
+    # cursor.execute(sql)
+    # conn.commit()
+
+
     # with local_db as con:
     #     with con as cursor:
     #         sql = 'select task_id, task, args, kwargs from `task` where finished in (1, 3) limit 50'
@@ -103,11 +111,17 @@ headers ==> {u'origin': u'gen9374@sws-pc', u'root_id': '3cdbe96a-8d52-408a-a27f-
     if "celery_distribute_crawler.tasks.get_task" == sender:
         # 如果是分发任务的函数不需要更新数据库任务
         return
-    conn = local_db.get_con()
-    cursor = conn.cursor()
-    sql = """ update `task` set finished = {0} where task_id = "{1}" """.format(2, headers['id'])
-    cursor.execute(sql)
-    conn.commit()
+    with local_db as conn:
+        with conn as cursor:
+            sql = """ update `task` set finished = {0} where task_id = "{1}" """.format(2, headers['id'])
+            cursor.execute(sql)
+            conn.commit()
+
+    # conn = local_db.get_con()
+    # cursor = conn.cursor()
+    # sql = """ update `task` set finished = {0} where task_id = "{1}" """.format(2, headers['id'])
+    # cursor.execute(sql)
+    # conn.commit()
 
     # for k, v in kwargs.iteritems():
     #     print "{0} ==> {1}, type(v) => {2}".format(k, v, type(v))
@@ -132,19 +146,35 @@ def test_one_case(self, task_id=None):
     :return:
     """
     if task_id is not None:
-        conn = local_db.get_con()
-        cursor = conn.cursor()
-        sql = """ select * from `task` where task_id = "{0}" """.format(task_id)
-        cursor.execute(sql)
-        conn.commit()
-        res =  cursor.fetchall()
+
+        with local_db as conn:
+            with conn as cursor:
+                sql = """ select * from `task` where task_id = "{0}" """.format(task_id)
+                cursor.execute(sql)
+                conn.commit()
+                res =  cursor.fetchall()
+        # conn = local_db.get_con()
+        # cursor = conn.cursor()
+        # sql = """ select * from `task` where task_id = "{0}" """.format(task_id)
+        # cursor.execute(sql)
+        # conn.commit()
+        # res =  cursor.fetchall()
+
     else:
-        conn = local_db.get_con()
-        cursor = conn.cursor()
-        sql = """ select * from `task` where finished = 3 limit 1 """
-        cursor.execute(sql)
-        conn.commit()
-        res =  cursor.fetchall()
+        with local_db as conn:
+            with conn as cursor:
+                sql = """ select * from `task` where finished = 3 limit 1 """
+                cursor.execute(sql)
+                conn.commit()
+                res =  cursor.fetchall()
+
+        # conn = local_db.get_con()
+        # cursor = conn.cursor()
+        # sql = """ select * from `task` where finished = 3 limit 1 """
+        # cursor.execute(sql)
+        # conn.commit()
+        #
+        # res =  cursor.fetchall()
 
     if res:
         print res
