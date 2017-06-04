@@ -30,7 +30,13 @@
                     <tbody>
                       {% for name,value in worker['stats']['pool'].items() %}
                         <tr>
-                          <td>{{ humanize(name) }}</td>
+
+                            {% if "concurrency" in name %}
+                            <td>最大并发数</td>
+                            {% else %}
+                            {% continue %}
+                            {% end %}
+
                           <td>{{ humanize(value) }}</td>
                         </tr>
                       {% end %}
