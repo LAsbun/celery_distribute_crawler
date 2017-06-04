@@ -30,7 +30,7 @@
                     <tbody>
                       {% for name,value in worker['stats']['pool'].items() %}
                         <tr>
-                          <td>最大并发数</td>
+                          <td>{{ humanize(name) }}</td>
                           <td>{{ humanize(value) }}</td>
                         </tr>
                       {% end %}
