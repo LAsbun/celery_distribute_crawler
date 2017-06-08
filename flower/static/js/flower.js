@@ -391,7 +391,7 @@ var flower = (function () {
         table.draw();
 
         $('a#btn-active').text('正在运行的任务: ' + table.column(2).data().reduce(sum, 0));
-        $('a#btn-processed').text('已经执行的任务数目: ' + table.column(3).data().reduce(sum, 0));
+        $('a#btn-processed').text('已经分发的任务总数目: ' + table.column(3).data().reduce(sum, 0));
         $('a#btn-failed').text('失败的任务数目: ' + table.column(4).data().reduce(sum, 0));
         $('a#btn-succeeded').text('成功的任务数目: ' + table.column(5).data().reduce(sum, 0));
         $('a#btn-retried').text('重新执行的任务数目: ' + table.column(6).data().reduce(sum, 0));
