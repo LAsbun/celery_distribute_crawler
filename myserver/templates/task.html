@@ -72,8 +72,7 @@
                 <tr>
                   {% if name == "received" %}
                   <td class="{{ name }}">接收任务时间</td>
-                  {% elif name == "retries" %}
-                  <td class="{{ name }}">重试次数</td>
+
                   {% elif name == "started" %}
                   <td class="{{ name }}">任务开始执行时间</td>
                   {% elif name == "succeeded" %}
@@ -100,7 +99,7 @@
                         href="{{ reverse_url('worker', task.worker.hostname) }}">{{ task.worker.hostname }}</a>
                     {% elif name in ['traceback','exception'] %}
                     <pre>{{ getattr(task, name, None) }}</pre>
-                    {% elif name in ['retries','runtime'] %}
+                    {% elif name in ['runtime'] %}
                       {{ getattr(task, name, None) }}
                     {% end %}
                   </td>
