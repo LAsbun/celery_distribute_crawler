@@ -68,7 +68,7 @@
               <caption>任务执行相关信息</caption>
               <tbody>
               {% for name in task._fields %}
-                {% if name in ['received', 'retries', 'started', 'succeeded', 'worker', 'retried', 'traceback','failed', 'exception', 'runtime'] and getattr(task, name, None) is not None %}
+                {% if name in ['received', 'started', 'succeeded', 'worker', 'traceback','failed', 'exception', 'runtime'] and getattr(task, name, None) is not None %}
                 <tr>
                   {% if name == "received" %}
                   <td class="{{ name }}">接收任务时间</td>
