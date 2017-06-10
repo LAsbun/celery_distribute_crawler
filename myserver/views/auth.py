@@ -56,7 +56,7 @@ class GoogleAuth2LoginHandler(BaseHandler, tornado.auth.GoogleOAuth2Mixin):
         if not re.match(self.application.options.auth, email):
             message = (
                 "Access denied to '{email}'. Please use another account or "
-                "ask your admin to add your email to flower --auth."
+                "ask your admin to add your email to myserver --auth."
             ).format(email=email)
             raise tornado.web.HTTPError(403, message)
 
@@ -144,7 +144,7 @@ class GithubLoginHandler(BaseHandler, tornado.auth.OAuth2Mixin):
         if not emails:
             message = (
                 "Access denied. Please use another account or "
-                "ask your admin to add your email to flower --auth."
+                "ask your admin to add your email to myserver --auth."
             )
             raise tornado.web.HTTPError(403, message)
 

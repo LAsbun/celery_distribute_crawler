@@ -38,7 +38,7 @@ class BaseHandler(tornado.web.RequestHandler):
                         bugreport=bugreport())
         elif status_code == 401:
             self.set_status(status_code)
-            self.set_header('WWW-Authenticate', 'Basic realm="flower"')
+            self.set_header('WWW-Authenticate', 'Basic realm="myserver"')
             self.finish('Access denied')
         else:
             message = None

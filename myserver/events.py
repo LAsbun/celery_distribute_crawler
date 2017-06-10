@@ -126,7 +126,7 @@ class Events(threading.Thread):
 
     def on_enable_events(self):
         # Periodically enable events for workers
-        # launched after flower
+        # launched after myserver
         try:
             self.capp.control.enable_events()
         except Exception as e:

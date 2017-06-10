@@ -20,7 +20,7 @@ def bugreport(app=None):
 
         set_default_app(app)
 
-        return 'flower   -> flower:%s tornado:%s babel:%s%s' % (
+        return 'myserver   -> myserver:%s tornado:%s babel:%s%s' % (
             __version__,
             tornado.version,
             babel.__version__,
