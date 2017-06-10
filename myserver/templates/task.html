@@ -77,9 +77,7 @@
                   <td class="{{ name }}">任务开始执行时间</td>
                   {% elif name == "succeeded" %}
                   <td class="{{ name }}">任务执行成功反馈时间</td>
-                  {% elif name == "retried" %}
 
-                  <td class="{{ name }}">任务重试时间</td>
                   {% elif name == "failed" %}
                   <td class="{{ name }}">任务失败反馈时间</td>
                   {% elif name == "traceback" %}
@@ -92,7 +90,7 @@
                   <td class="{{ name }}">执行任务的消费者</td>
                   {% end %}
                   <td>
-                    {% if name in ['received', 'started', 'succeeded', 'retried', 'failed'] %}
+                    {% if name in ['received', 'started', 'succeeded', 'failed'] %}
                     {{ humanize(getattr(task, name, None), type='time') }}
                     {% elif name == 'worker' %}
                     <a
