@@ -66,7 +66,7 @@ MONGODB_READER_PWD = "readeraaaaa"
 MONGODB_WRITER = "writer"
 MONGODB_WRITER_PWD = "writeraaaaa"
 MONGODB_DB = 'sws'
-MONGODB_COLLECTION = "test_list"
+MONGODB_COLLECTION = "lagou_test20170610"
 
 # mysql 相关
 MYSQLDB_HOST = "182.254.222.204"
